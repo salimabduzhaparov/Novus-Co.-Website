@@ -1,0 +1,292 @@
+<!doctype html>
+<!-- Novus Co. brand skeleton: BOLD TRADE (roofing, concrete, tree, fencing, exterior trades)
+     Slots: {{TOKENS}} + novus loop markers. Section order and data-novus hooks are contractual;
+     the generator may restyle/rewrite everything inside sections but must keep order + footer. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BUSINESS_NAME}} — {{TRADE}} in {{CITY}}</title>
+<meta name="description" content="{{BUSINESS_NAME}}: {{TRADE}} serving {{CITY}}. Licensed, insured, free estimates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{FONTS_HREF}}" rel="stylesheet">
+<style>
+:root{
+  --bg:{{BG}}; --surface:{{SURFACE}}; --ink:{{INK}}; --accent:{{ACCENT}}; --accent2:{{ACCENT2}};
+  --font-display:'{{FONT_DISPLAY}}',serif; --font-text:'{{FONT_TEXT}}',system-ui,sans-serif;
+  --space:8px; --rad:14px; --shadow:0 18px 50px -18px rgba(0,0,0,.55);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-text);line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92%);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-display);line-height:1.08;letter-spacing:-.01em}
+section{padding:clamp(64px,9vw,120px) 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--accent);font-weight:600}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--bg);font-weight:700;padding:16px 28px;border-radius:999px;border:0;font-size:1rem;cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 30px -12px var(--accent)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px color-mix(in srgb,var(--ink) 35%,transparent)}
+.btn.ghost:hover{box-shadow:inset 0 0 0 1.5px var(--accent);color:var(--accent)}
+
+/* nav */
+header[data-novus="nav"]{position:fixed;inset:0 0 auto;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.15rem;letter-spacing:.02em}
+.logo b{color:var(--accent)}
+.nav-cta{display:flex;gap:10px;align-items:center}
+.nav-phone{font-weight:700;font-size:.95rem;opacity:.9}
+
+/* hero */
+[data-novus="hero"]{min-height:92svh;display:flex;align-items:flex-end;overflow:hidden;padding:0 0 clamp(56px,8vw,96px);{{HERO_BG_CSS}}}
+[data-novus="hero"]::before{content:"{{TRADE_WORD}}";position:absolute;top:12%;left:-2%;font-family:var(--font-display);font-weight:700;font-size:clamp(6rem,22vw,19rem);line-height:1;color:transparent;-webkit-text-stroke:1.5px color-mix(in srgb,var(--ink) 16%,transparent);pointer-events:none;white-space:nowrap}
+.hero-in{position:relative}
+.hero-in h1{font-size:clamp(2.6rem,6.4vw,5rem);max-width:14ch}
+.hero-in .sub{margin-top:22px;max-width:52ch;font-size:1.08rem;color:color-mix(in srgb,var(--ink) 82%,transparent)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-badges{display:flex;gap:26px;margin-top:44px;flex-wrap:wrap;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 60%,transparent)}
+/* staged hero reveal */
+.seq{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+body.is-live .seq{opacity:1;transform:none}
+body.is-live .seq:nth-child(1){transition-delay:.05s}body.is-live .seq:nth-child(2){transition-delay:.17s}
+body.is-live .seq:nth-child(3){transition-delay:.29s}body.is-live .seq:nth-child(4){transition-delay:.41s}
+
+/* diagonal seam signature */
+.seam{height:90px;background:var(--surface);clip-path:polygon(0 62%,100% 0,100% 100%,0 100%)}
+
+/* services */
+[data-novus="services"]{background:var(--surface)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:44px}
+.card{background:color-mix(in srgb,var(--bg) 55%,var(--surface));border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);border-radius:var(--rad);padding:28px 24px;transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}
+.card:hover{transform:translateY(-6px);border-color:color-mix(in srgb,var(--accent) 55%,transparent);box-shadow:var(--shadow)}
+.card h3{font-size:1.25rem;margin-bottom:10px}
+.card p{color:color-mix(in srgb,var(--ink) 74%,transparent);font-size:.97rem}
+.card .tick{width:34px;height:34px;border-radius:9px;background:color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent);display:grid;place-items:center;font-weight:800;margin-bottom:16px}
+
+/* about / why */
+[data-novus="about"] .split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,64px);align-items:center}
+.about-media{aspect-ratio:4/3;border-radius:var(--rad);overflow:hidden;background:
+  radial-gradient(120% 120% at 20% 10%,color-mix(in srgb,var(--accent) 32%,transparent),transparent 60%),
+  radial-gradient(120% 120% at 85% 90%,color-mix(in srgb,var(--accent2) 30%,transparent),transparent 55%),var(--surface);box-shadow:var(--shadow)}
+.stat-row{display:flex;gap:34px;margin-top:30px;flex-wrap:wrap}
+.stat b{font-family:var(--font-display);font-size:1.9rem;color:var(--accent)}
+.stat span{display:block;font-size:.82rem;text-transform:uppercase;letter-spacing:.14em;color:color-mix(in srgb,var(--ink) 58%,transparent)}
+
+/* reviews */
+[data-novus="reviews"]{background:var(--surface)}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:44px}
+.rev-card{background:color-mix(in srgb,var(--bg) 55%,var(--surface));border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);border-radius:var(--rad);padding:26px}
+.rev-stars{color:var(--accent);letter-spacing:3px;font-size:1.05rem}
+.rev-text{margin:14px 0 18px;color:color-mix(in srgb,var(--ink) 82%,transparent)}
+.rev-author{font-weight:700}
+.rev-tag{display:block;margin-top:12px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 45%,transparent)}
+
+/* areas */
+.area-band{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.chip{padding:12px 22px;border-radius:999px;border:1px solid color-mix(in srgb,var(--ink) 16%,transparent);font-weight:600;transition:border-color .2s,color .2s}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+
+/* contact */
+[data-novus="contact"]{background:linear-gradient(180deg,var(--bg),color-mix(in srgb,var(--accent) 8%,var(--bg)))}
+.cta-box{background:var(--surface);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);border-radius:calc(var(--rad) + 6px);padding:clamp(30px,5vw,56px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);box-shadow:var(--shadow)}
+form .row{display:grid;gap:14px;margin-bottom:14px}
+input,textarea{width:100%;background:color-mix(in srgb,var(--bg) 70%,transparent);border:1px solid color-mix(in srgb,var(--ink) 14%,transparent);border-radius:10px;padding:14px 16px;color:var(--ink);font-family:inherit;font-size:.97rem}
+input:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:transparent}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--accent);color:var(--bg);font-weight:700;padding:14px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.35s ease;z-index:60}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+/* footer */
+footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 9%,transparent);font-size:.9rem;color:color-mix(in srgb,var(--ink) 62%,transparent)}
+.foot-in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+.novus-line b{color:var(--accent)}
+
+/* scroll reveals */
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d,0)*90ms)}
+[data-reveal].in{opacity:1;transform:none}
+
+@media (max-width:840px){
+  [data-novus="about"] .split,.cta-box{grid-template-columns:1fr}
+  .nav-phone{display:none}
+  [data-novus="hero"]{min-height:88svh}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .seq,[data-reveal]{opacity:1!important;transform:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header data-novus="nav">
+  <div class="wrap nav-in">
+    <div class="logo">{{BUSINESS_NAME}}<b>.</b></div>
+    <div class="nav-cta">
+      <span class="nav-phone" data-novus="phone-row">{{PHONE}}</span>
+      <a class="btn" href="#contact" style="padding:12px 22px;font-size:.9rem">{{CTA_LABEL}}</a>
+    </div>
+  </div>
+</header>
+
+<section data-novus="hero">
+  <div class="wrap hero-in">
+    <span class="eyebrow seq">{{TRADE}} · {{CITY}}</span>
+    <h1 class="seq">{{HERO_HEADLINE}}</h1>
+    <p class="sub seq">{{HERO_SUB}}</p>
+    <div class="hero-ctas seq">
+      <a class="btn" href="#contact">{{CTA_LABEL}}</a>
+      <a class="btn ghost" href="tel:{{PHONE_HREF}}" data-novus="phone-row">Call {{PHONE}}</a>
+    </div>
+    <div class="hero-badges seq">
+      <span>Licensed &amp; insured</span><span>Free estimates</span><span>Locally owned</span>
+    </div>
+  </div>
+</section>
+
+<div class="seam" aria-hidden="true"></div>
+
+<section data-novus="services" id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>What we do</span>
+    <h2 data-reveal style="font-size:clamp(1.9rem,4vw,3rem);max-width:18ch;margin-top:14px">Built for {{CITY}} weather. Priced like a neighbor.</h2>
+    <div class="grid">
+      <!-- novus:service -->
+      <article class="card" data-reveal style="--d:{{SERVICE_INDEX}}">
+        <div class="tick">✓</div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_BLURB}}</p>
+      </article>
+      <!-- /novus:service -->
+    </div>
+  </div>
+</section>
+
+<section data-novus="about">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow" data-reveal>Why {{BUSINESS_NAME}}</span>
+      <h2 data-reveal style="font-size:clamp(1.9rem,4vw,3rem);margin-top:14px">The crew your neighbors already trust.</h2>
+      <p data-reveal style="margin-top:18px;color:color-mix(in srgb,var(--ink) 78%,transparent)">{{ABOUT_LINE}}</p>
+      <div class="stat-row" data-reveal>
+        <div class="stat"><b>Local</b><span>owner on every job</span></div>
+        <div class="stat"><b>Insured</b><span>and fully licensed</span></div>
+        <div class="stat"><b>Fast</b><span>quotes in 24–48h</span></div>
+      </div>
+    </div>
+    <div class="about-media" data-reveal aria-hidden="true">{{SECTION_IMAGE}}</div>
+  </div>
+</section>
+
+<section data-novus="reviews">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Word around town</span>
+    <h2 data-reveal style="font-size:clamp(1.9rem,4vw,3rem);margin-top:14px">{{CITY}} keeps recommending us.</h2>
+    <div class="rev-grid">
+      <!-- novus:review -->
+      <figure class="rev-card" data-reveal style="--d:{{REVIEW_INDEX}}">
+        <div class="rev-stars" aria-label="star rating">{{REVIEW_STARS}}</div>
+        <blockquote class="rev-text">“{{REVIEW_TEXT}}”</blockquote>
+        <figcaption class="rev-author">{{REVIEW_AUTHOR}}</figcaption>
+        <span class="rev-tag">{{REVIEW_TAG}}</span>
+      </figure>
+      <!-- /novus:review -->
+      <!-- novus:placeholder-reviews -->
+      <figure class="rev-card" data-reveal>
+        <div class="rev-stars" aria-label="star rating">★★★★★</div>
+        <blockquote class="rev-text">“They showed up on time, quoted a fair number, and the work was spotless. Wish every contractor ran like this.”</blockquote>
+        <figcaption class="rev-author">A happy customer</figcaption>
+        <span class="rev-tag">Sample review shown as a placeholder — your real Google reviews go here</span>
+      </figure>
+      <figure class="rev-card" data-reveal style="--d:1">
+        <div class="rev-stars" aria-label="star rating">★★★★★</div>
+        <blockquote class="rev-text">“Straightforward, honest, and quick. The final invoice matched the quote to the dollar.”</blockquote>
+        <figcaption class="rev-author">A happy customer</figcaption>
+        <span class="rev-tag">Sample review shown as a placeholder — your real Google reviews go here</span>
+      </figure>
+      <figure class="rev-card" data-reveal style="--d:2">
+        <div class="rev-stars" aria-label="star rating">★★★★★</div>
+        <blockquote class="rev-text">“Called three companies. These folks were the only ones who answered, and the only quote we needed.”</blockquote>
+        <figcaption class="rev-author">A happy customer</figcaption>
+        <span class="rev-tag">Sample review shown as a placeholder — your real Google reviews go here</span>
+      </figure>
+      <!-- /novus:placeholder-reviews -->
+    </div>
+  </div>
+</section>
+
+<section data-novus="areas">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Service area</span>
+    <h2 data-reveal style="font-size:clamp(1.9rem,4vw,3rem);margin-top:14px">Proudly serving {{CITY}} &amp; nearby.</h2>
+    <div class="area-band" data-reveal>
+      <!-- novus:area -->
+      <span class="chip">{{AREA}}</span>
+      <!-- /novus:area -->
+    </div>
+  </div>
+</section>
+
+<section data-novus="contact" id="contact">
+  <div class="wrap">
+    <div class="cta-box" data-reveal>
+      <div>
+        <span class="eyebrow">Free estimate</span>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.7rem);margin-top:14px">Tell us about the job. We'll call you back today.</h2>
+        <p style="margin-top:16px;color:color-mix(in srgb,var(--ink) 74%,transparent)">Prefer to talk? <span data-novus="phone-row">Call <a href="tel:{{PHONE_HREF}}" style="color:var(--accent);font-weight:700">{{PHONE}}</a>.</span></p>
+      </div>
+      <form data-novus="lead-form" novalidate>
+        <div class="row">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+          <input type="tel" name="phone" placeholder="Phone" aria-label="Phone" required>
+          <textarea name="job" rows="3" placeholder="What needs doing?" aria-label="What needs doing?"></textarea>
+        </div>
+        <button class="btn" type="submit" style="width:100%;justify-content:center">{{CTA_LABEL}}</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer data-novus="footer">
+  <div class="wrap foot-in">
+    <span>© {{YEAR}} {{BUSINESS_NAME}} · {{CITY}}</span>
+    <span class="novus-line">Free website preview built by <b>Novus Co.</b></span>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" data-novus="toast">This is a preview — we'll wire this form up on your real site.</div>
+
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.addEventListener('load',function(){document.body.classList.add('is-live')});
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+  // subtle hero parallax (skipped for reduced motion)
+  var hero = document.querySelector('[data-novus="hero"]');
+  if(hero && !reduced){
+    var ticking=false;
+    addEventListener('scroll',function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){
+        hero.style.backgroundPositionY = 'calc(50% + '+(scrollY*.12)+'px)';
+        ticking=false;
+      });
+    },{passive:true});
+  }
+
+  var form=document.querySelector('[data-novus="lead-form"]'), toast=document.querySelector('[data-novus="toast"]');
+  if(form){ form.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    toast.classList.add('on');
+    setTimeout(function(){toast.classList.remove('on')},3800);
+  }); }
+})();
+</script>
+</body>
+</html>
