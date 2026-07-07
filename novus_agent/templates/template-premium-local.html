@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- Novus Co. brand skeleton: PREMIUM LOCAL (barbershops, detailing, landscaping, studios)
-     Editorial, serif-led, split hero; signature = hand-drawn underline + numbered services. -->
+     Editorial, serif-led, split hero; signature = self-drawing underline + numbered services. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -15,6 +15,7 @@
   --bg:{{BG}}; --surface:{{SURFACE}}; --ink:{{INK}}; --accent:{{ACCENT}}; --accent2:{{ACCENT2}};
   --font-display:'{{FONT_DISPLAY}}',serif; --font-text:'{{FONT_TEXT}}',system-ui,sans-serif;
   --rad:4px; --shadow:0 26px 60px -30px color-mix(in srgb,var(--ink) 45%,transparent);
+  --ease:cubic-bezier(.22,.75,.25,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -24,40 +25,62 @@ img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
 h1,h2,h3{font-family:var(--font-display);font-weight:600;line-height:1.06;letter-spacing:-.01em}
 section{padding:clamp(64px,9vw,120px) 0;position:relative}
 .eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 55%,transparent)}
-.underline-svg{position:relative;display:inline-block}
+.underline-svg{position:relative;display:inline-block;color:var(--accent)}
 .underline-svg svg{position:absolute;left:0;bottom:-.18em;width:100%;height:.35em;overflow:visible}
-.underline-svg path{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;opacity:.85}
-.btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);font-weight:600;padding:16px 30px;border-radius:2px;border:0;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:background .2s,transform .2s}
-.btn:hover{background:var(--accent);transform:translateY(-2px)}
+.underline-svg path{fill:none;stroke:var(--accent);stroke-width:6;stroke-linecap:round;opacity:.9;stroke-dasharray:230;stroke-dashoffset:230;transition:stroke-dashoffset 1.1s var(--ease) 1s}
+body.is-live .underline-svg path{stroke-dashoffset:0}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);font-weight:600;padding:16px 30px;border-radius:2px;border:0;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:background .25s,transform .25s var(--ease);will-change:transform}
+.btn .arr{display:inline-block;transition:transform .25s var(--ease)}
+.btn:hover{background:var(--accent)}
+.btn:hover .arr{transform:translateX(5px)}
 .btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
 .btn.line:hover{box-shadow:inset 0 0 0 1.5px var(--accent);color:var(--accent);background:transparent}
 
-header[data-novus="nav"]{position:fixed;inset:0 0 auto;z-index:50;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
-.logo{font-family:var(--font-display);font-size:1.2rem;letter-spacing:.02em}
+header[data-novus="nav"]{position:fixed;inset:0 0 auto;z-index:50;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+body.scrolled header[data-novus="nav"]{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);box-shadow:0 12px 40px -26px color-mix(in srgb,var(--ink) 55%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.nav-in{display:flex;align-items:center;gap:24px;padding:18px 0;transition:padding .35s}
+body.scrolled .nav-in{padding:12px 0}
+.logo{font-family:var(--font-display);font-size:1.2rem;letter-spacing:.02em;margin-right:auto}
 .logo em{color:var(--accent);font-style:normal}
-.nav-phone{font-size:.9rem;letter-spacing:.04em;font-weight:600}
+.nav-links{display:flex;gap:20px}
+.nav-links a{position:relative;font-size:.82rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 62%,transparent);padding:6px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1.5px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-links a.active::after{transform:scaleX(1)}
+.nav-phone{font-size:.9rem;letter-spacing:.04em;font-weight:600;white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
 
-[data-novus="hero"]{padding-top:clamp(120px,16vh,170px)}
+[data-novus="hero"]{padding-top:clamp(120px,16vh,170px);overflow:hidden}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,80px);align-items:center}
 .hero-grid h1{font-size:clamp(2.7rem,6vw,4.8rem)}
+.hero-grid h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.hero-grid h1 .w>span{display:inline-block;transform:translateY(112%) rotate(2deg);transition:transform .95s var(--ease)}
+body.is-live .hero-grid h1 .w>span{transform:none}
 .hero-grid .sub{margin-top:22px;max-width:46ch;font-size:1.06rem;color:color-mix(in srgb,var(--ink) 72%,transparent)}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
 .hero-media{aspect-ratio:3/3.8;overflow:hidden;border-radius:var(--rad);background:
   linear-gradient(200deg,color-mix(in srgb,var(--accent) 24%,transparent),transparent 50%),
   radial-gradient(120% 100% at 100% 100%,color-mix(in srgb,var(--accent2) 30%,transparent),transparent 60%),var(--surface);
-  box-shadow:var(--shadow);position:relative}
+  box-shadow:var(--shadow);position:relative;background-size:160% 160%;animation:sheen 22s ease-in-out infinite alternate}
+@keyframes sheen{to{background-position:80% 60%}}
 .hero-media::after{content:"{{CITY}}";position:absolute;right:16px;bottom:14px;font-family:var(--font-display);font-size:.95rem;letter-spacing:.3em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 55%,transparent)}
-.seq{opacity:0;transform:translateY(24px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1)}
+.seq{opacity:0;transform:translateY(24px);transition:opacity .85s ease,transform .85s var(--ease)}
 body.is-live .seq{opacity:1;transform:none}
-body.is-live .seq:nth-child(1){transition-delay:.06s}body.is-live .seq:nth-child(2){transition-delay:.18s}
-body.is-live .seq:nth-child(3){transition-delay:.3s}body.is-live .seq:nth-child(4){transition-delay:.42s}
+body.is-live .seq:nth-child(2){transition-delay:.5s}body.is-live .seq:nth-child(3){transition-delay:.66s}
+body.is-live .seq:nth-child(4){transition-delay:.82s}
 
-/* services: numbered editorial list */
+[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .75s var(--ease);transition-delay:calc(var(--d,0)*95ms)}
+[data-reveal].in{opacity:1;transform:none}
+h2.mask{overflow:hidden}
+h2.mask>span{display:block;transform:translateY(112%);transition:transform .9s var(--ease) .1s}
+h2.mask.in>span,.in h2.mask>span{transform:none}
+
 [data-novus="services"]{background:var(--surface)}
 .svc-list{margin-top:44px;border-top:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
-.svc-row{display:grid;grid-template-columns:70px 1fr 2fr;gap:20px;align-items:baseline;padding:26px 4px;border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,transparent);transition:background .2s,padding-left .25s}
-.svc-row:hover{background:color-mix(in srgb,var(--accent) 7%,transparent);padding-left:14px}
+.svc-row{position:relative;display:grid;grid-template-columns:70px 1fr 2fr;gap:20px;align-items:baseline;padding:26px 4px;border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,transparent);transition:padding-left .3s var(--ease)}
+.svc-row::before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--accent) 7%,transparent);transform:scaleY(0);transform-origin:bottom;transition:transform .3s var(--ease);pointer-events:none}
+.svc-row:hover{padding-left:16px}
+.svc-row:hover::before{transform:scaleY(1)}
 .svc-num{font-family:var(--font-display);color:var(--accent);font-size:1.05rem}
 .svc-row h3{font-size:1.35rem}
 .svc-row p{color:color-mix(in srgb,var(--ink) 70%,transparent);font-size:.97rem}
@@ -69,33 +92,33 @@ body.is-live .seq:nth-child(3){transition-delay:.3s}body.is-live .seq:nth-child(
 
 [data-novus="reviews"]{background:var(--surface)}
 .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:44px}
-.rev-card{background:var(--bg);border-radius:var(--rad);padding:28px;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.rev-card{position:relative;background:var(--bg);border-radius:var(--rad);padding:28px;border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);transition:transform .3s var(--ease),border-color .3s}
+.rev-card:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
 .rev-stars{color:var(--accent);letter-spacing:3px}
 .rev-text{margin:14px 0 18px;font-family:var(--font-display);font-size:1.05rem;line-height:1.5}
 .rev-author{font-weight:600;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase}
 .rev-tag{display:block;margin-top:12px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 45%,transparent)}
 
 .area-band{display:flex;flex-wrap:wrap;gap:0;margin-top:38px;border-top:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
-.chip{flex:1 1 200px;text-align:center;padding:22px 10px;border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,transparent);font-family:var(--font-display);font-size:1.1rem}
-.chip:hover{color:var(--accent)}
+.chip{flex:1 1 200px;text-align:center;padding:22px 10px;border-bottom:1px solid color-mix(in srgb,var(--ink) 14%,transparent);font-family:var(--font-display);font-size:1.1rem;transition:color .25s,letter-spacing .3s var(--ease)}
+.chip:hover{color:var(--accent);letter-spacing:.04em}
 
 .cta-box{border:1.5px solid var(--ink);border-radius:var(--rad);padding:clamp(30px,5vw,60px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,60px)}
-input,textarea{width:100%;background:transparent;border:0;border-bottom:1.5px solid color-mix(in srgb,var(--ink) 30%,transparent);padding:12px 2px;color:var(--ink);font-family:inherit;font-size:1rem}
-input:focus,textarea:focus{outline:none;border-bottom-color:var(--accent)}
+input{width:100%;background:transparent;border:0;border-bottom:1.5px solid color-mix(in srgb,var(--ink) 30%,transparent);padding:12px 2px;color:var(--ink);font-family:inherit;font-size:1rem;transition:border-color .25s}
+input:focus{outline:none;border-bottom-color:var(--accent)}
 form .row{display:grid;gap:20px;margin-bottom:26px}
-.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-weight:600;padding:14px 22px;border-radius:4px;opacity:0;pointer-events:none;transition:.35s;z-index:60}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-weight:600;padding:14px 22px;border-radius:4px;opacity:0;pointer-events:none;transition:.4s var(--ease);z-index:60}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
 footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,transparent);font-size:.88rem;color:color-mix(in srgb,var(--ink) 60%,transparent)}
 .foot-in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .novus-line b{color:var(--accent)}
 
-[data-reveal]{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--d,0)*90ms)}
-[data-reveal].in{opacity:1;transform:none}
-@media (max-width:840px){.hero-grid,[data-novus="about"] .split,.cta-box{grid-template-columns:1fr}.svc-row{grid-template-columns:50px 1fr}.svc-row p{grid-column:2}.nav-phone{display:none}}
+@media (max-width:900px){.nav-links{display:none}.hero-grid,[data-novus="about"] .split,.cta-box{grid-template-columns:1fr}.svc-row{grid-template-columns:50px 1fr}.svc-row p{grid-column:2}.nav-phone{display:none}}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .seq,[data-reveal]{opacity:1!important;transform:none!important}
+  .seq,[data-reveal],.hero-grid h1 .w>span,h2.mask>span{opacity:1!important;transform:none!important}
+  .underline-svg path{stroke-dashoffset:0!important}
   html{scroll-behavior:auto}
 }
 </style>
@@ -105,23 +128,28 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
 <header data-novus="nav">
   <div class="wrap nav-in">
     <div class="logo">{{BUSINESS_NAME}}<em>.</em></div>
-    <div style="display:flex;gap:14px;align-items:center">
-      <span class="nav-phone" data-novus="phone-row">{{PHONE}}</span>
-      <a class="btn" style="padding:12px 20px;font-size:.8rem" href="#contact">{{CTA_LABEL}}</a>
-    </div>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#services">The craft</a>
+      <a href="#why">Story</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#areas">Visit</a>
+    </nav>
+    <span class="nav-phone" data-novus="phone-row">{{PHONE}}</span>
+    <a class="btn" style="padding:12px 20px;font-size:.8rem" href="#contact">{{CTA_LABEL}}</a>
   </div>
+  <div class="progress" aria-hidden="true"></div>
 </header>
 
-<section data-novus="hero">
+<section data-novus="hero" id="top">
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow seq">{{TRADE}} — {{CITY}}</span>
-      <h1 class="seq" style="margin-top:16px">{{HERO_HEADLINE}}<br>
+      <h1 style="margin-top:16px"><span data-split>{{HERO_HEADLINE}}</span><br>
         <span class="underline-svg">right here.<svg viewBox="0 0 220 14" preserveAspectRatio="none" aria-hidden="true"><path d="M4 10 C 60 2, 150 14, 216 6"/></svg></span>
       </h1>
       <p class="sub seq">{{HERO_SUB}}</p>
       <div class="hero-ctas seq">
-        <a class="btn" href="#contact">{{CTA_LABEL}}</a>
+        <a class="btn" data-magnetic href="#contact">{{CTA_LABEL}} <span class="arr">→</span></a>
         <a class="btn line" href="tel:{{PHONE_HREF}}" data-novus="phone-row">{{PHONE}}</a>
       </div>
     </div>
@@ -132,7 +160,7 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
 <section data-novus="services" id="services">
   <div class="wrap">
     <span class="eyebrow" data-reveal>The craft</span>
-    <h2 data-reveal style="font-size:clamp(2rem,4.2vw,3.1rem);margin-top:14px">What we're known for.</h2>
+    <h2 class="mask" data-reveal style="font-size:clamp(2rem,4.2vw,3.1rem);margin-top:14px"><span>What we're known for.</span></h2>
     <div class="svc-list">
       <!-- novus:service -->
       <div class="svc-row" data-reveal style="--d:{{SERVICE_INDEX}}">
@@ -145,7 +173,7 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
   </div>
 </section>
 
-<section data-novus="about">
+<section data-novus="about" id="why">
   <div class="wrap split">
     <div class="about-media" data-reveal aria-hidden="true"></div>
     <div>
@@ -156,10 +184,10 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
   </div>
 </section>
 
-<section data-novus="reviews">
+<section data-novus="reviews" id="reviews">
   <div class="wrap">
     <span class="eyebrow" data-reveal>Word of mouth</span>
-    <h2 data-reveal style="font-size:clamp(2rem,4.2vw,3.1rem);margin-top:14px">{{CITY}} has opinions. Good ones.</h2>
+    <h2 class="mask" data-reveal style="font-size:clamp(2rem,4.2vw,3.1rem);margin-top:14px"><span>{{CITY}} has opinions. Good ones.</span></h2>
     <div class="rev-grid">
       <!-- novus:review -->
       <figure class="rev-card" data-reveal style="--d:{{REVIEW_INDEX}}">
@@ -193,10 +221,10 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
   </div>
 </section>
 
-<section data-novus="areas">
+<section data-novus="areas" id="areas">
   <div class="wrap">
     <span class="eyebrow" data-reveal>Come see us</span>
-    <h2 data-reveal style="font-size:clamp(2rem,4.2vw,3.1rem);margin-top:14px">Serving {{CITY}}'s neighborhoods.</h2>
+    <h2 class="mask" data-reveal style="font-size:clamp(2rem,4.2vw,3.1rem);margin-top:14px"><span>Serving {{CITY}}'s neighborhoods.</span></h2>
     <div class="area-band" data-reveal>
       <!-- novus:area -->
       <span class="chip">{{AREA}}</span>
@@ -219,7 +247,7 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
           <input type="tel" name="phone" placeholder="Phone" aria-label="Phone" required>
           <input type="text" name="when" placeholder="When works?" aria-label="When works?">
         </div>
-        <button class="btn" type="submit" style="width:100%;justify-content:center">{{CTA_LABEL}}</button>
+        <button class="btn" data-magnetic type="submit" style="width:100%;justify-content:center">{{CTA_LABEL}} <span class="arr">→</span></button>
       </form>
     </div>
   </div>
@@ -236,11 +264,73 @@ footer{padding:38px 0;border-top:1px solid color-mix(in srgb,var(--ink) 12%,tran
 
 <script>
 (function(){
-  window.addEventListener('load',function(){document.body.classList.add('is-live')});
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('[data-reveal]').forEach(function(el){io.observe(el)});
-  var form=document.querySelector('[data-novus="lead-form"]'),toast=document.querySelector('[data-novus="toast"]');
-  if(form){form.addEventListener('submit',function(ev){ev.preventDefault();toast.classList.add('on');setTimeout(function(){toast.classList.remove('on')},3800)})}
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  var target = document.querySelector('[data-split]');
+  if (target && !reduced) {
+    var words = target.textContent.trim().split(/\s+/);
+    target.innerHTML = words.map(function(w,i){
+      return '<span class="w"><span style="transition-delay:'+(0.12+i*0.08)+'s">'+w+'</span></span>';
+    }).join(' ');
+  }
+  window.addEventListener('load', function(){ document.body.classList.add('is-live'); });
+
+  var progress = document.querySelector('.progress'), ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      document.body.classList.toggle('scrolled', scrollY > 30);
+      if (progress) {
+        var max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+      }
+      ticking = false;
+    });
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+  var links = [].slice.call(document.querySelectorAll('.nav-links a'));
+  if (links.length) {
+    var byId = {};
+    links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+    var nio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var a = byId[e.target.id];
+        if (a && e.isIntersecting) {
+          links.forEach(function(x){ x.classList.remove('active'); });
+          a.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(byId).forEach(function(id){
+      var s = document.getElementById(id); if (s) nio.observe(s);
+    });
+  }
+
+  if (finePointer && !reduced) {
+    document.querySelectorAll('[data-magnetic]').forEach(function(btn){
+      btn.addEventListener('mousemove', function(ev){
+        var r = btn.getBoundingClientRect();
+        var dx = ev.clientX - r.left - r.width/2, dy = ev.clientY - r.top - r.height/2;
+        btn.style.transform = 'translate(' + dx*.16 + 'px,' + dy*.22 + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+  }
+
+  var form = document.querySelector('[data-novus="lead-form"]'),
+      toast = document.querySelector('[data-novus="toast"]');
+  if (form) form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    toast.classList.add('on');
+    setTimeout(function(){ toast.classList.remove('on'); }, 3800);
+  });
 })();
 </script>
 </body>

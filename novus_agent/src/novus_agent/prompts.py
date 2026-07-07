@@ -33,13 +33,32 @@ TASTE RULES (non-negotiable):
   word, a diagonal section seam, a hand-drawn underline SVG, an asymmetric
   photo crop, a ticker strip). Everything else stays disciplined on an 8px
   spacing system with generous whitespace.
-- Motion = orchestration, not decoration: a staged hero reveal on load
-  (headline lines, then sub, then CTA, 80-140ms stagger); scroll-triggered
-  reveals via IntersectionObserver (translateY 12-24px + fade, once, with
-  stagger inside grids); at most one subtle parallax/depth cue; hover
-  micro-interactions on cards/buttons (transform + shadow, 150-250ms ease-out).
-  EVERY animation must be wrapped so `prefers-reduced-motion: reduce` disables
-  it. Over-animation reads as AI-generated; restraint is part of taste.
+- Motion = cinematic choreography, not decoration. The page must feel alive
+  from the first frame, built from these layers (all inline JS/CSS, no
+  external libraries):
+    * LOAD TIMELINE: hero headline split into word-level rise reveals
+      (overflow-hidden line masks, 60-90ms stagger, slight rotate), then
+      eyebrow keyline draw, sub, CTAs, badges - one orchestrated sequence.
+    * ATMOSPHERE: exactly one ambient layer tuned to the trade - a sparse
+      canvas particle field (embers/dust/pollen, ~40 max, paused when the tab
+      is hidden), a slow-drifting gradient sky, or soft blurred color blobs.
+      Subtle enough to sit behind text without fighting it.
+    * SCROLL CHOREOGRAPHY: IntersectionObserver reveals (translateY 12-24px +
+      fade, once, staggered inside grids), section headings unmasking from
+      overflow-hidden line wraps, at most one subtle parallax depth cue, and
+      a 2px scroll-progress hairline under the nav.
+    * MICRO-INTERACTIONS: magnetic pull on the primary CTA (fine pointers
+      only), sheen sweep or arrow-slide on buttons, card lift + keyline/edge
+      accent on hover, chip fill sweeps. 150-300ms, custom cubic-bezier ease.
+    * NAV BEHAVIOR: fixed nav with real section links (Services / Why us /
+      Reviews / Areas), transparent at top -> compressed + blurred backdrop
+      after ~30px scroll, active-link highlighting via IntersectionObserver.
+  EVERY layer must be disabled under `prefers-reduced-motion: reduce` (CSS
+  media query AND a JS matchMedia guard). Over-animation still reads as
+  AI-generated: no scroll-jacking, no spinning icons, nothing that loops
+  loudly in the reading path. Choreographed restraint is the signature.
+- Animated counters are allowed ONLY for real numbers you were given (e.g. an
+  actual Google review count). Never invent "500+ roofs" style stats.
 - Photography treatment: images get a consistent grade (single-color overlay or
   duotone tuned to the palette), never raw stock look. All imagery lazy-loads
   (`loading="lazy"` except the hero), with width/height or aspect-ratio set so
@@ -223,6 +242,9 @@ You write COMPLETE production HTML. Output rules:
 - Keep the skeleton's SECTION ORDER and its data-novus hooks. You may restyle
   and rewrite everything inside sections, but every section present in the
   skeleton must exist in your page.
+- Keep a working top navigation: section links (Services / Why us / Reviews /
+  Areas + the CTA) pointing at real ids, scrolled-state compression, and
+  active-link tracking. Anchors must actually land on their sections.
 - The footer line "Free website preview built by Novus Co." MUST remain,
   verbatim, visible in the footer.
 - Reviews: if REAL_REVIEWS are provided, render them with reviewer first names
