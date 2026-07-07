@@ -50,6 +50,28 @@ def cmd_research(args) -> int:
     return 0
 
 
+def cmd_add_lead(args) -> int:
+    """Drop a specific business into the pipeline by hand; the next
+    grade -> preview -> selfcheck -> draft run tailors everything to it."""
+    from .db import Lead, db_session, is_suppressed, log_event
+    from .util import today
+    with db_session() as sess:
+        if args.email and is_suppressed(sess, args.email):
+            print(f"refusing: {args.email} is on the suppression list")
+            return 1
+        lead = Lead(business_name=args.name, trade=args.niche, city=args.city,
+                    email=args.email, phone=args.phone, instagram_handle=args.instagram,
+                    website_url=args.website, status="NEW", target_batch_date=today(),
+                    source_query="manual:add-lead")
+        sess.add(lead)
+        sess.flush()
+        log_event(sess, "research", f"manually added: {args.name}", lead.id)
+        sess.commit()
+        print(f"lead #{lead.id} added: {args.name} ({args.niche}, {args.city})")
+        print("next: novus grade && novus preview && novus selfcheck && novus draft")
+    return 0
+
+
 def cmd_grade(args) -> int:
     from . import grading
     print(f"{grading.run(args.limit)} leads graded")
@@ -249,6 +271,16 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--niche", required=True)
     r.add_argument("--limit", type=int, default=None)
     r.set_defaults(fn=cmd_research)
+
+    al = sub.add_parser("add-lead", help="add one specific business to the pipeline by hand")
+    al.add_argument("--name", required=True, help='business name, e.g. "Bayshore Roofing Co."')
+    al.add_argument("--niche", required=True, help="trade, e.g. roofing")
+    al.add_argument("--city", required=True, help='e.g. "Tampa, FL"')
+    al.add_argument("--email", help="owner email (required before drafting can happen)")
+    al.add_argument("--phone")
+    al.add_argument("--instagram", help="IG handle without @")
+    al.add_argument("--website", help="existing site URL if any")
+    al.set_defaults(fn=cmd_add_lead)
 
     for name, fn, help_ in (("grade", cmd_grade, "audit + Novus Score for NEW leads"),
                             ("preview", cmd_preview, "build premium previews for A/B leads"),
