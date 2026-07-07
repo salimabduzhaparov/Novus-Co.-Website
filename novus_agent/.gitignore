@@ -1,0 +1,22 @@
+# Secrets & local state — never commit
+.env
+credentials.json
+token.json
+novus.db
+novus.db-*
+.novus_kill
+
+# Generated output
+previews/
+reports/
+outbox/
+logs/
+screenshots/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+build/
+dist/

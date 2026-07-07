@@ -1,0 +1,366 @@
+<!doctype html>
+<!-- Novus Co. brand skeleton: CLEAN SERVICE (HVAC, plumbing, electrical, cleaning, painting)
+     Light, airy, rounded; signature = scrolling service-area ticker + floating rating chip. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{BUSINESS_NAME}} — {{TRADE}} in {{CITY}}</title>
+<meta name="description" content="{{BUSINESS_NAME}}: {{TRADE}} serving {{CITY}}. Fast scheduling, upfront pricing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="{{FONTS_HREF}}" rel="stylesheet">
+<style>
+:root{
+  --bg:{{BG}}; --surface:{{SURFACE}}; --ink:{{INK}}; --accent:{{ACCENT}}; --accent2:{{ACCENT2}};
+  --font-display:'{{FONT_DISPLAY}}',serif; --font-text:'{{FONT_TEXT}}',system-ui,sans-serif;
+  --rad:18px; --shadow:0 24px 60px -28px color-mix(in srgb,var(--ink) 35%,transparent);
+  --ease:cubic-bezier(.22,.75,.25,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-text);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block} a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,92%);margin-inline:auto}
+h1,h2,h3{font-family:var(--font-display);line-height:1.1;letter-spacing:-.015em}
+section{padding:clamp(64px,9vw,116px) 0;position:relative}
+.eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);font-weight:700;padding:16px 30px;border-radius:999px;border:0;font-size:1rem;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s,background .25s;overflow:hidden;will-change:transform}
+.btn .arr{display:inline-block;transition:transform .25s var(--ease)}
+.btn:hover{box-shadow:var(--shadow);background:var(--accent)}
+.btn:hover .arr{transform:translateX(5px)}
+.btn.soft{background:color-mix(in srgb,var(--accent) 14%,transparent);color:var(--ink)}
+.btn.soft:hover{background:color-mix(in srgb,var(--accent) 26%,transparent)}
+
+header[data-novus="nav"]{position:fixed;inset:0 0 auto;z-index:50;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+body.scrolled header[data-novus="nav"]{background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(14px);box-shadow:0 12px 40px -24px color-mix(in srgb,var(--ink) 45%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.nav-in{display:flex;align-items:center;gap:24px;padding:17px 0;transition:padding .35s}
+body.scrolled .nav-in{padding:11px 0}
+.logo{font-family:var(--font-display);font-weight:700;font-size:1.15rem;margin-right:auto}
+.logo i{font-style:normal;color:var(--accent)}
+.nav-links{display:flex;gap:2px}
+.nav-links a{position:relative;padding:8px 13px;font-size:.9rem;font-weight:600;color:color-mix(in srgb,var(--ink) 66%,transparent);border-radius:999px;transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.active{color:var(--ink);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.nav-phone{font-weight:700;font-size:.95rem;white-space:nowrap}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left}
+
+[data-novus="hero"]{padding-top:clamp(120px,18vh,180px);overflow:hidden;{{HERO_BG_CSS}}}
+.blobs{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.blobs i{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+.blobs i:nth-child(1){width:44vw;height:44vw;left:-12vw;top:-16vw;background:color-mix(in srgb,var(--accent) 26%,transparent);animation:blob 18s ease-in-out infinite alternate}
+.blobs i:nth-child(2){width:36vw;height:36vw;right:-10vw;bottom:-14vw;background:color-mix(in srgb,var(--accent2) 30%,transparent);animation:blob 22s ease-in-out -6s infinite alternate-reverse}
+@keyframes blob{to{transform:translate3d(6vw,4vw,0) scale(1.12)}}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,70px);align-items:center;position:relative}
+.hero-grid h1{font-size:clamp(2.5rem,5.6vw,4.4rem);max-width:15ch}
+.hero-grid h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.hero-grid h1 .w>span{display:inline-block;transform:translateY(112%);transition:transform .85s var(--ease)}
+body.is-live .hero-grid h1 .w>span{transform:none}
+.hero-grid .sub{margin-top:20px;max-width:50ch;font-size:1.08rem;color:color-mix(in srgb,var(--ink) 74%,transparent)}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero-visual{position:relative;aspect-ratio:4/3.4;border-radius:calc(var(--rad) + 8px);overflow:hidden;background:
+  radial-gradient(130% 100% at 15% 0%,color-mix(in srgb,var(--accent) 30%,transparent),transparent 55%),
+  radial-gradient(120% 120% at 90% 100%,color-mix(in srgb,var(--accent2) 34%,transparent),transparent 60%),var(--surface);box-shadow:var(--shadow)}
+.rating-chip{position:absolute;left:18px;bottom:18px;background:var(--bg);border-radius:14px;padding:12px 18px;box-shadow:var(--shadow);font-size:.85rem;font-weight:600;animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-7px)}}
+.rating-chip b{display:block;font-size:1.05rem}
+.seq{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s var(--ease)}
+body.is-live .seq{opacity:1;transform:none}
+body.is-live .seq:nth-child(2){transition-delay:.45s}body.is-live .seq:nth-child(3){transition-delay:.6s}
+body.is-live .seq:nth-child(4){transition-delay:.75s}
+
+.ticker{overflow:hidden;border-block:1px solid color-mix(in srgb,var(--ink) 9%,transparent);padding:14px 0;background:var(--surface)}
+.ticker-track{display:flex;gap:44px;width:max-content;animation:tick 26s linear infinite;font-family:var(--font-display);font-size:1rem}
+.ticker-track span::after{content:"✦";margin-left:44px;color:var(--accent)}
+@keyframes tick{to{transform:translateX(-50%)}}
+
+[data-reveal]{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s var(--ease);transition-delay:calc(var(--d,0)*95ms)}
+[data-reveal].in{opacity:1;transform:none}
+h2.mask{overflow:hidden}
+h2.mask>span{display:block;transform:translateY(112%);transition:transform .85s var(--ease) .1s}
+h2.mask.in>span,.in h2.mask>span{transform:none}
+
+[data-novus="services"] .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:44px}
+.card{position:relative;background:var(--surface);border-radius:var(--rad);padding:30px 26px;border:1px solid color-mix(in srgb,var(--ink) 6%,transparent);transition:transform .3s var(--ease),box-shadow .3s;overflow:hidden}
+.card::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.card:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.card:hover::after{transform:scaleX(1)}
+.card h3{font-size:1.22rem;margin:14px 0 8px}
+.card p{color:color-mix(in srgb,var(--ink) 70%,transparent);font-size:.96rem}
+.dot{width:40px;height:40px;border-radius:13px;background:color-mix(in srgb,var(--accent) 16%,transparent);display:grid;place-items:center;color:var(--accent);font-weight:800;transition:transform .3s var(--ease)}
+.card:hover .dot{transform:rotate(-8deg) scale(1.1)}
+
+[data-novus="about"]{background:var(--surface)}
+[data-novus="about"] .split{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(28px,5vw,64px);align-items:center}
+.about-media{aspect-ratio:1/1;border-radius:50% 50% var(--rad) var(--rad);overflow:hidden;background:
+  conic-gradient(from 210deg at 50% 40%,color-mix(in srgb,var(--accent) 28%,transparent),transparent 40%),
+  radial-gradient(100% 100% at 80% 90%,color-mix(in srgb,var(--accent2) 30%,transparent),transparent 55%),var(--bg);box-shadow:var(--shadow)}
+.check-list{margin-top:22px;display:grid;gap:12px;list-style:none}
+.check-list li{display:flex;gap:12px;align-items:flex-start;font-weight:600}
+.check-list li::before{content:"✓";color:var(--accent);font-weight:800}
+
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:44px}
+.rev-card{position:relative;background:var(--surface);border-radius:var(--rad);padding:26px;border:1px solid color-mix(in srgb,var(--ink) 6%,transparent);transition:transform .3s var(--ease),box-shadow .3s}
+.rev-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.rev-card::before{content:"“";position:absolute;top:0;right:16px;font-family:var(--font-display);font-size:4.6rem;line-height:1;color:color-mix(in srgb,var(--accent) 18%,transparent)}
+.rev-stars{color:var(--accent);letter-spacing:3px}
+.rev-text{margin:14px 0 18px;color:color-mix(in srgb,var(--ink) 78%,transparent)}
+.rev-author{font-weight:700}
+.rev-tag{display:block;margin-top:12px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:color-mix(in srgb,var(--ink) 42%,transparent)}
+
+.area-band{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.chip{position:relative;padding:12px 22px;border-radius:999px;background:var(--surface);border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);font-weight:600;overflow:hidden;transition:color .25s,border-color .25s}
+.chip::before{content:"";position:absolute;inset:0;background:color-mix(in srgb,var(--accent) 16%,transparent);transform:translateY(101%);transition:transform .3s var(--ease)}
+.chip:hover{border-color:var(--accent)}
+.chip:hover::before{transform:none}
+.chip span{position:relative}
+
+.cta-box{background:var(--ink);color:var(--bg);border-radius:calc(var(--rad) + 10px);padding:clamp(30px,5vw,56px);display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,56px);box-shadow:var(--shadow)}
+.cta-box .eyebrow{color:var(--accent)}
+input,textarea{width:100%;background:color-mix(in srgb,var(--bg) 12%,transparent);border:1px solid color-mix(in srgb,var(--bg) 30%,transparent);border-radius:12px;padding:14px 16px;color:var(--bg);font-family:inherit;font-size:.97rem;transition:border-color .25s,box-shadow .25s}
+input::placeholder,textarea::placeholder{color:color-mix(in srgb,var(--bg) 62%,transparent)}
+input:focus,textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 24%,transparent)}
+form .row{display:grid;gap:14px;margin-bottom:14px}
+.cta-box .btn{background:var(--accent);color:var(--ink)}
+.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-weight:700;padding:14px 22px;border-radius:12px;opacity:0;pointer-events:none;transition:.4s var(--ease);z-index:60}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+footer{padding:38px 0;font-size:.9rem;color:color-mix(in srgb,var(--ink) 60%,transparent)}
+.foot-in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.novus-line b{color:var(--accent)}
+
+@media (max-width:900px){.nav-links{display:none}.hero-grid,[data-novus="about"] .split,.cta-box{grid-template-columns:1fr}.nav-phone{display:none}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .seq,[data-reveal],.hero-grid h1 .w>span,h2.mask>span{opacity:1!important;transform:none!important}
+  .ticker-track{animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<header data-novus="nav">
+  <div class="wrap nav-in">
+    <div class="logo">{{BUSINESS_NAME}}<i>.</i></div>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#areas">Areas</a>
+    </nav>
+    <span class="nav-phone" data-novus="phone-row">{{PHONE}}</span>
+    <a class="btn" style="padding:12px 22px;font-size:.9rem" href="#contact">{{CTA_LABEL}}</a>
+  </div>
+  <div class="progress" aria-hidden="true"></div>
+</header>
+
+<section data-novus="hero" id="top">
+  <div class="blobs" aria-hidden="true"><i></i><i></i></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow seq">{{TRADE}} · {{CITY}}</span>
+      <h1 data-split>{{HERO_HEADLINE}}</h1>
+      <p class="sub seq">{{HERO_SUB}}</p>
+      <div class="hero-ctas seq">
+        <a class="btn" data-magnetic href="#contact">{{CTA_LABEL}} <span class="arr">→</span></a>
+        <a class="btn soft" href="tel:{{PHONE_HREF}}" data-novus="phone-row">Call {{PHONE}}</a>
+      </div>
+    </div>
+    <div class="hero-visual seq" aria-hidden="true">
+      {{SECTION_IMAGE}}
+      <div class="rating-chip">⭐ Rated by neighbors<b>across {{CITY}}</b></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>{{CITY}}</span><span>Upfront pricing</span><span>Same-week scheduling</span><span>Licensed &amp; insured</span>
+    <span>{{CITY}}</span><span>Upfront pricing</span><span>Same-week scheduling</span><span>Licensed &amp; insured</span>
+  </div>
+</div>
+
+<section data-novus="services" id="services">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Services</span>
+    <h2 class="mask" data-reveal style="font-size:clamp(1.9rem,4vw,2.9rem);margin-top:12px;max-width:20ch"><span>Everything your home needs, on one number.</span></h2>
+    <div class="grid">
+      <!-- novus:service -->
+      <article class="card" data-reveal style="--d:{{SERVICE_INDEX}}">
+        <div class="dot">●</div>
+        <h3>{{SERVICE_NAME}}</h3>
+        <p>{{SERVICE_BLURB}}</p>
+      </article>
+      <!-- /novus:service -->
+    </div>
+  </div>
+</section>
+
+<section data-novus="about" id="why">
+  <div class="wrap split">
+    <div class="about-media" data-reveal aria-hidden="true"></div>
+    <div>
+      <span class="eyebrow" data-reveal>Why {{BUSINESS_NAME}}</span>
+      <h2 class="mask" data-reveal style="font-size:clamp(1.9rem,4vw,2.9rem);margin-top:12px"><span>Small crew. High standards. Your neighborhood.</span></h2>
+      <p data-reveal style="margin-top:16px;color:color-mix(in srgb,var(--ink) 74%,transparent)">{{ABOUT_LINE}}</p>
+      <ul class="check-list" data-reveal>
+        <li>Upfront, written pricing before work starts</li>
+        <li>Background-checked, uniformed technicians</li>
+        <li>Workmanship guaranteed in writing</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section data-novus="reviews" id="reviews">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Reviews</span>
+    <h2 class="mask" data-reveal style="font-size:clamp(1.9rem,4vw,2.9rem);margin-top:12px"><span>{{CITY}} talks. We listen.</span></h2>
+    <div class="rev-grid">
+      <!-- novus:review -->
+      <figure class="rev-card" data-reveal style="--d:{{REVIEW_INDEX}}">
+        <div class="rev-stars" aria-label="star rating">{{REVIEW_STARS}}</div>
+        <blockquote class="rev-text">“{{REVIEW_TEXT}}”</blockquote>
+        <figcaption class="rev-author">{{REVIEW_AUTHOR}}</figcaption>
+        <span class="rev-tag">{{REVIEW_TAG}}</span>
+      </figure>
+      <!-- /novus:review -->
+      <!-- novus:placeholder-reviews -->
+      <figure class="rev-card" data-reveal>
+        <div class="rev-stars" aria-label="star rating">★★★★★</div>
+        <blockquote class="rev-text">“Booked online in the morning, fixed by the afternoon. Fair price, zero drama.”</blockquote>
+        <figcaption class="rev-author">A happy customer</figcaption>
+        <span class="rev-tag">Sample review shown as a placeholder — your real Google reviews go here</span>
+      </figure>
+      <figure class="rev-card" data-reveal style="--d:1">
+        <div class="rev-stars" aria-label="star rating">★★★★★</div>
+        <blockquote class="rev-text">“Explained the options without upselling. That alone earned the five stars.”</blockquote>
+        <figcaption class="rev-author">A happy customer</figcaption>
+        <span class="rev-tag">Sample review shown as a placeholder — your real Google reviews go here</span>
+      </figure>
+      <figure class="rev-card" data-reveal style="--d:2">
+        <div class="rev-stars" aria-label="star rating">★★★★★</div>
+        <blockquote class="rev-text">“Clean, quick, and the price matched the quote. Already recommended them twice.”</blockquote>
+        <figcaption class="rev-author">A happy customer</figcaption>
+        <span class="rev-tag">Sample review shown as a placeholder — your real Google reviews go here</span>
+      </figure>
+      <!-- /novus:placeholder-reviews -->
+    </div>
+  </div>
+</section>
+
+<section data-novus="areas" id="areas">
+  <div class="wrap">
+    <span class="eyebrow" data-reveal>Where we work</span>
+    <h2 class="mask" data-reveal style="font-size:clamp(1.9rem,4vw,2.9rem);margin-top:12px"><span>Serving {{CITY}} and the neighbors.</span></h2>
+    <div class="area-band" data-reveal>
+      <!-- novus:area -->
+      <span class="chip"><span>{{AREA}}</span></span>
+      <!-- /novus:area -->
+    </div>
+  </div>
+</section>
+
+<section data-novus="contact" id="contact">
+  <div class="wrap">
+    <div class="cta-box" data-reveal>
+      <div>
+        <span class="eyebrow">Book a visit</span>
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:12px">Tell us what's up. We'll text you a time today.</h2>
+        <p style="margin-top:14px;opacity:.8" data-novus="phone-row">Or call <a href="tel:{{PHONE_HREF}}" style="font-weight:700;text-decoration:underline">{{PHONE}}</a></p>
+      </div>
+      <form data-novus="lead-form" novalidate>
+        <div class="row">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" required>
+          <input type="tel" name="phone" placeholder="Phone" aria-label="Phone" required>
+          <textarea name="job" rows="3" placeholder="What needs doing?" aria-label="What needs doing?"></textarea>
+        </div>
+        <button class="btn" data-magnetic type="submit" style="width:100%;justify-content:center">{{CTA_LABEL}} <span class="arr">→</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer data-novus="footer">
+  <div class="wrap foot-in">
+    <span>© {{YEAR}} {{BUSINESS_NAME}} · {{CITY}}</span>
+    <span class="novus-line">Free website preview built by <b>Novus Co.</b></span>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" data-novus="toast">This is a preview — we'll wire this form up on your real site.</div>
+
+<script>
+(function(){
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = matchMedia('(hover:hover) and (pointer:fine)').matches;
+
+  var h1 = document.querySelector('[data-split]');
+  if (h1 && !reduced) {
+    var words = h1.textContent.trim().split(/\s+/);
+    h1.innerHTML = words.map(function(w,i){
+      return '<span class="w"><span style="transition-delay:'+(0.1+i*0.07)+'s">'+w+'</span></span>';
+    }).join(' ');
+  }
+  window.addEventListener('load', function(){ document.body.classList.add('is-live'); });
+
+  var progress = document.querySelector('.progress'), ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      document.body.classList.toggle('scrolled', scrollY > 30);
+      if (progress) {
+        var max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')';
+      }
+      ticking = false;
+    });
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:.15, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
+
+  var links = [].slice.call(document.querySelectorAll('.nav-links a'));
+  if (links.length) {
+    var byId = {};
+    links.forEach(function(a){ byId[a.getAttribute('href').slice(1)] = a; });
+    var nio = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        var a = byId[e.target.id];
+        if (a && e.isIntersecting) {
+          links.forEach(function(x){ x.classList.remove('active'); });
+          a.classList.add('active');
+        }
+      });
+    }, {rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(byId).forEach(function(id){
+      var s = document.getElementById(id); if (s) nio.observe(s);
+    });
+  }
+
+  if (finePointer && !reduced) {
+    document.querySelectorAll('[data-magnetic]').forEach(function(btn){
+      btn.addEventListener('mousemove', function(ev){
+        var r = btn.getBoundingClientRect();
+        var dx = ev.clientX - r.left - r.width/2, dy = ev.clientY - r.top - r.height/2;
+        btn.style.transform = 'translate(' + dx*.16 + 'px,' + dy*.22 + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = ''; });
+    });
+  }
+
+  var form = document.querySelector('[data-novus="lead-form"]'),
+      toast = document.querySelector('[data-novus="toast"]');
+  if (form) form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    toast.classList.add('on');
+    setTimeout(function(){ toast.classList.remove('on'); }, 3800);
+  });
+})();
+</script>
+</body>
+</html>
