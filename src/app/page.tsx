@@ -1,83 +1,125 @@
 import Link from "next/link";
 import { Hero } from "@/components/Hero";
+import CustomerEvidence from "@/components/CustomerEvidence";
+import { BusinessStory } from "@/components/BusinessStory";
 import { WebsiteExamples } from "@/components/WebsiteExamples";
 import { StudioFAQ } from "@/components/StudioFAQ";
 import { FinalCTA } from "@/components/FinalCTA";
+import { StudioTimeline } from "@/components/ui/StudioTimeline";
+import { Reveal } from "@/components/ui/Reveal";
 import { TextLink } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
+
 const services = [
   {
-    title: "Websites with purpose",
+    title: "A website that explains your business",
     description:
-      "A considered home for your business. Clear services, distinctive design, and a customer journey that makes sense.",
+      "Your services, service area and real work, presented clearly on every screen.",
     href: "/services#business-websites",
+    icon: "layers",
   },
   {
-    title: "A fresh perspective",
+    title: "A clearer route to an enquiry",
     description:
-      "A redesign that brings your existing website up to the standard of the work you do today.",
-    href: "/services#website-redesigns",
+      "Visible contact details, quote forms and booking options built around how you work.",
+    href: "/services#enquiry-systems",
+    icon: "phone",
   },
   {
-    title: "The right foundations",
+    title: "A stronger foundation for search",
     description:
-      "Search-friendly structure, responsive development, and straightforward forms or booking connections.",
+      "Useful service pages, descriptive titles and technical SEO essentials that help search engines understand your business.",
     href: "/services#seo-foundations",
+    icon: "target",
   },
 ];
 export default function Home() {
   return (
     <>
       <Hero />
-      <WebsiteExamples />
+      <CustomerEvidence />
+      <BusinessStory />
       <section
         className="section-space studio-container"
         aria-labelledby="home-services"
       >
         <div className="section-intro">
-          <span className="eyebrow">What we bring</span>
+          <span className="eyebrow">How Novus helps</span>
           <div>
             <h2 id="home-services">
-              Good design.
-              <br />A clear reason for it.
+              Turn unanswered questions
+              <br />
+              into clear next steps.
             </h2>
             <p className="page-copy mt-6 max-w-xl">
-              From a first website to a fresh start, we turn what makes your
-              business different into an experience people understand.
+              Starting without a website or fixing one that falls short? We
+              build around the decisions your customers need to make.
             </p>
           </div>
         </div>
-        <div>
+        <div className="solution-grid">
           {services.map((s, i) => (
-            <Link href={s.href} key={s.title} className="service-row">
-              <span className="service-number">0{i + 1}</span>
-              <h3>{s.title}</h3>
-              <p>{s.description}</p>
-              <span className="service-arrow" aria-hidden="true">
-                ↗
-              </span>
-            </Link>
+            <Reveal key={s.title} delay={i * 0.08}>
+              <Link href={s.href} className="solution-card">
+                <div className="solution-card-top">
+                  <Icon name={s.icon} size={25} />
+                  <span>0{i + 1}</span>
+                </div>
+                <h3>{s.title}</h3>
+                <p>{s.description}</p>
+                <span className="solution-link">
+                  Explore the service <span aria-hidden="true">↗</span>
+                </span>
+              </Link>
+            </Reveal>
           ))}
         </div>
+        <div className="mt-9">
+          <TextLink href="/services">All website services</TextLink>
+        </div>
       </section>
-      <section
-        className="about-band section-space"
-        aria-labelledby="home-about"
-      >
-        <div className="studio-container about-inner">
-          <span className="eyebrow">The thinking behind Novus</span>
+      <WebsiteExamples />
+      <section className="why-novus section-space" aria-labelledby="home-about">
+        <div className="studio-container why-layout">
           <div>
-            <h2 id="home-about" className="section-title">
-              You take pride in your work.
+            <span className="eyebrow">Why Novus</span>
+            <h2 id="home-about">
+              Built around your business.
               <br />
-              Your website should show it.
+              <em>Clear from the start.</em>
             </h2>
-            <p className="page-copy">
-              Local businesses bring care, skill, and personality to what they
-              do. We believe their websites should do the same. Novus combines
-              thoughtful design with practical decisions, making it easier for
-              the right customers to see what you offer.
+            <p>
+              Local businesses put care into their work. We believe their
+              websites should show that same care—and help customers understand
+              it.
             </p>
-            <TextLink href="/about">Get to know Novus</TextLink>
+            <TextLink href="/about">The thinking behind Novus</TextLink>
+          </div>
+          <div className="why-principles">
+            {[
+              [
+                "See a direction first",
+                "A free website preview helps you see the possibilities before committing to a full project.",
+              ],
+              [
+                "Made for local services",
+                "We focus on the details that matter to your customers: the work, the area you serve and how to reach you.",
+              ],
+              [
+                "Know what happens next",
+                "A shared direction, an agreed scope and a process with space for your feedback.",
+              ],
+            ].map(([title, copy], i) => (
+              <Reveal key={title} delay={i * 0.07}>
+                <article>
+                  <span>0{i + 1}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{copy}</p>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
@@ -86,47 +128,22 @@ export default function Home() {
         aria-labelledby="home-process"
       >
         <div className="section-intro">
-          <span className="eyebrow">From first conversation to launch</span>
+          <span className="eyebrow">Our process</span>
           <div>
             <h2 id="home-process">
-              A shared direction.
-              <br />A clear path forward.
+              A preview first.
+              <br />A clear path to launch.
             </h2>
             <p className="page-copy mt-6 max-w-xl">
-              We listen first, shape the direction together, then build and test
-              the details. You know what is happening and what comes next.
+              Six stages, with your input at the right moments. See the
+              direction before we build the full website.
             </p>
-            <div className="mt-6">
-              <TextLink href="/process">Explore the process</TextLink>
-            </div>
           </div>
         </div>
-        <ol className="grid gap-8 md:grid-cols-3">
-          {[
-            {
-              title: "Understand",
-              copy: "Your business, your customers, and what the website needs to do.",
-            },
-            {
-              title: "Design together",
-              copy: "A clear visual direction, with room for your input before the build.",
-            },
-            {
-              title: "Build & launch",
-              copy: "Bring it to life, check the essentials, and prepare for the next chapter.",
-            },
-          ].map((s, i) => (
-            <li key={s.title} className="border-t border-hairline pt-6">
-              <span className="eyebrow text-accent">0{i + 1}</span>
-              <h3 className="mt-8 text-2xl font-medium tracking-tight">
-                {s.title}
-              </h3>
-              <p className="mt-4 max-w-sm text-base leading-relaxed text-silver">
-                {s.copy}
-              </p>
-            </li>
-          ))}
-        </ol>
+        <StudioTimeline />
+        <div className="mt-9">
+          <TextLink href="/process">Explore the full process</TextLink>
+        </div>
       </section>
       <StudioFAQ />
       <FinalCTA />

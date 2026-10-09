@@ -1,5 +1,7 @@
 # Novus website redesign — implementation notes
 
+**Historical release notes:** The orbital hero and fictional project concepts described below were superseded by the owner's subsequent revision. See [REVISION_NOTES.md](REVISION_NOTES.md) for the current design, motion, sources and validation.
+
 ## Direction
 The owner selected Clay's spacious agency structure and rejected the Obys-style portfolio direction. Novus retains its own logo, cobalt blue and orbital identity. The site now uses a light, open layout, larger readable typography, clear service rows, original concept examples and a direct enquiry journey.
 

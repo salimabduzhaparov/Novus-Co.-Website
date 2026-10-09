@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Novus Co.",
   },
   description:
-    "Thoughtful websites for local service businesses. Novus brings together clear design, useful content and a straightforward way for customers to get in touch.",
+    "Websites for local service businesses, built around clear services, customer confidence and easier enquiries. Request a free website preview from Novus.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",

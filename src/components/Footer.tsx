@@ -22,8 +22,8 @@ export function Footer() {
           <Link href="/about">About Novus</Link>
         </div>
         <div className="footer-links">
-          <h2>Start something</h2>
-          <Link href="/book">Request a call ↗</Link>
+          <h2>Get in touch</h2>
+          <Link href="/book">Request a free preview ↗</Link>
           <Link href="/contact">Send a message</Link>
           <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>

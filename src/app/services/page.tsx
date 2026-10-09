@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Reveal } from "@/components/ui/Reveal";
+import { Icon } from "@/components/ui/Icon";
 import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
@@ -14,7 +16,7 @@ const offerings = [
     id: "business-websites",
     title: "Business websites",
     description:
-      "A considered home for your business online. We organize your services, work, and contact details into a website that helps people get to know you.",
+      "Show customers what you do, where you work and why you are a good fit. We bring your services, project photos and contact details into a clear, mobile-friendly website.",
     scope: [
       "Page structure and content",
       "Visual design",
@@ -26,7 +28,7 @@ const offerings = [
     id: "website-redesigns",
     title: "Website redesigns",
     description:
-      "A fresh direction for a website you have outgrown. We review the existing content and customer journey, then shape the design around what your business needs now.",
+      "Fix a website that is dated, confusing or difficult to use on a phone. We review what customers need to find and redesign the pages around those decisions.",
     scope: [
       "Existing-site review",
       "Content refinement",
@@ -89,46 +91,54 @@ export default function ServicesPage() {
     <>
       <PageHero
         kicker="Our services"
-        title="The right website for the way you work."
-        subtitle="From a focused landing page to a complete business website, we bring design, content, and the essential connections together."
+        title="Built for the next call, quote or booking."
+        subtitle="Websites, redesigns, search foundations and enquiry tools for local service businesses. Clear services. Useful information. An easier way to reach you."
       />
       <section
         className="studio-container pb-20 sm:pb-28"
         aria-label="Website services"
       >
-        {offerings.map((offering) => (
-          <article
-            key={offering.id}
-            id={offering.id}
-            className="grid scroll-mt-28 gap-7 border-t border-ink/15 py-10 sm:py-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20"
-          >
-            <div>
-              <h2 className="text-3xl font-medium tracking-[-0.035em] sm:text-4xl">
-                {offering.title}
-              </h2>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-silver">
-                {offering.fit}
-              </p>
-            </div>
-            <div>
-              <p className="page-copy max-w-2xl">{offering.description}</p>
-              <ul
-                className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink"
-                aria-label={`Possible scope for ${offering.title.toLowerCase()}`}
-              >
-                {offering.scope.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5">
-                    <span
-                      className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
-                      aria-hidden="true"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
+        <nav className="page-mini-nav" aria-label="Jump to a service">
+          {offerings.map((offering) => (
+            <a key={offering.id} href={`#${offering.id}`}>
+              {offering.title}
+            </a>
+          ))}
+        </nav>
+        <div className="services-grid">
+          {offerings.map((offering, index) => (
+            <Reveal key={offering.id} delay={(index % 2) * 0.08}>
+              <article id={offering.id} className="service-detail">
+                <div className="service-index">
+                  <Icon
+                    name={
+                      [
+                        "layers",
+                        "refresh",
+                        "target",
+                        "chart",
+                        "mail",
+                        "calendar",
+                      ][index]
+                    }
+                    size={25}
+                  />
+                  <span>0{index + 1}</span>
+                </div>
+                <h2>{offering.title}</h2>
+                <p>{offering.description}</p>
+                <ul
+                  aria-label={`Possible scope for ${offering.title.toLowerCase()}`}
+                >
+                  {offering.scope.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <p className="service-fit">{offering.fit}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
       </section>
       <section
         className="bg-white py-20 sm:py-28"

@@ -57,7 +57,7 @@ export function Nav() {
             className="button-primary"
             onClick={() => setOpen(false)}
           >
-            Let’s talk<span aria-hidden="true">↗</span>
+            Free preview<span aria-hidden="true">↗</span>
           </Link>
           <button
             ref={toggle}

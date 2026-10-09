@@ -6,9 +6,9 @@ import { BookingForm } from "@/components/BookingForm";
 import { CONTACT_EMAIL } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Request a Website Consultation",
+  title: "Request a Free Website Preview",
   description:
-    "Tell Novus about your business and request a free 10-minute website consultation. We’ll arrange a time with you by email.",
+    "Tell Novus about your business and request a free website preview. We’ll arrange a time with you by email.",
   alternates: { canonical: "/book" },
 };
 
@@ -23,7 +23,7 @@ const whatToExpect = [
   },
   {
     icon: "layers",
-    text: "A clear next step, whether you need a new website or a redesign.",
+    text: "A custom website direction to review, with no commitment to a full build.",
   },
 ];
 
@@ -31,9 +31,9 @@ export default function BookPage() {
   return (
     <>
       <PageHero
-        kicker="Start a conversation"
-        title="A better website starts here."
-        subtitle="Tell us a little about your business. We’ll email you to arrange a free 10-minute call."
+        kicker="Request a free preview"
+        title="See what your website could be."
+        subtitle="Tell us about your business. We’ll email you to arrange a free 10-minute preview call and discuss a website direction."
       />
       <section className="px-6 pb-24 sm:px-10 sm:pb-32">
         <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">

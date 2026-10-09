@@ -1,0 +1,246 @@
+.section {
+  --evidence-ice: #a9d5ff;
+  --evidence-white: #f0f5fc;
+  --evidence-muted: #b2c1d4;
+  --evidence-line: rgb(176 208 242 / 18%);
+  position: relative;
+  isolation: isolate;
+  background: #091322;
+  color: var(--evidence-white);
+  padding-block: clamp(72px, 8vw, 116px);
+}
+
+.section::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background-image: linear-gradient(
+    to right,
+    rgb(169 213 255 / 3.5%) 1px,
+    transparent 1px
+  );
+  background-size: 11.11% 100%;
+}
+
+.inner {
+  position: relative;
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(32px, 7vw, 112px);
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.label {
+  margin: 0 0 22px;
+  color: var(--evidence-ice);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.heading {
+  max-width: 650px;
+  font-size: clamp(36px, 4.5vw, 64px);
+  line-height: 1.07;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.description {
+  max-width: 480px;
+  color: var(--evidence-muted);
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.figures {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--evidence-line);
+  border-bottom: 1px solid var(--evidence-line);
+}
+
+.figure {
+  min-width: 0;
+  padding: 40px clamp(22px, 3vw, 42px) 30px;
+}
+
+.figure:first-child {
+  padding-left: 0;
+}
+
+.figure:last-child {
+  padding-right: 0;
+}
+
+.figure + .figure {
+  border-left: 1px solid var(--evidence-line);
+}
+
+.statement {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.statement > span:last-child {
+  display: block;
+  min-height: 110px;
+  max-width: 350px;
+}
+
+.number {
+  display: block;
+  margin-bottom: 25px;
+  color: var(--evidence-ice);
+  font-size: clamp(70px, 7.4vw, 108px);
+  line-height: 1;
+  font-weight: 450;
+  letter-spacing: -0.065em;
+  font-variant-numeric: tabular-nums;
+}
+
+.rail {
+  height: 3px;
+  margin-top: 28px;
+  overflow: hidden;
+  background: rgb(169 213 255 / 12%);
+}
+
+.rail span {
+  display: block;
+  height: 100%;
+  background: var(--evidence-ice);
+  opacity: 0.75;
+}
+
+.takeaway {
+  margin-top: 20px;
+  color: var(--evidence-muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.source {
+  margin-top: 14px;
+  color: var(--evidence-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.source summary {
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 11px;
+  cursor: pointer;
+  color: var(--evidence-ice);
+}
+
+.source summary::marker {
+  font-size: 0.8em;
+}
+
+.source summary:hover {
+  color: #fff;
+}
+
+.source summary:focus-visible,
+.source a:focus-visible {
+  outline: 2px solid var(--evidence-ice);
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+
+.sourceContent {
+  padding-block: 6px 8px;
+}
+
+.sourceContent a {
+  color: var(--evidence-white);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgb(169 213 255 / 55%);
+}
+
+.sourceContent p {
+  margin-top: 12px;
+}
+
+.note {
+  max-width: 810px;
+  margin-top: 26px;
+  color: var(--evidence-muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+@media (max-width: 1000px) {
+  .intro {
+    grid-template-columns: 1.2fr 1fr;
+    gap: 36px;
+  }
+
+  .statement > span:last-child {
+    min-height: 164px;
+  }
+}
+
+@media (max-width: 760px) {
+  .section::before {
+    background-size: 33.33% 100%;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    margin-bottom: 40px;
+  }
+
+  .heading {
+    max-width: 570px;
+  }
+
+  .description {
+    max-width: 590px;
+    font-size: 16px;
+  }
+
+  .figures {
+    grid-template-columns: 1fr;
+  }
+
+  .figure,
+  .figure:first-child,
+  .figure:last-child {
+    padding: 32px 0 20px;
+  }
+
+  .figure + .figure {
+    border-left: 0;
+    border-top: 1px solid var(--evidence-line);
+  }
+
+  .number {
+    font-size: clamp(76px, 18vw, 100px);
+    margin-bottom: 20px;
+  }
+
+  .statement > span:last-child {
+    min-height: 0;
+    max-width: 500px;
+  }
+
+  .rail {
+    margin-top: 24px;
+  }
+}

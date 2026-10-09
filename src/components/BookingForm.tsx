@@ -91,8 +91,8 @@ export function BookingForm() {
           </h2>
           <p className="max-w-md text-base leading-relaxed text-silver">
             Thanks for telling us about your business. We’ll reply by email to
-            arrange your 10-minute call. Your time will be confirmed in that
-            reply.
+            arrange a 10-minute call about your preview. Your time will be
+            confirmed in that reply.
           </p>
         </div>
       ) : (
@@ -225,7 +225,7 @@ export function BookingForm() {
             disabled={sending}
             className="button-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {sending ? "Sending your request…" : "Request a 10-minute call"}
+            {sending ? "Sending your request…" : "Request my free preview"}
             <span aria-hidden="true">↗</span>
           </button>
           <p className="text-sm leading-relaxed text-silver">
