@@ -204,11 +204,11 @@ button:disabled {
 }
 .brand-logo-image {
   position: absolute;
-  width: 250%;
+  width: 227.2727%;
   max-width: none;
   height: auto;
-  left: -75%;
-  top: -40%;
+  left: -63.6364%;
+  top: -31.8182%;
 }
 .nav-inner > a { justify-self: start; }
 .desktop-nav {
