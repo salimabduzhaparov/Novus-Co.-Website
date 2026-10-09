@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "project": {
+    "name": "novus-co",
+    "productType": "Local business website studio",
+    "stack": ["nextjs", "react", "tailwind-v4"]
+  },
+  "sources": {
+    "tokens": ["src/app/globals.css"],
+    "components": ["src/components/ui"],
+    "assets": ["public/brand", "assets"],
+    "instructions": ["AGENTS.md", "CLAUDE.md"]
+  },
+  "design": {
+    "colorMode": "light",
+    "colors": {
+      "--accent-blue": {
+        "value": "#2459e0",
+        "source": "src/app/globals.css"
+      },
+      "--accent-blue-light": {
+        "value": "#2459e0",
+        "source": "src/app/globals.css"
+      },
+      "--accent-blue-glow": {
+        "value": "#729aff",
+        "source": "src/app/globals.css"
+      },
+      "--accent-purple": {
+        "value": "#6475c7",
+        "source": "src/app/globals.css"
+      },
+      "--color-void": {
+        "value": "var(--bg-void)",
+        "source": "src/app/globals.css"
+      },
+      "--color-deep": {
+        "value": "var(--bg-deep)",
+        "source": "src/app/globals.css"
+      },
+      "--color-elevated": {
+        "value": "var(--bg-elevated)",
+        "source": "src/app/globals.css"
+      },
+      "--color-navy-800": {
+        "value": "var(--navy-800)",
+        "source": "src/app/globals.css"
+      },
+      "--color-navy-700": {
+        "value": "var(--navy-700)",
+        "source": "src/app/globals.css"
+      },
+      "--color-accent": {
+        "value": "var(--accent-blue)",
+        "source": "src/app/globals.css"
+      },
+      "--color-accent-light": {
+        "value": "var(--accent-blue-light)",
+        "source": "src/app/globals.css"
+      },
+      "--color-accent-glow": {
+        "value": "var(--accent-blue-glow)",
+        "source": "src/app/globals.css"
+      },
+      "--color-accent-purple": {
+        "value": "var(--accent-purple)",
+        "source": "src/app/globals.css"
+      },
+      "--color-ink": {
+        "value": "var(--ink)",
+        "source": "src/app/globals.css"
+      },
+      "--color-silver": {
+        "value": "var(--silver)",
+        "source": "src/app/globals.css"
+      },
+      "--color-silver-dim": {
+        "value": "var(--silver-dim)",
+        "source": "src/app/globals.css"
+      },
+      "--color-hairline": {
+        "value": "var(--hairline)",
+        "source": "src/app/globals.css"
+      },
+      "--color-hairline-strong": {
+        "value": "var(--hairline-strong)",
+        "source": "src/app/globals.css"
+      }
+    },
+    "typography": {
+      "--font-sans": {
+        "value": "var(--font-geist-sans)",
+        "source": "src/app/globals.css"
+      },
+      "--font-mono": {
+        "value": "ui-monospace, monospace",
+        "source": "src/app/globals.css"
+      }
+    },
+    "spacing": {},
+    "radius": {},
+    "shadows": {},
+    "motion": {
+      "personality": "Corporate / restrained storytelling",
+      "duration": "260ms UI entrance, 500ms list reposition",
+      "easing": "cubic-bezier(0.2, 0, 0, 1)",
+      "reducedMotion": "Static completed illustrations and vertical content"
+    },
+    "density": "unknown"
+  },
+  "components": {
+    "installed": [
+      "Button",
+      "CountUp",
+      "Icon",
+      "Logo",
+      "PageHero",
+      "Reveal",
+      "StudioTimeline"
+    ],
+    "preferredPrimitives": [],
+    "patterns": []
+  },
+  "constraints": {
+    "must": [
+      "Keep the original circular Novus N logo",
+      "Keep hero story text in HTML over Higgsfield footage",
+      "Use white service section backgrounds with clear dark text",
+      "Keep full portfolio exploration on Work, not the homepage",
+      "Clearly label simulated visibility and enquiry examples",
+      "Keep a vertical expanded Process page and slower homepage timeline"
+    ],
+    "avoid": [
+      "Fake live payments or customer transactions",
+      "Guaranteed Google ranks or unsupported traffic claims",
+      "Repeated nested scroll traps",
+      "Unbounded animation work while offscreen"
+    ]
+  },
+  "decisions": [
+    {
+      "date": "2026-10-09",
+      "decision": "Use a scroll-driven customer journey from search to missing information to choosing a better website; transition into the Novus approach.",
+      "source": "Direct user instruction"
+    },
+    {
+      "date": "2026-10-09",
+      "decision": "Use two compact animated panels to explain discoverability and enquiries with sample data; no invented sales figures.",
+      "source": "Direct user request for ranking and notification animation, implemented as an explicitly illustrative example"
+    }
+  ],
+  "evidence": [
+    {
+      "fact": "components.installed",
+      "source": "src/components/ui"
+    },
+    {
+      "fact": "design.colorMode:light",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "design.tokens",
+      "source": "src/app/globals.css"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "AGENTS.md"
+    },
+    {
+      "fact": "project.instructions",
+      "source": "CLAUDE.md"
+    },
+    {
+      "fact": "project.stack:nextjs",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:react",
+      "source": "package.json"
+    },
+    {
+      "fact": "project.stack:tailwind-v4",
+      "source": "package.json"
+    }
+  ],
+  "generatedAt": "2026-10-09T20:41:20.456Z"
+}

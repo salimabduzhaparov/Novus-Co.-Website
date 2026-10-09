@@ -244,3 +244,108 @@
     margin-top: 24px;
   }
 }
+
+.embedded {
+  padding: 0;
+  background: transparent;
+  isolation: auto;
+}
+.embedded::before {
+  display: none;
+}
+.embedded .inner {
+  width: 100%;
+  margin: 0;
+}
+.embedded .intro {
+  display: block;
+  margin-bottom: 22px;
+}
+.embedded .label {
+  font-size: 13px;
+  font-weight: 650;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  color: #aacfff;
+}
+.embedded .heading {
+  font-size: clamp(31px, 3.1vw, 46px);
+  font-weight: 550;
+  line-height: 1.1;
+}
+.embedded .description {
+  font-size: 14px;
+  line-height: 1.7;
+  margin-top: 18px;
+}
+.embedded .figures {
+  grid-template-columns: 1fr;
+}
+.embedded .figure,
+.embedded .figure:first-child,
+.embedded .figure:last-child {
+  padding: 14px 0 8px;
+  border-left: 0;
+}
+.embedded .figure + .figure {
+  border-top: 1px solid var(--evidence-line);
+}
+.embedded .statement {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  align-items: center;
+}
+.embedded .number {
+  font-size: 48px;
+  margin: 0;
+  letter-spacing: -0.05em;
+}
+.embedded .statement > span:last-child {
+  min-height: 0;
+  max-width: 340px;
+}
+.embedded .rail,
+.embedded .takeaway {
+  display: none;
+}
+.embedded .source {
+  font-size: 11px;
+  margin: 2px 0 0 100px;
+}
+.embedded .source summary {
+  min-height: 30px;
+  padding: 6px 0;
+}
+.embedded .sourceContent {
+  font-size: 12px;
+}
+.embedded .note {
+  font-size: 10px;
+  line-height: 1.65;
+  margin-top: 15px;
+}
+@media (max-width: 760px) {
+  .embedded .heading {
+    font-size: 35px;
+  }
+  .embedded .description {
+    font-size: 14px;
+  }
+  .embedded .statement {
+    grid-template-columns: 78px 1fr;
+    font-size: 14px;
+  }
+  .embedded .number {
+    font-size: 44px;
+  }
+  .embedded .source {
+    margin-left: 88px;
+  }
+  .embedded .label {
+    font-size: 11px;
+  }
+}

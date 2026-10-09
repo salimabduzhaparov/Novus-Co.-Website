@@ -3,6 +3,7 @@ import { Geist } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { RouteScrollReset } from "@/components/RouteScrollReset";
 const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -55,6 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} antialiased`}>
       <body>
+        <RouteScrollReset />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

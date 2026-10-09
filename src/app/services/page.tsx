@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
-import { PageHero } from "@/components/ui/PageHero";
+import styles from "./services-page.module.css";
 
 export const metadata: Metadata = {
   title: "Website Design Services for Local Businesses",
@@ -15,6 +14,8 @@ const offerings = [
   {
     id: "business-websites",
     title: "Business websites",
+    icon: "layers",
+    outcome: "Give customers a clear picture of your business.",
     description:
       "Show customers what you do, where you work and why you are a good fit. We bring your services, project photos and contact details into a clear, mobile-friendly website.",
     scope: [
@@ -27,6 +28,8 @@ const offerings = [
   {
     id: "website-redesigns",
     title: "Website redesigns",
+    icon: "refresh",
+    outcome: "Make your website reflect the quality of your work.",
     description:
       "Fix a website that is dated, confusing or difficult to use on a phone. We review what customers need to find and redesign the pages around those decisions.",
     scope: [
@@ -39,6 +42,8 @@ const offerings = [
   {
     id: "landing-pages",
     title: "Landing pages",
+    icon: "target",
+    outcome: "Give one service or offer a focused destination.",
     description:
       "One focused page for a specific service, offer, or campaign. A clear message, relevant information, and a straightforward next step for the visitor.",
     scope: [
@@ -51,6 +56,8 @@ const offerings = [
   {
     id: "seo-foundations",
     title: "SEO foundations",
+    icon: "chart",
+    outcome: "Help search engines understand what you offer.",
     description:
       "The technical and content basics that help search engines understand your website. We consider page structure, descriptive metadata, internal links, and your service information.",
     scope: [
@@ -63,6 +70,8 @@ const offerings = [
   {
     id: "enquiry-systems",
     title: "Enquiry systems",
+    icon: "mail",
+    outcome: "Make it easier to take the next enquiry.",
     description:
       "Make it easier to ask for a quote and easier for you to receive the right information. We shape forms and contact routes around how your business handles new enquiries.",
     scope: [
@@ -75,6 +84,8 @@ const offerings = [
   {
     id: "booking-integrations",
     title: "Booking integrations",
+    icon: "calendar",
+    outcome: "Give customers a convenient way to book.",
     description:
       "Connect your website with a suitable scheduling tool so customers can take the next step online. The booking flow depends on your services, availability, and chosen platform.",
     scope: [
@@ -88,75 +99,91 @@ const offerings = [
 
 export default function ServicesPage() {
   return (
-    <>
-      <PageHero
-        kicker="Our services"
-        title="Built for the next call, quote or booking."
-        subtitle="Websites, redesigns, search foundations and enquiry tools for local service businesses. Clear services. Useful information. An easier way to reach you."
-      />
+    <div className={styles.page}>
+      <section className={`studio-container ${styles.hero}`} aria-labelledby="services-title">
+        <p className={styles.sectionLabel}>Our services</p>
+        <div className={styles.heroGrid}>
+          <h1 id="services-title">Built for the next call, quote or booking.</h1>
+          <div className={styles.heroCopy}>
+            <p>
+              A clear website helps customers understand your work and know how
+              to reach you. We design the pages and connect the tools that make
+              those next steps easier.
+            </p>
+            <Link href="/book" className={`button-primary ${styles.primaryLink}`}>
+              Request a free preview
+            </Link>
+          </div>
+        </div>
+      </section>
       <section
-        className="studio-container pb-20 sm:pb-28"
+        className={`studio-container ${styles.services}`}
         aria-label="Website services"
       >
-        <nav className="page-mini-nav" aria-label="Jump to a service">
+        <div className={styles.directoryHeading}>
+          <p className={styles.sectionLabel}>Find the right service</p>
+          <p>Start fresh, improve what you have, or add a useful new tool.</p>
+        </div>
+        <nav className={styles.serviceNav} aria-label="Jump to a service">
           {offerings.map((offering) => (
             <a key={offering.id} href={`#${offering.id}`}>
-              {offering.title}
+              <Icon name={offering.icon} size={19} />
+              <span>{offering.title}</span>
             </a>
           ))}
         </nav>
-        <div className="services-grid">
-          {offerings.map((offering, index) => (
-            <Reveal key={offering.id} delay={(index % 2) * 0.08}>
-              <article id={offering.id} className="service-detail">
-                <div className="service-index">
-                  <Icon
-                    name={
-                      [
-                        "layers",
-                        "refresh",
-                        "target",
-                        "chart",
-                        "mail",
-                        "calendar",
-                      ][index]
-                    }
-                    size={25}
-                  />
-                  <span>0{index + 1}</span>
+        <div className={styles.serviceGrid}>
+          {offerings.map((offering) => (
+            <article
+              key={offering.id}
+              id={offering.id}
+              className={styles.service}
+              aria-labelledby={`${offering.id}-title`}
+            >
+              <div className={styles.serviceContent}>
+                <div className={styles.serviceHeading}>
+                  <span className={styles.serviceIcon}>
+                    <Icon name={offering.icon} size={24} />
+                  </span>
+                  <h2 id={`${offering.id}-title`}>{offering.title}</h2>
                 </div>
-                <h2>{offering.title}</h2>
-                <p>{offering.description}</p>
+                <p className={styles.outcome}>{offering.outcome}</p>
+                <p className={styles.description}>{offering.description}</p>
+              </div>
+              <div className={styles.scope}>
+                <h3>What we can help with</h3>
                 <ul
                   aria-label={`Possible scope for ${offering.title.toLowerCase()}`}
                 >
                   {offering.scope.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>
+                      <Icon name="check" size={18} />
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
-                <p className="service-fit">{offering.fit}</p>
-              </article>
-            </Reveal>
+                <p className={styles.fit}>{offering.fit}</p>
+              </div>
+            </article>
           ))}
         </div>
       </section>
       <section
-        className="bg-white py-20 sm:py-28"
+        className={styles.scopeSection}
         aria-labelledby="scope-heading"
       >
-        <div className="studio-container grid gap-10 lg:grid-cols-2 lg:gap-20">
+        <div className={`studio-container ${styles.scopeGrid}`}>
           <div>
-            <h2
-              id="scope-heading"
-              className="max-w-lg text-balance text-3xl leading-tight font-medium tracking-[-0.03em] sm:text-5xl"
-            >
+            <p className={styles.sectionLabel}>Your scope, made clear</p>
+            <h2 id="scope-heading">
               Agree the details before the build.
             </h2>
-            <Link href="/process" className="text-link mt-7 inline-flex">
+            <Link href="/process" className={styles.processLink}>
               See how the process works
+              <Icon name="arrow" size={20} />
             </Link>
           </div>
-          <div className="page-copy space-y-5">
+          <div className={styles.scopeCopy}>
             <p>
               The right scope depends on your content, the number of pages, and
               the tools your business uses. We discuss those needs before
@@ -175,27 +202,25 @@ export default function ServicesPage() {
         </div>
       </section>
       <section
-        className="studio-container section-space"
+        className={`studio-container ${styles.nextStep}`}
         aria-labelledby="services-next-step"
       >
-        <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+        <div className={styles.nextStepPanel}>
           <div>
-            <h2
-              id="services-next-step"
-              className="max-w-2xl text-balance text-3xl font-medium tracking-[-0.03em] sm:text-5xl"
-            >
-              A good place to start is a conversation.
+            <p className={styles.sectionLabel}>Start with a free preview</p>
+            <h2 id="services-next-step">
+              See a direction for your business.
             </h2>
-            <p className="page-copy mt-5 max-w-xl">
-              Tell us what is working, what is missing, and what you would like
-              to improve.
+            <p className={styles.nextStepCopy}>
+              Tell us about your work and what customers need to find. We can
+              explore a website direction before you commit to a full build.
             </p>
           </div>
-          <Link href="/book" className="button-primary shrink-0">
-            Discuss your website
+          <Link href="/book" className={`button-primary ${styles.previewLink}`}>
+            Request a free preview
           </Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }

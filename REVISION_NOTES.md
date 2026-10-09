@@ -1,3 +1,26 @@
+# Scroll-story update — 9 October 2026
+
+**Status: Production build and local verification passed; deployment is verified separately.**
+
+This update supersedes the interim illustration and prompt-only hero described in the preserved earlier record below.
+
+- Generated a roughly 12-second, 1080p Higgsfield person/laptop film. The website uses 96 optimized WebP frames (1,728,200 bytes / 1.73 MB), a static poster and a bounded frame cache instead of compressed-video seeking on every scroll event.
+- Added a five-chapter homepage journey: introduction, local search, missing information, competitor choice with sourced statistics, then the Novus approach. Search screens and cursor are deterministic interface elements; important copy and links remain HTML.
+- Added clearly labelled illustrative search visibility and enquiry examples after Why Novus. Sample notifications are not live transactions or measured results. Motion includes pause/replay, offscreen/hidden-tab handling and reduced-motion behavior.
+- Used the connected 21st.dev tooling for eight searches and two complete source retrievals. Adapted the MIT Motiq Animated List with its notice retained; used other inspected examples as relevant design references without adding a new UI runtime.
+- Removed Bluepeak/Mike explorations from the homepage; retained them on Work. Strengthened section-label hierarchy and gave Services a white background, navy headings and contrasting scope areas.
+- Slowed the homepage horizontal process to 1.65× scrolling distance, widened milestones to 420px and increased gaps to 150px. The separate Process route now uses expanded vertical stages with white/ice/navy contrast.
+- Integrated RouteScrollReset for deliberate /process link navigation. It returns to the overview after outgoing pin cleanup, without overriding hash anchors or Back/Forward restoration.
+- Preserved SEO metadata, crawlable content, canonical URLs, sitemap, robots and Organization data. Rankings, enquiries, conversion changes and field performance remain unmeasured; no outcome guarantee is made.
+
+Integrated production build, TypeScript, ESLint and whitespace checks passed. Browser checks covered 320px/390px phones, 1280px desktop and the 1440 × 1000 horizontal timeline, motion pause, reduced-motion poster fallback, service anchors and Process navigation from the pinned timeline. Production HTTP checks passed for core routes, one H1 per page, canonical URLs, descriptions, robots/sitemap, generated media and a real 404. Live deployment verification follows the push. The release summary and complete 21st.dev decisions are exported in the workspace outputs folder.
+
+---
+
+## Earlier revision record — preserved for history
+
+The following describes the previous release. Its interim-hero and prompt-only statements are superseded by the update above.
+
 # Novus website revision — 9 October 2026
 
 This revision supersedes the earlier orbital-hero redesign.

@@ -1017,3 +1017,71 @@ button:disabled {
     padding: 10px 12px;
   }
 }
+
+/* Clear section wayfinding and a high-contrast services surface. */
+.eyebrow {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: #244e88;
+}
+.section-intro > .eyebrow {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+}
+.section-intro > .eyebrow::before {
+  content: "";
+  display: block;
+  flex-shrink: 0;
+  width: 27px;
+  height: 3px;
+  background: currentColor;
+  margin-top: 10px;
+}
+.section-intro h2,
+.section-title {
+  font-weight: 550;
+}
+.home-services {
+  background: #fff;
+  border-bottom: 1px solid #dce4ef;
+}
+.home-services .solution-card {
+  background: #fff;
+  border: 1px solid #bfd0e5;
+  border-top: 3px solid #356ed4;
+  box-shadow: 0 12px 28px #162a4805;
+}
+.home-services .solution-card h3 {
+  color: #102947;
+  font-weight: 600;
+}
+.home-services .solution-card p {
+  color: #43556c;
+}
+.home-services .solution-card:hover {
+  background: #f2f6ff;
+  border-color: #8eadde;
+}
+.why-novus .eyebrow {
+  color: #b1d0ff;
+  font-size: 15px;
+  font-weight: 700;
+}
+.page-hero .eyebrow {
+  font-size: 15px;
+  font-weight: 700;
+}
+@media (max-width: 760px) {
+  .eyebrow,
+  .why-novus .eyebrow,
+  .page-hero .eyebrow {
+    font-size: 13px;
+  }
+  .section-intro > .eyebrow::before {
+    margin-top: 8px;
+  }
+}

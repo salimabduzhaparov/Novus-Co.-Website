@@ -49,19 +49,29 @@ const evidence = [
   },
 ] as const;
 
-export default function CustomerEvidence() {
+export default function CustomerEvidence({
+  story = false,
+}: {
+  story?: boolean;
+}) {
   return (
     <section
       id="why-a-website"
-      className={styles.section}
+      className={`${styles.section} ${story ? styles.embedded : ""}`}
       aria-labelledby="customer-evidence-title"
     >
       <div className={`studio-container ${styles.inner}`}>
         <div className={styles.intro}>
           <div>
-            <p className={styles.label}>Why your website matters</p>
+            <p className={styles.label}>
+              {story
+                ? "03 / Why your website matters"
+                : "Why your website matters"}
+            </p>
             <h2 id="customer-evidence-title" className={styles.heading}>
-              The decision happens before the call.
+              {story
+                ? "Another business. One click away."
+                : "The decision happens before the call."}
             </h2>
           </div>
           <p className={styles.description}>

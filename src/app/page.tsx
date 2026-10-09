@@ -1,8 +1,7 @@
 import Link from "next/link";
-import { Hero } from "@/components/Hero";
+import { ScrollStory } from "@/components/ScrollStory";
 import CustomerEvidence from "@/components/CustomerEvidence";
-import { BusinessStory } from "@/components/BusinessStory";
-import { WebsiteExamples } from "@/components/WebsiteExamples";
+import { GrowthStory } from "@/components/GrowthStory";
 import { StudioFAQ } from "@/components/StudioFAQ";
 import { FinalCTA } from "@/components/FinalCTA";
 import { StudioTimeline } from "@/components/ui/StudioTimeline";
@@ -36,49 +35,48 @@ const services = [
 export default function Home() {
   return (
     <>
-      <Hero />
-      <CustomerEvidence />
-      <BusinessStory />
+      <ScrollStory evidence={<CustomerEvidence story />} />
       <section
-        className="section-space studio-container"
+        className="section-space home-services"
         aria-labelledby="home-services"
       >
-        <div className="section-intro">
-          <span className="eyebrow">How Novus helps</span>
-          <div>
-            <h2 id="home-services">
-              Turn unanswered questions
-              <br />
-              into clear next steps.
-            </h2>
-            <p className="page-copy mt-6 max-w-xl">
-              Starting without a website or fixing one that falls short? We
-              build around the decisions your customers need to make.
-            </p>
+        <div className="studio-container">
+          <div className="section-intro">
+            <span className="eyebrow">Our services</span>
+            <div>
+              <h2 id="home-services">
+                Turn unanswered questions
+                <br />
+                into clear next steps.
+              </h2>
+              <p className="page-copy mt-6 max-w-xl">
+                Starting without a website or fixing one that falls short? We
+                build around the decisions your customers need to make.
+              </p>
+            </div>
+          </div>
+          <div className="solution-grid">
+            {services.map((s, i) => (
+              <Reveal key={s.title} delay={i * 0.08}>
+                <Link href={s.href} className="solution-card">
+                  <div className="solution-card-top">
+                    <Icon name={s.icon} size={25} />
+                    <span>0{i + 1}</span>
+                  </div>
+                  <h3>{s.title}</h3>
+                  <p>{s.description}</p>
+                  <span className="solution-link">
+                    Explore the service <span aria-hidden="true">↗</span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <div className="mt-9">
+            <TextLink href="/services">All website services</TextLink>
           </div>
         </div>
-        <div className="solution-grid">
-          {services.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08}>
-              <Link href={s.href} className="solution-card">
-                <div className="solution-card-top">
-                  <Icon name={s.icon} size={25} />
-                  <span>0{i + 1}</span>
-                </div>
-                <h3>{s.title}</h3>
-                <p>{s.description}</p>
-                <span className="solution-link">
-                  Explore the service <span aria-hidden="true">↗</span>
-                </span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-        <div className="mt-9">
-          <TextLink href="/services">All website services</TextLink>
-        </div>
       </section>
-      <WebsiteExamples />
       <section className="why-novus section-space" aria-labelledby="home-about">
         <div className="studio-container why-layout">
           <div>
@@ -123,6 +121,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <GrowthStory />
       <section
         className="section-space studio-container"
         aria-labelledby="home-process"

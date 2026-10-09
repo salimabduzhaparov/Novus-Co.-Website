@@ -53,7 +53,7 @@ export function StudioTimeline({
     // The HTML and CSS are already usable. Load motion only for a suitable
     // desktop viewport; mobile and reduced-motion visitors never need GSAP.
     const query = window.matchMedia(
-      "(min-width: 1100px) and (min-height: 760px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+      "(min-width: 1100px) and (min-height: 800px) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
     );
     let loading = false;
     const enhance = async () => {
@@ -79,9 +79,11 @@ export function StudioTimeline({
             scrollTrigger: {
               trigger: root,
               start: "top 104px",
-              end: () => `+=${distance()}`,
+              // More reading time per milestone without changing native wheel
+              // or touch behavior. The page itself remains the scroll driver.
+              end: () => `+=${distance() * 1.65}`,
               pin: true,
-              scrub: true,
+              scrub: 0.45,
               anticipatePin: 1,
               invalidateOnRefresh: true,
               onUpdate: (self) => updateControls(self.progress),
@@ -133,18 +135,31 @@ export function StudioTimeline({
     const viewport = viewportRef.current;
     const trigger = triggerRef.current;
     if (!viewport) return;
+    const track = trackRef.current;
+    const first = track?.children[0] as HTMLElement | undefined;
+    const second = track?.children[1] as HTMLElement | undefined;
+    const milestoneDistance =
+      first && second
+        ? second.offsetLeft - first.offsetLeft
+        : viewport.clientWidth * 0.7;
     if (trigger) {
+      const horizontalDistance =
+        (track?.scrollWidth ?? 0) - viewport.clientWidth;
+      const scrollRatio =
+        horizontalDistance > 0
+          ? (trigger.end - trigger.start) / horizontalDistance
+          : 1;
       const target = Math.min(
         trigger.end,
         Math.max(
           trigger.start,
-          window.scrollY + direction * viewport.clientWidth * 0.7,
+          window.scrollY + direction * milestoneDistance * scrollRatio,
         ),
       );
       window.scrollTo({ top: target, behavior: "smooth" });
     } else {
       viewport.scrollBy({
-        left: direction * viewport.clientWidth * 0.7,
+        left: direction * milestoneDistance,
         behavior: "smooth",
       });
     }
