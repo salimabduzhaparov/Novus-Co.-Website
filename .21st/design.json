@@ -194,6 +194,11 @@
       "date": "2026-10-10",
       "decision": "Owner refinement: retire Work and redirect its old URL to Services; remove related portfolio links and FAQ. Replace closing preview mockups and step lists with a bold centered command, one concise line and the existing large preview button. Reduce the SEO demo to 780px and its two stage delays to 1.9 seconds; remove Replay and reset after fully leaving view, with automatic reentry playback and manual pause/reduced-motion support.",
       "source": "Latest direct user feedback"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "Preserve smooth 0.7-second keyed positional ranking swaps with 1.9-second stage delays. Keep projection active when crossing playback thresholds and reserve description geometry; full-exit reset remains offscreen.",
+      "source": "Owner reported non-smooth ranking swaps; browser motion samples verified correction at desktop and phone width"
     }
   ],
   "evidence": [

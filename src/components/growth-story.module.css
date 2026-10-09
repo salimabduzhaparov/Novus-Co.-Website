@@ -135,6 +135,7 @@
   gap: 10px;
 }
 .result {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 18px;
@@ -143,8 +144,10 @@
   padding: 18px;
   min-height: 120px;
   background: var(--bg-elevated);
+  will-change: transform;
 }
 .result[data-featured="true"] {
+  z-index: 1;
   background: #edf3ff;
   border-color: #9ab6ea;
 }
@@ -188,6 +191,16 @@
   line-height: 1.55;
   color: var(--silver);
   margin: 7px 0 0;
+}
+.resultDescription {
+  display: grid;
+}
+.resultDescription > span {
+  grid-area: 1 / 1;
+}
+.resultDescription > span[aria-hidden="true"] {
+  /* Reserve both descriptions' natural height before a positional swap. */
+  visibility: hidden;
 }
 .resultLinks {
   display: flex;

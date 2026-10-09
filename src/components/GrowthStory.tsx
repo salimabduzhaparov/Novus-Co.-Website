@@ -56,6 +56,7 @@ const resultOrders = [
 export function GrowthStory() {
   const demonstration = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
+  const [intersecting, setIntersecting] = useState(false);
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -73,9 +74,11 @@ export function GrowthStory() {
           // Reset only once the entire demo has left the viewport. Moving
           // around the playback threshold pauses/resumes without restarting.
           setInView(false);
+          setIntersecting(false);
           setPhase(0);
           return;
         }
+        setIntersecting(true);
         setInView(entry.intersectionRatio >= 0.35);
       },
       { threshold: [0, 0.35] },
@@ -131,9 +134,7 @@ export function GrowthStory() {
                     : "Pause the search animation"
                 }
               >
-                <span aria-hidden="true">
-                  {paused ? "▶" : "Ⅱ"}
-                </span>
+                <span aria-hidden="true">{paused ? "▶" : "Ⅱ"}</span>
                 {paused ? "Resume" : "Pause"}
               </button>
             )}
@@ -162,10 +163,14 @@ export function GrowthStory() {
                 {resultOrders[current].map((id, index) => (
                   <motion.li
                     key={id}
-                    layout={reduce || !inView ? false : "position"}
+                    // Keep projection active across the playback threshold so
+                    // scrolling cannot interrupt a swap already in progress.
+                    layout={reduce ? false : "position"}
                     transition={{
-                      duration: reduce || !inView ? 0 : 0.55,
-                      ease: [0.2, 0, 0, 1],
+                      layout: {
+                        duration: reduce || !intersecting ? 0 : 0.7,
+                        ease: [0.2, 0, 0, 1],
+                      },
                     }}
                     className={styles.result}
                     data-featured={id === "yours"}
@@ -187,12 +192,24 @@ export function GrowthStory() {
                             ? "Another local business"
                             : "A nearby service provider"}
                       </strong>
-                      <p>
-                        {id === "yours"
-                          ? current === 0
-                            ? "The services you offer. The people you help."
-                            : "Clear services. Useful local information. A website built for the next step."
-                          : "Business information and services in your area."}
+                      <p
+                        className={
+                          id === "yours" ? styles.resultDescription : undefined
+                        }
+                      >
+                        {id === "yours" ? (
+                          <>
+                            <span aria-hidden={current !== 0}>
+                              The services you offer. The people you help.
+                            </span>
+                            <span aria-hidden={current === 0}>
+                              Clear services. Useful local information. A
+                              website built for the next step.
+                            </span>
+                          </>
+                        ) : (
+                          "Business information and services in your area."
+                        )}
                       </p>
                       {id === "yours" && (
                         <span className={styles.resultLinks}>

@@ -1,3 +1,13 @@
+# Smooth ranking swaps and phone preview — 10 October 2026
+
+- Restored 0.7-second positional swaps while keeping the shorter 1.9-second stage delays. The SEO panel remains 780px, with automatic replay on returning and no Replay button.
+- Kept positional layout active across the playback threshold; scrolling can pause the stage timer without cancelling a swap already in progress. Full exit still resets the example offscreen.
+- Reserved the featured card description height and kept it above its neighbours during crossing, so the two rows visibly exchange positions without a card-height jump.
+- Browser sampling verified both transitions at desktop and 390px phone widths, including intermediate positions and stable featured-card height. Production build, TypeScript, ESLint and whitespace checks passed.
+- Prepared a separate local live-phone preview with 360/390/430px options; this viewer is outside the website repository. The mobile review found no new blocking source issue. The 36px story-pause control remains a minor touch-target limitation; no unrelated design change was made.
+
+---
+
 # Focused SEO example and preview invitation — 10 October 2026
 
 Production build, TypeScript, ESLint, whitespace and local HTTP checks passed. Live release verification follows the push.
