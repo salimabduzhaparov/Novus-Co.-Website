@@ -75,10 +75,9 @@ export default function CustomerEvidence({
             </h2>
           </div>
           <p className={styles.description}>
-            A confusing website can leave customers with questions. No website
-            can leave them with even fewer answers. If people cannot see what
-            you do or how to reach you, they may choose a competitor who makes
-            it easier.
+            A missing, broken or outdated website can weaken a customer’s
+            confidence in your professionalism. When another business makes its
+            services and work easy to explore, it becomes easier to choose.
           </p>
         </div>
 
@@ -116,12 +115,6 @@ export default function CustomerEvidence({
             </li>
           ))}
         </ul>
-
-        <p className={styles.note}>
-          Source: BrightLocal US consumer surveys, 2025–2026. Each survey has a
-          different question and sample. These findings are not a forecast of
-          results for your business.
-        </p>
       </div>
     </section>
   );

@@ -102,7 +102,7 @@
     "shadows": {},
     "motion": {
       "personality": "Corporate / restrained storytelling",
-      "duration": "260ms UI entrance, 500ms list reposition",
+      "duration": "220ms CTA feedback; native continuous hero video; restrained SEO illustration movement",
       "easing": "cubic-bezier(0.2, 0, 0, 1)",
       "reducedMotion": "Static completed illustrations and vertical content"
     },
@@ -119,7 +119,11 @@
       "StudioTimeline"
     ],
     "preferredPrimitives": [],
-    "patterns": []
+    "patterns": [
+      "PrimaryButton with brand/light tones and default/large sizes",
+      "Stable CTA labels with a contrasting arrow tile",
+      "One cohesive illustrative SEO demonstration"
+    ]
   },
   "constraints": {
     "must": [
@@ -127,8 +131,10 @@
       "Keep hero story text in HTML over Higgsfield footage",
       "Use white service section backgrounds with clear dark text",
       "Keep full portfolio exploration on Work, not the homepage",
-      "Clearly label simulated visibility and enquiry examples",
-      "Keep a vertical expanded Process page and slower homepage timeline"
+      "Clearly label the illustrative SEO visibility example and avoid claiming measured ranking outcomes",
+      "Keep a vertical expanded Process page and slower homepage timeline",
+      "Keep continuous hero video playback independent of scroll-driven HTML chapters",
+      "Use the shared prominent free-preview CTA across pages without changing form semantics"
     ],
     "avoid": [
       "Fake live payments or customer transactions",
@@ -140,13 +146,33 @@
   "decisions": [
     {
       "date": "2026-10-09",
-      "decision": "Use a scroll-driven customer journey from search to missing information to choosing a better website; transition into the Novus approach.",
+      "decision": "Use a scroll-driven customer journey from search to missing information to choosing a better website; transition into the Novus approach. Historical direction retained; the scroll-scrubbed playback implementation is superseded by the continuous-loop decision of 2026-10-10.",
       "source": "Direct user instruction"
     },
     {
       "date": "2026-10-09",
-      "decision": "Use two compact animated panels to explain discoverability and enquiries with sample data; no invented sales figures.",
+      "decision": "Use two compact animated panels to explain discoverability and enquiries with sample data; no invented sales figures. Superseded on 2026-10-10: use one focused SEO visibility demonstration and remove the separate enquiry-notification panel.",
       "source": "Direct user request for ranking and notification animation, implemented as an explicitly illustrative example"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "Keep the customer story chapters driven by scrolling, but play the Higgsfield person/laptop footage as a continuous native-video loop independent of scroll. Pause when offscreen, hidden, explicitly paused, or when reduced-motion/data-saving preferences apply. Keep the story contained so it cannot cover the following white Services section.",
+      "source": "Latest direct owner feedback; implemented by root agent"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "Replace the two-panel visibility/enquiry illustration with one cohesive SEO search-visibility example. Keep the example visibly illustrative and explain practical SEO foundations without guaranteed ranks or fake live leads.",
+      "source": "Latest direct owner feedback; implemented by growth agent"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "Make free website preview CTAs more prominent across pages using the shared navy/ice-blue PrimaryButton: stable label, contrasting arrow tile, restrained hover/focus halo, no magnetic hitbox or perpetual shine. The closing homepage offer pairs a larger button with an illustrative website preview and clear next steps.",
+      "source": "Latest direct owner feedback; native 21st catalog research informed an original implementation"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "An explicit Home/logo click always opens the actual beginning, including from an existing home hash. Preserve the Process top-reset, hash-anchor navigation and ordinary Back/Forward restoration.",
+      "source": "Latest direct owner bug report"
     }
   ],
   "evidence": [

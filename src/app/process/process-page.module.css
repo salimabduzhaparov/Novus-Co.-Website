@@ -37,11 +37,17 @@
   display: inline-flex;
   align-items: center;
   gap: 25px;
-  margin-top: 36px;
   padding-block: 10px;
   border-bottom: 1px solid #7ea6d9;
   font-weight: 550;
   font-size: 16px;
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 32px;
+  margin-top: 36px;
 }
 .stageLink:focus-visible,
 .previewButton:focus-visible {
@@ -215,21 +221,7 @@
   margin-top: 22px;
 }
 .previewButton {
-  display: inline-flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  padding: 19px 24px;
-  border-radius: 6px;
-  background: #fff;
-  color: #17365f;
-  font-size: 15px;
-  font-weight: 600;
-  transition: background 180ms ease;
-}
-.previewButton:hover {
-  background: #dfeeff;
 }
 @media (max-width: 1000px) {
   .stageGrid {

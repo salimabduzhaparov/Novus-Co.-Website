@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 /**
  * Next preserves position if part of the incoming page is still in view.
- * A clicked Process link should instead open the overview. Remember that
+ * A clicked Home or Process link should instead open the beginning. Remember that
  * explicit click so ordinary history restoration and hash links keep working.
  */
 export function RouteScrollReset() {
@@ -13,14 +13,14 @@ export function RouteScrollReset() {
   const pendingPath = useRef<string | null>(null);
   const frame = useRef<number | null>(null);
 
-  const resetAfterLayout = () => {
+  const resetAfterLayout = (targetPath: string) => {
     if (frame.current !== null) cancelAnimationFrame(frame.current);
     // Wait for the outgoing pinned timeline to remove its spacer, and for
     // Next's own navigation scroll handling to finish. No ongoing scroll lock.
     frame.current = requestAnimationFrame(() => {
       frame.current = requestAnimationFrame(() => {
         frame.current = null;
-        if (window.location.pathname === "/process" && !window.location.hash) {
+        if (window.location.pathname === targetPath) {
           window.scrollTo({ top: 0, left: 0, behavior: "instant" });
         }
       });
@@ -50,9 +50,12 @@ export function RouteScrollReset() {
         return;
       }
       const destination = new URL(link.href, window.location.href);
+      // A newer link click takes precedence, including a same-page hash link.
+      if (frame.current !== null) cancelAnimationFrame(frame.current);
+      frame.current = null;
       if (
         destination.origin !== window.location.origin ||
-        destination.pathname !== "/process" ||
+        !["/", "/process"].includes(destination.pathname) ||
         destination.hash
       ) {
         pendingPath.current = null;
@@ -61,7 +64,7 @@ export function RouteScrollReset() {
       pendingPath.current = destination.pathname;
       if (window.location.pathname === destination.pathname) {
         pendingPath.current = null;
-        resetAfterLayout();
+        resetAfterLayout(destination.pathname);
       }
     };
     const onHistory = () => {
@@ -81,7 +84,7 @@ export function RouteScrollReset() {
   useLayoutEffect(() => {
     if (pendingPath.current === pathname) {
       pendingPath.current = null;
-      resetAfterLayout();
+      resetAfterLayout(pathname);
     }
   }, [pathname]);
 

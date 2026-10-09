@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
+import { PrimaryButton } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { BookingForm } from "@/components/BookingForm";
@@ -34,7 +35,13 @@ export default function BookPage() {
         kicker="Request a free preview"
         title="See what your website could be."
         subtitle="Tell us about your business. We’ll email you to arrange a free 10-minute preview call and discuss a website direction."
-      />
+      >
+        <div className="mt-7">
+          <PrimaryButton href="#preview-request">
+            Start my free preview
+          </PrimaryButton>
+        </div>
+      </PageHero>
       <section className="px-6 pb-24 sm:px-10 sm:pb-32">
         <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <Reveal>
@@ -71,7 +78,9 @@ export default function BookPage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <BookingForm />
+            <div id="preview-request" className="scroll-mt-28">
+              <BookingForm />
+            </div>
           </Reveal>
         </div>
       </section>

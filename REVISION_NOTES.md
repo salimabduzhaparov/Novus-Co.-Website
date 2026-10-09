@@ -1,3 +1,24 @@
+# Continuous-loop and CTA refinement — 10 October 2026
+
+**Status: Production build and local verification passed; live deployment is verified separately.**
+
+This revision supersedes the previous scroll-frame playback and two-panel growth demonstration. Earlier release notes remain preserved below.
+
+- Generated a new Higgsfield loop with the same start/end photograph: job `b2d51f2a-2aaa-4cb1-a979-64b7531737b9`, `seedance_2_5`, H.264, 1920×1040, 24fps, 10.041667 seconds, 1,449,722 bytes. Native playback is independent of scroll, with pause/offscreen/hidden-tab handling and reduced-motion/data-saving poster support.
+- Kept the readable customer-story chapters, while replacing negative-margin overlap with a contained sticky grid. Controls use a separate sticky layer; the following white Services section has an explicit stacking boundary.
+- Replaced the two growth panels with one centered SEO search example. “Your Business” advances from last to first, with a visible illustrative label, pause/replay, reduced-motion support and practical SEO explanations. No measured rank or enquiry result is claimed.
+- Strengthened the shared free-preview CTA using navy/ice-blue contrast, a stable label, designed arrow tile and restrained hover/focus halo. Expanded the closing offer with an illustrative website preview and three clear next steps. Applied the shared CTA across Process, Services, About, Work, Contact and Book without changing form semantics.
+- Extended explicit top-reset navigation to Home/logo clicks, including from homepage hashes, while preserving Process, hash links and Back/Forward behavior.
+- Refreshed native 21st catalog research: [Motion Button](https://21st.dev/@Shatlyk1011/components/motion-button), [Interactive Hover Button](https://21st.dev/@dillionverma/components/interactive-hover-button), [Expanding Arrow Button](https://21st.dev/@starc007/components/expanding-arrow-button). These informed an original CTA implementation; no new component source was retrieved or copied. Existing [Motiq Animated List](https://21st.dev/@rmahammad/components/animated-list) attribution is retained.
+
+Local mobile visual checks at 320px/390px, short-desktop layout at 1280×600, pause/reduced-motion behavior, Services boundary, Home/Process navigation and form-entry navigation passed. Production build, TypeScript, ESLint, whitespace and HTTP/SEO/media checks passed. Commit/deployment and live checks are verified after the push. Rankings, enquiries, conversions and field performance remain unmeasured.
+
+---
+
+## Previous release records — preserved for history
+
+The playback and two-panel statements below describe earlier revisions and are superseded where noted above.
+
 # Scroll-story update — 9 October 2026
 
 **Status: Production build and local verification passed; deployment is verified separately.**

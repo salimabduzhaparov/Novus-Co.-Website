@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
+import { PrimaryButton } from "@/components/ui/Button";
 import styles from "./services-page.module.css";
 
 export const metadata: Metadata = {
@@ -100,19 +101,24 @@ const offerings = [
 export default function ServicesPage() {
   return (
     <div className={styles.page}>
-      <section className={`studio-container ${styles.hero}`} aria-labelledby="services-title">
+      <section
+        className={`studio-container ${styles.hero}`}
+        aria-labelledby="services-title"
+      >
         <p className={styles.sectionLabel}>Our services</p>
         <div className={styles.heroGrid}>
-          <h1 id="services-title">Built for the next call, quote or booking.</h1>
+          <h1 id="services-title">
+            Built for the next call, quote or booking.
+          </h1>
           <div className={styles.heroCopy}>
             <p>
               A clear website helps customers understand your work and know how
               to reach you. We design the pages and connect the tools that make
               those next steps easier.
             </p>
-            <Link href="/book" className={`button-primary ${styles.primaryLink}`}>
+            <PrimaryButton className={styles.primaryLink}>
               Request a free preview
-            </Link>
+            </PrimaryButton>
           </div>
         </div>
       </section>
@@ -168,16 +174,11 @@ export default function ServicesPage() {
           ))}
         </div>
       </section>
-      <section
-        className={styles.scopeSection}
-        aria-labelledby="scope-heading"
-      >
+      <section className={styles.scopeSection} aria-labelledby="scope-heading">
         <div className={`studio-container ${styles.scopeGrid}`}>
           <div>
             <p className={styles.sectionLabel}>Your scope, made clear</p>
-            <h2 id="scope-heading">
-              Agree the details before the build.
-            </h2>
+            <h2 id="scope-heading">Agree the details before the build.</h2>
             <Link href="/process" className={styles.processLink}>
               See how the process works
               <Icon name="arrow" size={20} />
@@ -208,17 +209,15 @@ export default function ServicesPage() {
         <div className={styles.nextStepPanel}>
           <div>
             <p className={styles.sectionLabel}>Start with a free preview</p>
-            <h2 id="services-next-step">
-              See a direction for your business.
-            </h2>
+            <h2 id="services-next-step">See a direction for your business.</h2>
             <p className={styles.nextStepCopy}>
               Tell us about your work and what customers need to find. We can
               explore a website direction before you commit to a full build.
             </p>
           </div>
-          <Link href="/book" className={`button-primary ${styles.previewLink}`}>
+          <PrimaryButton tone="light" className={styles.previewLink}>
             Request a free preview
-          </Link>
+          </PrimaryButton>
         </div>
       </section>
     </div>

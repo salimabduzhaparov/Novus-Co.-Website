@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { PrimaryButton } from "@/components/ui/Button";
 import { novusProcessSteps } from "@/lib/process";
 import styles from "./process-page.module.css";
 
@@ -92,9 +92,12 @@ export default function ProcessPage() {
             You should know what happens next, what we need from you, and what
             each stage delivers. Here is how we build your website together.
           </p>
-          <a href="#process-stages" className={styles.stageLink}>
-            Explore the six stages <span aria-hidden="true">↓</span>
-          </a>
+          <div className={styles.heroActions}>
+            <PrimaryButton tone="light">Request a free preview</PrimaryButton>
+            <a href="#process-stages" className={styles.stageLink}>
+              Explore the six stages <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -177,9 +180,9 @@ export default function ProcessPage() {
               will arrange a short conversation about your preview.
             </p>
           </div>
-          <Link href="/book" className={styles.previewButton}>
-            Request a free preview <span aria-hidden="true">↗</span>
-          </Link>
+          <PrimaryButton tone="light" className={styles.previewButton}>
+            Request a free preview
+          </PrimaryButton>
         </div>
       </section>
     </div>

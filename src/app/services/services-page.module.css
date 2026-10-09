@@ -44,7 +44,6 @@
 
 .primaryLink {
   margin-top: 28px;
-  background: var(--service-ink);
 }
 
 .services {
@@ -86,7 +85,9 @@
   line-height: 1.4;
   font-weight: 600;
   text-decoration: none;
-  transition: background 180ms ease, border-color 180ms ease;
+  transition:
+    background 180ms ease,
+    border-color 180ms ease;
 }
 
 .serviceNav a:hover {
@@ -285,14 +286,6 @@
 
 .previewLink {
   flex-shrink: 0;
-  border-color: #fff;
-  background: #fff;
-  color: var(--service-ink);
-}
-
-.previewLink:hover {
-  border-color: #c6e0ff;
-  background: #c6e0ff;
 }
 
 @media (max-width: 1050px) {
@@ -402,6 +395,13 @@
     width: 100%;
     padding-inline: 14px;
     font-size: 14px;
+    gap: 12px;
+  }
+
+  .previewLink :global(.button-arrow) {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
   }
 }
 

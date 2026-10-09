@@ -54,7 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geist.variable} antialiased`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${geist.variable} antialiased`}
+    >
       <body>
         <RouteScrollReset />
         <a className="skip-link" href="#main-content">

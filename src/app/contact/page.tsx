@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { PrimaryButton } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { ContactForm } from "@/components/ContactForm";
 import { CONTACT_EMAIL } from "@/lib/content";
@@ -39,14 +39,13 @@ export default function ContactPage() {
               </a>
               <div className="mt-10 border-t border-hairline pt-7">
                 <p className="mb-3 text-base text-silver">
-                  Would a quick call be easier?
+                  Want to see a website direction first?
                 </p>
-                <Link
-                  href="/book"
-                  className="inline-flex items-center gap-2 text-base font-medium text-ink underline underline-offset-4"
-                >
-                  Request a 10-minute call <span aria-hidden="true">↗</span>
-                </Link>
+                <PrimaryButton>Request a free preview</PrimaryButton>
+                <p className="mt-4 text-sm leading-relaxed text-silver">
+                  We’ll arrange a short call by email. No payment or commitment
+                  to a full build.
+                </p>
               </div>
             </div>
           </Reveal>

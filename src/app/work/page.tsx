@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { WebsiteExamples } from "@/components/WebsiteExamples";
+import { PrimaryButton } from "@/components/ui/Button";
 import styles from "@/components/website-examples.module.css";
 
 export const metadata: Metadata = {
@@ -31,6 +31,9 @@ export default function WorkPage() {
             approval or measured business outcomes.
           </p>
         </div>
+        <div className="mt-8">
+          <PrimaryButton>Request a free preview</PrimaryButton>
+        </div>
       </section>
       <WebsiteExamples full />
       <section className={`studio-container ${styles.workCta}`}>
@@ -38,9 +41,9 @@ export default function WorkPage() {
           <h2>What should yours feel like?</h2>
           <p>Tell us about the business behind the website.</p>
         </div>
-        <Link href="/book" className="button-primary">
-          Discuss your website <span aria-hidden="true">↗</span>
-        </Link>
+        <PrimaryButton className="shrink-0">
+          Request a free preview
+        </PrimaryButton>
       </section>
     </>
   );

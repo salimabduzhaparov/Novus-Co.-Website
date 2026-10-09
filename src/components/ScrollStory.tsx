@@ -6,110 +6,37 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { PrimaryButton } from "./ui/Button";
 import styles from "./scroll-story.module.css";
 
-const FRAME_COUNT = 96;
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
 
-/**
- * Scroll geometry adapted from Pulkit's Scroll-Linked Video Scrubber on 21st.dev:
- * https://21st.dev/@pulkitxm/components/scroll-linked-video-scrubber.
- * Original implementation of the scroll-mapping concept; no source package copied.
- * Higgsfield film frames replace per-scroll video seeks. Decoded frame memory is
- * bounded; only nearby frames load, and reduced-motion/data-saving users get a poster.
- */
+/** Native video playback stays independent of scroll. Only the HTML chapters
+ * change with scroll, using the section-progress concept researched on 21st.dev.
+ * No frame fetching, canvas drawing or compressed-video seeking on scroll. */
 export function ScrollStory({ evidence }: { evidence: ReactNode }) {
   const root = useRef<HTMLElement>(null);
-  const canvas = useRef<HTMLCanvasElement>(null);
+  const film = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const section = root.current;
-    const surface = canvas.current;
-    if (!section || !surface) return;
-    const context = surface.getContext("2d", { alpha: false });
-    if (!context) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const connection = (
-      navigator as Navigator & { connection?: { saveData?: boolean } }
-    ).connection;
-    const frames = new Map<number, ImageBitmap>();
-    const pending = new Set<number>();
-    const abort = new AbortController();
-    let disposed = false;
-    let target = 0;
-    let drawn = -1;
+    if (!section) return;
     let raf = 0;
     let lastStage = -1;
     const chapters = [
       ...section.querySelectorAll<HTMLElement>("[data-story-chapter]"),
     ];
-
-    const drawNearest = () => {
-      if (!frames.size || disposed) return;
-      const nearest = [...frames.keys()].reduce((a, b) =>
-        Math.abs(a - target) < Math.abs(b - target) ? a : b,
-      );
-      if (nearest === drawn) return;
-      const bitmap = frames.get(nearest)!;
-      context.drawImage(bitmap, 0, 0, surface.width, surface.height);
-      drawn = nearest;
-      surface.dataset.ready = "true";
-      surface.dataset.frame = String(nearest);
-    };
-    const requestFrame = (index: number) => {
-      if (
-        index < 0 ||
-        index >= FRAME_COUNT ||
-        pending.has(index) ||
-        frames.has(index) ||
-        pending.size >= 3 ||
-        disposed
-      )
-        return;
-      pending.add(index);
-      fetch(
-        `/media/customer-search/frames/${String(index + 1).padStart(3, "0")}.webp`,
-        { signal: abort.signal },
-      )
-        .then((response) => {
-          if (!response.ok) throw new Error("Frame unavailable");
-          return response.blob();
-        })
-        .then((blob) => createImageBitmap(blob))
-        .then((bitmap) => {
-          if (disposed) {
-            bitmap.close();
-            return;
-          }
-          frames.set(index, bitmap);
-          if (frames.size > 18) {
-            const farthest = [...frames.keys()].sort(
-              (a, b) => Math.abs(b - target) - Math.abs(a - target),
-            )[0];
-            frames.get(farthest)?.close();
-            frames.delete(farthest);
-          }
-          drawNearest();
-        })
-        .catch(() => {
-          /* The original image remains a usable fallback. */
-        })
-        .finally(() => {
-          pending.delete(index);
-          if (!disposed && !frames.has(target) && index !== target)
-            requestFrame(target);
-        });
-    };
     const update = () => {
       raf = 0;
       const rect = section.getBoundingClientRect();
-      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      if (rect.bottom < 0 || rect.top > innerHeight) return;
+      const navHeight = innerWidth <= 760 ? 76 : 88;
       const progress = clamp(
-        (88 - rect.top) / Math.max(1, rect.height - (window.innerHeight - 88)),
+        (navHeight - rect.top) /
+          Math.max(1, rect.height - (innerHeight - navHeight)),
       );
       let stage = 0;
       chapters.forEach((chapter, i) => {
-        if (chapter.getBoundingClientRect().top <= window.innerHeight * 0.56)
+        if (chapter.getBoundingClientRect().top <= innerHeight * 0.56)
           stage = i;
       });
       if (stage !== lastStage) {
@@ -117,37 +44,56 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
         setActive(stage);
       }
       section.style.setProperty("--story-progress", String(progress));
-      if (
-        paused ||
-        reduced.matches ||
-        connection?.saveData ||
-        !("createImageBitmap" in window)
-      )
-        return;
-      target = Math.round(progress * (FRAME_COUNT - 1));
-      drawNearest();
-      requestFrame(target);
-      requestFrame(target + 1);
-      requestFrame(target - 1);
     };
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(update);
     };
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
-    reduced.addEventListener("change", schedule);
     const resize = new ResizeObserver(schedule);
     resize.observe(section);
     schedule();
     return () => {
-      disposed = true;
-      abort.abort();
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
-      reduced.removeEventListener("change", schedule);
       resize.disconnect();
-      frames.forEach((frame) => frame.close());
+    };
+  }, []);
+
+  useEffect(() => {
+    const video = film.current;
+    const section = root.current;
+    if (!video || !section) return;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const connection = (
+      navigator as Navigator & { connection?: { saveData?: boolean } }
+    ).connection;
+    let visible = false;
+    const syncPlayback = () => {
+      const allowed = !paused && !reduced.matches && !connection?.saveData;
+      if (!allowed || !visible || document.hidden) {
+        video.pause();
+        return;
+      }
+      if (!video.getAttribute("src"))
+        video.src = "/media/customer-search/typing-loop.mp4";
+      void video.play().catch(() => {
+        /* Static poster remains usable if autoplay is unavailable. */
+      });
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      syncPlayback();
+    });
+    observer.observe(section);
+    reduced.addEventListener("change", syncPlayback);
+    document.addEventListener("visibilitychange", syncPlayback);
+    return () => {
+      observer.disconnect();
+      reduced.removeEventListener("change", syncPlayback);
+      document.removeEventListener("visibilitychange", syncPlayback);
+      video.pause();
     };
   }, [paused]);
 
@@ -182,11 +128,22 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
             sizes="100vw"
             className={styles.poster}
           />
-          <canvas
-            ref={canvas}
-            width={960}
-            height={540}
-            className={styles.frames}
+          <video
+            ref={film}
+            className={styles.video}
+            muted
+            loop
+            playsInline
+            autoPlay
+            preload="none"
+            poster="/media/customer-search/poster.webp"
+            disablePictureInPicture
+            onLoadedData={(event) => {
+              event.currentTarget.dataset.ready = "true";
+            }}
+            onError={(event) => {
+              delete event.currentTarget.dataset.ready;
+            }}
           />
         </div>
         <div className={styles.shade} />
@@ -224,7 +181,7 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
               and make it easy to call or request a quote.
             </p>
             <div className={styles.actions}>
-              <PrimaryButton>Request a free preview</PrimaryButton>
+              <PrimaryButton tone="light">Request a free preview</PrimaryButton>
               <Link href="/work">
                 Explore our work <span aria-hidden="true">↗</span>
               </Link>
@@ -249,11 +206,12 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
               needs what <em>you do.</em>
             </h2>
             <p>
-              A leaking pipe. A faulty socket. A roof that needs attention.
-              Their search starts with a simple question: who can help?
+              A service they need. A place to visit. A problem to solve.
+              Whatever your business does, their search starts with a question:
+              who can help?
             </p>
             <div className={styles.chapterNote}>
-              “Plumber in Tampa”
+              “Local businesses near me”
               <br />
               <span>A small search. A real decision.</span>
             </div>
@@ -270,14 +228,14 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
               <em>Then the questions.</em>
             </h2>
             <p>
-              What services do you offer? Do you work in their area? Can they
-              see examples of your work? With no website to explore, those
-              answers are harder to find.
+              A missing, broken or outdated website can make customers question
+              your professionalism—and whether you can solve their problem.
+              Before you get a chance to speak, their confidence can slip away.
             </p>
             <div className={styles.chapterNote}>
-              A confusing website creates doubt.
+              Your online presence shapes their first impression.
               <br />
-              <span>No website can leave even more unanswered.</span>
+              <span>Make it reflect the quality of your business.</span>
             </div>
           </div>
         </article>
@@ -350,13 +308,72 @@ function Cursor({ className = "" }: { className?: string }) {
   );
 }
 
+function ActionIcon({
+  kind,
+}: {
+  kind: "website" | "directions" | "call" | "pin" | "check";
+}) {
+  const paths = {
+    website: (
+      <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18M12 3c5 5 5 13 0 18-5-5-5-13 0-18Z" />
+      </>
+    ),
+    directions: (
+      <>
+        <path d="m12 2 10 10-10 10L2 12 10-10Z" />
+        <path d="M8 16v-5h7m-3-3 3 3-3 3" />
+      </>
+    ),
+    call: <path d="m6 3 4 4-2 3c2 3 3 4 6 6l3-2 4 4-2 3C10 22 2 14 3 5l3-2Z" />,
+    pin: (
+      <>
+        <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
+        <circle cx="12" cy="10" r="2" />
+      </>
+    ),
+    check: <path d="m5 12 4 4L19 6" />,
+  };
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {paths[kind]}
+    </svg>
+  );
+}
+
+function BusinessActions({ website = false }: { website?: boolean }) {
+  return (
+    <div className={styles.businessActions}>
+      {website && (
+        <span className={styles.websiteAction}>
+          <ActionIcon kind="website" /> Website
+        </span>
+      )}
+      <span>
+        <ActionIcon kind="directions" /> Directions
+      </span>
+      <span>
+        <ActionIcon kind="call" /> Call
+      </span>
+    </div>
+  );
+}
+
 function SearchScreen({ active }: { active: number }) {
   return (
     <div className={styles.browser}>
       <div className={styles.browserChrome}>
         <span>● ● ●</span>
         <span>
-          {active === 4 ? "A clear business website" : "A local search"}
+          {active === 4 ? "Your website, working together" : "A local search"}
         </span>
         <span>↗</span>
       </div>
@@ -370,7 +387,7 @@ function SearchScreen({ active }: { active: number }) {
           </div>
           <div className={styles.searchBar}>
             <span>⌕</span>
-            <strong>plumber in Tampa</strong>
+            <strong>local businesses near me</strong>
             <i />
           </div>
           <div className={styles.searchTabs}>
@@ -378,25 +395,29 @@ function SearchScreen({ active }: { active: number }) {
             <span>Photos</span>
           </div>
           <div className={styles.result} data-selected={active === 1}>
-            <span className={styles.businessIcon}>⌖</span>
-            <div>
-              <strong>A nearby plumbing business</strong>
-              <p>Plumbing services · Tampa</p>
-              <small>Directions &nbsp; · &nbsp; Call</small>
+            <span className={styles.businessIcon}>
+              <ActionIcon kind="pin" />
+            </span>
+            <div className={styles.resultBody}>
+              <strong>Your Business</strong>
+              <p>Local business · Your area</p>
+              <BusinessActions />
             </div>
           </div>
           <div className={styles.result} data-selected={active === 3}>
-            <span className={styles.businessIcon}>↗</span>
-            <div>
-              <strong>Another local plumber</strong>
-              <p>Services, recent work &amp; contact details</p>
-              <small className={styles.websitePill}>Visit website ↗</small>
+            <span className={styles.businessIcon}>
+              <ActionIcon kind="pin" />
+            </span>
+            <div className={styles.resultBody}>
+              <strong>Another local business</strong>
+              <p>Services, recent work & contact details</p>
+              <BusinessActions website />
             </div>
           </div>
           <div className={styles.searchHint}>
             {active === 3
-              ? "Their next option is one click away."
-              : "Looking for the right business to call…"}
+              ? "A website gives them somewhere to go next."
+              : "Which business feels right for them?"}
           </div>
           <Cursor
             className={
@@ -408,27 +429,28 @@ function SearchScreen({ active }: { active: number }) {
         <div className={styles.listingPanel} data-visible={active === 2}>
           <div className={styles.back}>‹ &nbsp; Back to results</div>
           <div className={styles.map}>
-            <span>⌖</span>
-            <i />
-            <i />
+            <span>
+              <ActionIcon kind="pin" />
+            </span>
           </div>
-          <h3>A nearby plumbing business</h3>
-          <p>Plumbing services · Tampa</p>
-          <div className={styles.listingActions}>
-            <span>↗ Directions</span>
-            <span>◔ Call</span>
-            <span>↗ Share</span>
+          <h3>Your Business</h3>
+          <p>Local business · Your area</p>
+          <div className={styles.listingTabs}>
+            <span>Overview</span>
+            <span>Updates</span>
+            <span>Photos</span>
           </div>
+          <BusinessActions />
           <div className={styles.noWebsite}>
             <span>?</span>
             <div>
               <strong>No website linked</strong>
-              <p>Services? Recent work? Service area?</p>
+              <p>One less way to see what you can do.</p>
             </div>
           </div>
           <div className={styles.questionPills}>
-            <span>Where can I learn more?</span>
-            <span>Is this the right fit?</span>
+            <span>Can they help me?</span>
+            <span>Where can I see their work?</span>
           </div>
           <Cursor className={styles.backCursor} />
         </div>
@@ -436,26 +458,64 @@ function SearchScreen({ active }: { active: number }) {
         <div className={styles.websitePanel} data-visible={active === 4}>
           <div className={styles.mockNav}>
             <strong>
-              Your business<span>.</span>
+              Your Business<span>.</span>
             </strong>
-            <span>Services &nbsp; Our work</span>
+            <span>Services &nbsp; Our work &nbsp; Contact</span>
           </div>
-          <span className={styles.mockLabel}>
-            LOCAL EXPERTISE. EASY TO REACH.
-          </span>
-          <h3>
-            The help you need.
-            <br />
-            <em>Right here.</em>
-          </h3>
-          <p>
-            Know what we do. See the work.
-            <br />
-            Tell us how we can help.
-          </p>
-          <span className={styles.mockButton}>
-            Request a quote <span>↗</span>
-          </span>
+          <div className={styles.websiteIntro}>
+            <div>
+              <span className={styles.mockLabel}>EXPERTISE, MADE VISIBLE.</span>
+              <h3>
+                Good at what you do.
+                <br />
+                <em>Easy to choose.</em>
+              </h3>
+              <p>
+                A clear picture of your business.
+                <br />A confident next step for your customer.
+              </p>
+            </div>
+            <div className={styles.websiteSeal}>
+              <ActionIcon kind="check" />
+              <span>
+                Built around
+                <br />
+                your business
+              </span>
+            </div>
+          </div>
+          <div className={styles.websiteBlocks}>
+            <div>
+              <ActionIcon kind="check" />
+              <strong>Your services</strong>
+              <p>What you do, explained clearly.</p>
+            </div>
+            <div>
+              <ActionIcon kind="pin" />
+              <strong>Your area</strong>
+              <p>Where customers can find you.</p>
+            </div>
+          </div>
+          <div className={styles.websiteWork}>
+            <div className={styles.workMosaic}>
+              <i />
+              <i />
+              <i />
+            </div>
+            <div>
+              <strong>Show the quality of your work</strong>
+              <p>Projects, photos and the details that make you different.</p>
+            </div>
+          </div>
+          <div className={styles.websiteContact}>
+            <div>
+              <strong>Ready to talk?</strong>
+              <span>A direct route from interest to enquiry.</span>
+            </div>
+            <span className={styles.mockButton}>
+              Get in touch <span>↗</span>
+            </span>
+          </div>
           <Cursor className={styles.quoteCursor} />
         </div>
       </div>
