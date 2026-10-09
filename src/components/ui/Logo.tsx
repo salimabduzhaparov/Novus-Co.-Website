@@ -7,19 +7,25 @@ export function Logo({
   wordmarkClassName?: string;
 }) {
   return (
-    <Image
-      src="/brand/novus-logo.webp"
-      width={500}
-      height={180}
-      alt="Novus Co."
+    <span
       className={`brand-logo ${wordmarkClassName}`}
-      style={size ? { width: size * 5 } : undefined}
-      priority
-    />
+      style={size ? { width: size, height: size } : undefined}
+    >
+      {/* Show only the original orbital mark; preserve the supplied image. */}
+      <Image
+        src="/brand/novus-profile.png"
+        width={1000}
+        height={1000}
+        sizes="150px"
+        alt="Novus Co."
+        className="brand-logo-image"
+        priority
+      />
+    </span>
   );
 }
 export function LogoMark({ size = 34 }: { size?: number }) {
   return (
-    <Image src="/brand/icon.png" width={size} height={size} alt="Novus Co." />
+    <Logo size={size} />
   );
 }

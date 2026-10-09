@@ -15,7 +15,7 @@ Geist was retained: hierarchy, spacing, measure and contrast were the larger iss
 The shipped components are original implementations adapted to Novus. No claim is made that these third-party components were installed or copied. The FAQ uses native HTML disclosure controls; the process timeline is original scroll-progress code.
 
 ## Media
-The actual repository logo is used in navigation and footer. The original logo icon is also used as the favicon. Website mockups are original illustrations and compositions.
+The owner-supplied circular orbital N is used in navigation and footer, with the lower wordmark excluded by the display crop. Its source image remains unchanged. The mark is 52px on desktop and 48px on mobile. The original logo icon is also used as the favicon. Website mockups are original illustrations and compositions.
 
 Higgsfield generated the original orbital sculpture and a five-second silent image-to-video animation:
 - Image job: 07b0ad13-6940-43c2-97a0-5e9eac143a47, gpt_image_2_5.
