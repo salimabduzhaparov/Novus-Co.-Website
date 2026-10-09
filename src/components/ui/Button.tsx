@@ -37,7 +37,7 @@ export function PrimaryButton({
 }
 export function SecondaryButton({
   children,
-  href = "/work",
+  href = "/services",
 }: {
   children: ReactNode;
   href?: string;

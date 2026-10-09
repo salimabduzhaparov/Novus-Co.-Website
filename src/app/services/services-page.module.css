@@ -225,8 +225,7 @@
   gap: 80px;
 }
 
-.scopeGrid h2,
-.nextStep h2 {
+.scopeGrid h2 {
   max-width: 580px;
   margin-top: 20px;
   font-size: clamp(32px, 3.8vw, 48px);
@@ -257,37 +256,6 @@
   text-underline-offset: 5px;
 }
 
-.nextStep {
-  padding-block: 82px;
-}
-
-.nextStepPanel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  padding: 54px;
-  border-radius: 18px;
-  background: var(--service-ink);
-  color: #fff;
-}
-
-.nextStepPanel .sectionLabel {
-  color: #a9d1ff;
-}
-
-.nextStepCopy {
-  max-width: 590px;
-  margin-top: 22px;
-  color: #d4e1f2;
-  font-size: 17px;
-  line-height: 1.7;
-}
-
-.previewLink {
-  flex-shrink: 0;
-}
-
 @media (max-width: 1050px) {
   .heroGrid {
     grid-template-columns: 1fr;
@@ -315,12 +283,6 @@
 
   .scopeGrid {
     gap: 44px;
-  }
-
-  .nextStepPanel {
-    align-items: start;
-    flex-direction: column;
-    padding: 40px;
   }
 }
 
@@ -380,28 +342,6 @@
 
   .scopeGrid {
     gap: 30px;
-  }
-
-  .nextStep {
-    padding-block: 50px;
-  }
-
-  .nextStepPanel {
-    gap: 28px;
-    padding: 29px 24px;
-  }
-
-  .previewLink {
-    width: 100%;
-    padding-inline: 14px;
-    font-size: 14px;
-    gap: 12px;
-  }
-
-  .previewLink :global(.button-arrow) {
-    width: 32px;
-    height: 32px;
-    flex-basis: 32px;
   }
 }
 

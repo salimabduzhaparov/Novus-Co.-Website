@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FinalCTA } from "@/components/FinalCTA";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
 import { PrimaryButton } from "@/components/ui/Button";
@@ -202,24 +203,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <section
-        className={`studio-container ${styles.nextStep}`}
-        aria-labelledby="services-next-step"
-      >
-        <div className={styles.nextStepPanel}>
-          <div>
-            <p className={styles.sectionLabel}>Start with a free preview</p>
-            <h2 id="services-next-step">See a direction for your business.</h2>
-            <p className={styles.nextStepCopy}>
-              Tell us about your work and what customers need to find. We can
-              explore a website direction before you commit to a full build.
-            </p>
-          </div>
-          <PrimaryButton tone="light" className={styles.previewLink}>
-            Request a free preview
-          </PrimaryButton>
-        </div>
-      </section>
+      <FinalCTA />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "./ui/Logo";
 const links = [
-  { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "Process", href: "/process" },
   { label: "About", href: "/about" },

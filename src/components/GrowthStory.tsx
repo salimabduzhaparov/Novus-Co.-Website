@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import styles from "./growth-story.module.css";
 
@@ -55,12 +55,34 @@ const resultOrders = [
 
 export function GrowthStory() {
   const demonstration = useRef<HTMLDivElement>(null);
-  const inView = useInView(demonstration, { amount: 0.35 });
+  const [inView, setInView] = useState(false);
   const reduce = useReducedMotion();
   const [phase, setPhase] = useState(0);
   const [paused, setPaused] = useState(false);
   const [visible, setVisible] = useState(true);
   const current = reduce ? 2 : phase;
+
+  useEffect(() => {
+    const element = demonstration.current;
+    if (!element) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry) return;
+        setVisible(!document.hidden);
+        if (!entry.isIntersecting || entry.intersectionRatio === 0) {
+          // Reset only once the entire demo has left the viewport. Moving
+          // around the playback threshold pauses/resumes without restarting.
+          setInView(false);
+          setPhase(0);
+          return;
+        }
+        setInView(entry.intersectionRatio >= 0.35);
+      },
+      { threshold: [0, 0.35] },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const update = () => setVisible(!document.hidden);
@@ -72,7 +94,7 @@ export function GrowthStory() {
     if (!inView || !visible || paused || reduce || phase === 2) return;
     const timer = window.setTimeout(
       () => setPhase((value) => Math.min(2, value + 1)),
-      2500,
+      1900,
     );
     return () => window.clearTimeout(timer);
   }, [inView, visible, paused, reduce, phase]);
@@ -97,28 +119,22 @@ export function GrowthStory() {
         <div className={styles.demonstration} ref={demonstration}>
           <div className={styles.demoHeader}>
             <p>Illustrative search example</p>
-            {!reduce && (
+            {!reduce && phase < 2 && (
               <button
                 type="button"
                 className={styles.control}
-                onClick={() => {
-                  if (phase === 2) {
-                    setPhase(0);
-                    setPaused(false);
-                  } else setPaused((value) => !value);
-                }}
+                onClick={() => setPaused((value) => !value)}
+                aria-pressed={paused}
                 aria-label={
-                  phase === 2
-                    ? "Replay the search visibility example"
-                    : paused
-                      ? "Resume the search animation"
-                      : "Pause the search animation"
+                  paused
+                    ? "Resume the search animation"
+                    : "Pause the search animation"
                 }
               >
                 <span aria-hidden="true">
-                  {phase === 2 ? "↻" : paused ? "▶" : "Ⅱ"}
+                  {paused ? "▶" : "Ⅱ"}
                 </span>
-                {phase === 2 ? "Replay example" : paused ? "Resume" : "Pause"}
+                {paused ? "Resume" : "Pause"}
               </button>
             )}
           </div>
@@ -146,9 +162,9 @@ export function GrowthStory() {
                 {resultOrders[current].map((id, index) => (
                   <motion.li
                     key={id}
-                    layout={reduce ? false : "position"}
+                    layout={reduce || !inView ? false : "position"}
                     transition={{
-                      duration: reduce ? 0 : 0.7,
+                      duration: reduce || !inView ? 0 : 0.55,
                       ease: [0.2, 0, 0, 1],
                     }}
                     className={styles.result}

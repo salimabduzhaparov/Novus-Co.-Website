@@ -32,11 +32,6 @@ const questions = [
     answer:
       "We discuss search visibility, hosting and support as part of the project scope. Your proposal should make clear what is included at launch, who manages the domain and website, and what any ongoing work involves. Search rankings are not guaranteed.",
   },
-  {
-    question: "Are the websites shown here client projects?",
-    answer:
-      "The Bluepeak and Mike the Plumber showcases are website design explorations. They show how a service business can present its work and help customers get in touch; they are not claims about client results.",
-  },
 ];
 
 export function StudioFAQ() {

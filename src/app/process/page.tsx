@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FinalCTA } from "@/components/FinalCTA";
 import { PrimaryButton } from "@/components/ui/Button";
 import { novusProcessSteps } from "@/lib/process";
 import styles from "./process-page.module.css";
@@ -168,23 +169,7 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      <section className={styles.nextStep} aria-labelledby="process-next-step">
-        <div className={`studio-container ${styles.nextStepGrid}`}>
-          <div>
-            <p className={styles.label}>Start with a free preview</p>
-            <h2 id="process-next-step">
-              See what this could look like for you.
-            </h2>
-            <p>
-              Share what you do and what your website needs to make easier. We
-              will arrange a short conversation about your preview.
-            </p>
-          </div>
-          <PrimaryButton tone="light" className={styles.previewButton}>
-            Request a free preview
-          </PrimaryButton>
-        </div>
-      </section>
+      <FinalCTA />
     </div>
   );
 }

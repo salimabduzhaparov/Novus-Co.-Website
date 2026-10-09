@@ -1,3 +1,15 @@
+# Focused SEO example and preview invitation — 10 October 2026
+
+Production build, TypeScript, ESLint, whitespace and local HTTP checks passed. Live release verification follows the push.
+
+- Reduced the centered SEO demonstration from 900px to 780px and tightened internal spacing. Its ranking steps now start at 1.9 and 3.8 seconds, with shorter 550ms movement.
+- Removed Replay. The example resets only after fully leaving the viewport and plays again on reentry in either scroll direction. Small threshold movements do not restart it. Manual pause, hidden-tab pause and reduced-motion behavior remain supported; the Pause control disappears when the animation finishes without changing header height.
+- Replaced the closing illustration and three-step strip with a centered command: “Put your business first.” The existing large preview button remains. Home, About, Services, Process and Reviews share the same invitation.
+- Retired Work from desktop/mobile navigation, footer, homepage and sitemap. Removed the old portfolio FAQ and Reviews promotion. The old /work URL permanently redirects to /services, preserving a useful destination for existing links. Historical portfolio source/assets remain recoverable.
+- Browser checks covered desktop and 390px mobile appearance, last-to-first progression, automatic replay on scrolling back, absence of Replay, and the preview link. Core-page H1/canonical/description/indexability, sitemap/robots, existing media and the Work redirect passed HTTP checks. No form messages were submitted.
+
+---
+
 # Continuous-loop and CTA refinement — 10 October 2026
 
 **Status: Production build and local verification passed; live deployment is verified separately.**

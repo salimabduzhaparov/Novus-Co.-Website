@@ -16,7 +16,6 @@ export function Footer() {
         </div>
         <div className="footer-links">
           <h2>Explore</h2>
-          <Link href="/work">Work & concepts</Link>
           <Link href="/services">Services</Link>
           <Link href="/process">Our process</Link>
           <Link href="/about">About Novus</Link>

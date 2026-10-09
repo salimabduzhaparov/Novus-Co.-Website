@@ -14,8 +14,7 @@
   margin-bottom: 25px;
   color: #2459e0;
 }
-.intro .label,
-.nextStep .label {
+.intro .label {
   color: #a9ccff;
 }
 .intro h1 {
@@ -49,16 +48,14 @@
   gap: 24px 32px;
   margin-top: 36px;
 }
-.stageLink:focus-visible,
-.previewButton:focus-visible {
+.stageLink:focus-visible {
   outline-color: #a9ccff;
 }
 .sectionHeading {
   padding-block: 76px 54px;
 }
 .sectionHeading h2,
-.prepare h2,
-.nextStep h2 {
+.prepare h2 {
   font-size: clamp(32px, 3.5vw, 48px);
   line-height: 1.15;
   font-weight: 550;
@@ -199,30 +196,6 @@
 .prepareCopy > p + p {
   margin-top: 22px;
 }
-.nextStep {
-  padding-block: 85px;
-  background: #101f36;
-  color: #fff;
-}
-.nextStepGrid {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 48px;
-}
-.nextStep h2 {
-  max-width: 700px;
-}
-.nextStep p:not(.label) {
-  max-width: 600px;
-  font-size: 18px;
-  line-height: 1.7;
-  color: #d0dcec;
-  margin-top: 22px;
-}
-.previewButton {
-  flex-shrink: 0;
-}
 @media (max-width: 1000px) {
   .stageGrid {
     grid-template-columns: 52px minmax(0, 1fr) minmax(0, 1fr);
@@ -230,10 +203,6 @@
   }
   .stageDetail {
     padding-left: 8px;
-  }
-  .nextStepGrid {
-    align-items: flex-start;
-    flex-direction: column;
   }
 }
 @media (max-width: 760px) {
@@ -266,8 +235,7 @@
   .focus {
     font-size: 18px;
   }
-  .prepare,
-  .nextStep {
+  .prepare {
     padding-block: 60px;
   }
   .prepareGrid {
@@ -285,10 +253,5 @@
   }
   .stageDetail {
     grid-column: 1;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .previewButton {
-    transition: none;
   }
 }

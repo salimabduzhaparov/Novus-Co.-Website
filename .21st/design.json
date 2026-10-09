@@ -3,13 +3,27 @@
   "project": {
     "name": "novus-co",
     "productType": "Local business website studio",
-    "stack": ["nextjs", "react", "tailwind-v4"]
+    "stack": [
+      "nextjs",
+      "react",
+      "tailwind-v4"
+    ]
   },
   "sources": {
-    "tokens": ["src/app/globals.css"],
-    "components": ["src/components/ui"],
-    "assets": ["public/brand", "assets"],
-    "instructions": ["AGENTS.md", "CLAUDE.md"]
+    "tokens": [
+      "src/app/globals.css"
+    ],
+    "components": [
+      "src/components/ui"
+    ],
+    "assets": [
+      "public/brand",
+      "assets"
+    ],
+    "instructions": [
+      "AGENTS.md",
+      "CLAUDE.md"
+    ]
   },
   "design": {
     "colorMode": "light",
@@ -130,11 +144,13 @@
       "Keep the original circular Novus N logo",
       "Keep hero story text in HTML over Higgsfield footage",
       "Use white service section backgrounds with clear dark text",
-      "Keep full portfolio exploration on Work, not the homepage",
+      "Keep the retired Work portfolio out of navigation, sitemap and public content",
       "Clearly label the illustrative SEO visibility example and avoid claiming measured ranking outcomes",
       "Keep a vertical expanded Process page and slower homepage timeline",
       "Keep continuous hero video playback independent of scroll-driven HTML chapters",
-      "Use the shared prominent free-preview CTA across pages without changing form semantics"
+      "Use the shared prominent free-preview CTA across pages without changing form semantics",
+      "Use a centered, text-only closing preview invitation on the main pages",
+      "Keep the SEO example modest in size and automatically replay after it leaves and re-enters view"
     ],
     "avoid": [
       "Fake live payments or customer transactions",
@@ -173,6 +189,11 @@
       "date": "2026-10-10",
       "decision": "An explicit Home/logo click always opens the actual beginning, including from an existing home hash. Preserve the Process top-reset, hash-anchor navigation and ordinary Back/Forward restoration.",
       "source": "Latest direct owner bug report"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "Owner refinement: retire Work and redirect its old URL to Services; remove related portfolio links and FAQ. Replace closing preview mockups and step lists with a bold centered command, one concise line and the existing large preview button. Reduce the SEO demo to 780px and its two stage delays to 1.9 seconds; remove Replay and reset after fully leaving view, with automatic reentry playback and manual pause/reduced-motion support.",
+      "source": "Latest direct user feedback"
     }
   ],
   "evidence": [

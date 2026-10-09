@@ -25,7 +25,7 @@ export function Hero() {
           </p>
           <div className={styles.actions}>
             <PrimaryButton>Request a free preview</PrimaryButton>
-            <TextLink href="/work">See what’s possible</TextLink>
+            <TextLink href="/services">Explore our services</TextLink>
           </div>
           <span className={styles.offer}>
             A website direction built around your business. No commitment to a

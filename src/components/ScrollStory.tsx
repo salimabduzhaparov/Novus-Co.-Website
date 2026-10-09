@@ -182,8 +182,8 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
             </p>
             <div className={styles.actions}>
               <PrimaryButton tone="light">Request a free preview</PrimaryButton>
-              <Link href="/work">
-                Explore our work <span aria-hidden="true">↗</span>
+              <Link href="/services">
+                Explore our services <span aria-hidden="true">↗</span>
               </Link>
             </div>
             <small>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { FinalCTA } from "@/components/FinalCTA";
 import { PageHero } from "@/components/ui/PageHero";
 
 export const metadata: Metadata = {
@@ -56,56 +56,7 @@ export default function ReviewsPage() {
           </article>
         ))}
       </section>
-      <section
-        className="bg-white py-20 sm:py-28"
-        aria-labelledby="see-the-thinking"
-      >
-        <div className="studio-container grid gap-8 lg:grid-cols-2 lg:gap-20">
-          <h2
-            id="see-the-thinking"
-            className="max-w-lg text-balance text-3xl leading-tight font-medium tracking-[-0.03em] sm:text-5xl"
-          >
-            Get a feel for the work.
-          </h2>
-          <div>
-            <p className="page-copy max-w-xl">
-              Explore the website concepts to see how we approach layout,
-              content, and customer journeys for different businesses. Each
-              concept is labelled so you know what you are looking at.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="/work" className="button-primary">
-                Explore website concepts
-              </Link>
-              <Link href="/process" className="button-secondary">
-                See our process
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section
-        className="studio-container section-space"
-        aria-labelledby="expectations-next-step"
-      >
-        <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
-          <div>
-            <h2
-              id="expectations-next-step"
-              className="text-balance text-3xl font-medium tracking-[-0.03em] sm:text-4xl"
-            >
-              Let us talk through your project.
-            </h2>
-            <p className="page-copy mt-4 max-w-xl">
-              Bring your questions, your existing site, or simply an idea of
-              what needs to change.
-            </p>
-          </div>
-          <Link href="/book" className="button-primary shrink-0">
-            Start a conversation
-          </Link>
-        </div>
-      </section>
+      <FinalCTA />
     </>
   );
 }
