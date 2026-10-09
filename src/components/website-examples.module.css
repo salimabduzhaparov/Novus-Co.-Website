@@ -1,0 +1,716 @@
+.examplesSection {
+  color: #142138;
+}
+.examplesIntro {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+.sectionLabel {
+  color: #2459e0;
+  font-size: 14px;
+  font-weight: 550;
+  margin: 0 0 20px;
+}
+.examplesIntro h2,
+.faqIntro h2,
+.workCta h2 {
+  font-size: clamp(32px, 3.8vw, 54px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+.examplesIntro > div:last-child {
+  max-width: 370px;
+  justify-self: end;
+}
+.examplesIntro > div:last-child > p,
+.faqIntro > p:not(.sectionLabel) {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #59667b;
+  margin: 0 0 22px;
+}
+.textLink {
+  display: inline-flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: #142138;
+  text-decoration: none;
+}
+.textLink span {
+  transition: transform 0.18s ease;
+}
+.textLink:hover span {
+  transform: translate(2px, -2px);
+}
+.textLink:focus-visible {
+  outline: 2px solid #2459e0;
+  outline-offset: 6px;
+}
+.projectCollection {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+}
+.project {
+  min-width: 0;
+  scroll-margin-top: 120px;
+}
+.projectStage {
+  padding: 42px 28px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.gardenStage {
+  background: #dce5df;
+}
+.interiorStage {
+  background: #e7e0d9;
+}
+.browser {
+  overflow: hidden;
+  border: 1px solid rgba(20, 33, 56, 0.12);
+  border-radius: 7px;
+  background: white;
+  box-shadow: 0 16px 35px -15px rgba(20, 33, 56, 0.28);
+  width: 100%;
+  transform: translateY(0);
+  transition:
+    transform 0.35s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  .projectStage:hover .browser {
+    transform: translateY(-5px);
+    box-shadow: 0 22px 40px -15px rgba(20, 33, 56, 0.3);
+  }
+}
+.browserBar {
+  height: 27px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f5f6f6;
+  border-bottom: 1px solid #e3e6e6;
+  color: #8e979a;
+}
+.browserDots {
+  display: flex;
+  gap: 4px;
+}
+.browserDots i {
+  width: 5px;
+  height: 5px;
+  background: #c2c7c8;
+  border-radius: 100%;
+}
+.browserLabel {
+  flex: 1;
+  text-align: center;
+  font-size: 7px;
+  letter-spacing: 0.03em;
+}
+.browserMenu {
+  font-size: 11px;
+}
+.gardenSite {
+  background: #f3f4e9;
+  color: #244533;
+}
+.conceptNav {
+  height: 60px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gardenLogo {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(14px, 1.8vw, 21px);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+}
+.gardenLogo > span {
+  display: block;
+  font-family: Arial, sans-serif;
+  font-size: 5px;
+  letter-spacing: 0.07em;
+  margin-top: 5px;
+}
+.conceptNavLinks {
+  font-size: 6px;
+  opacity: 0.75;
+}
+.gardenNavCta {
+  border: 1px solid #aab8a5;
+  font-size: 6px;
+  border-radius: 2px;
+  padding: 6px 9px;
+}
+.gardenHero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 13px 6% 22px;
+  gap: 12px;
+  align-items: center;
+}
+.gardenEyebrow {
+  display: block;
+  font-size: 7px;
+  margin-bottom: 18px;
+}
+.gardenHeadline {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(31px, 4vw, 52px);
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+  margin: 0 0 17px;
+}
+.gardenDescription {
+  font-size: 8px;
+  line-height: 1.5;
+  color: #59705a;
+  margin: 0 0 17px;
+}
+.gardenButton {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  background: #284a36;
+  color: #eef4e8;
+  padding: 9px 12px;
+  font-size: 6px;
+}
+.gardenButton > span {
+  font-size: 9px;
+}
+.gardenArtwork {
+  border-radius: 100px 100px 1px 1px;
+  overflow: hidden;
+}
+.gardenArt {
+  width: 100%;
+  height: 100%;
+  display: block;
+  aspect-ratio: 500 / 560;
+  object-fit: cover;
+}
+.gardenFooter {
+  border-top: 1px solid #dce3d3;
+  padding: 15px 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 6px;
+}
+.interiorSite {
+  background: #f6f1e9;
+  color: #453c32;
+}
+.interiorSite .conceptNav {
+  height: 48px;
+  border-bottom: 1px solid #e1d9cd;
+}
+.interiorLogo {
+  font-size: 8px;
+  letter-spacing: 0.07em;
+  font-weight: 600;
+}
+.interiorNavCta {
+  font-size: 6px;
+  border-bottom: 1px solid #9d8c75;
+  padding-bottom: 3px;
+}
+.interiorHeading {
+  padding: 19px 6% 15px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+}
+.interiorHeading > p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(22px, 2.7vw, 35px);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  margin: 0;
+}
+.interiorHeading > span {
+  font-size: 6px;
+  line-height: 1.6;
+  margin-bottom: 1px;
+}
+.interiorArtwork {
+  position: relative;
+  margin: 0 6%;
+  overflow: hidden;
+}
+.interiorArt {
+  display: block;
+  width: 100%;
+  aspect-ratio: 740 / 322;
+  object-fit: cover;
+}
+.interiorImageLabel {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  font-size: 6px;
+  color: #fff9eb;
+  text-shadow: 0 1px 3px #453c32;
+}
+.interiorFooter {
+  padding: 15px 6%;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 6px;
+}
+.projectInfo {
+  padding-top: 24px;
+}
+.projectHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.projectHeading h3 {
+  margin: 0;
+  font-size: 23px;
+  font-weight: 550;
+  letter-spacing: -0.025em;
+}
+.conceptBadge {
+  color: #667184;
+  font-size: 11px;
+  background: #e7ebf1;
+  border-radius: 4px;
+  padding: 5px 8px;
+  white-space: nowrap;
+}
+.projectSector {
+  color: #788293;
+  margin: 7px 0 0;
+  font-size: 13px;
+}
+.projectDescription {
+  color: #59667b;
+  font-size: 15px;
+  line-height: 1.65;
+  max-width: 380px;
+  margin: 17px 0 0;
+}
+.conceptDisclosure {
+  color: #707c8c;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 35px 0 0;
+}
+.fullExamples {
+  padding-top: 0 !important;
+}
+.fullExamples .projectCollection {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+.fullExamples .project {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.fullExamples .projectStage {
+  padding: 48px 40px;
+}
+.fullExamples .projectInfo {
+  padding-top: 0;
+}
+.fullExamples .projectHeading {
+  display: block;
+}
+.fullExamples .projectHeading h3 {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+.fullExamples .projectSector {
+  margin-top: 18px;
+}
+.fullExamples .projectDescription {
+  font-size: 19px;
+  line-height: 1.5;
+  color: #142138;
+}
+.projectIntent {
+  color: #59667b;
+  font-size: 15px;
+  line-height: 1.75;
+  margin-top: 22px;
+}
+.projectDetails {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0 0;
+  display: grid;
+  gap: 12px;
+}
+.projectDetails li {
+  font-size: 13px;
+  color: #44536a;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.projectDetails li::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-radius: 100%;
+  background: #2459e0;
+}
+.faqSection {
+  color: #142138;
+}
+.faqLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 96px;
+}
+.faqIntro h2 {
+  font-size: clamp(30px, 3.1vw, 43px);
+  margin-bottom: 26px;
+}
+.faqIntro > p:not(.sectionLabel) {
+  font-size: 15px;
+  margin-bottom: 22px;
+}
+.faqList {
+  border-top: 1px solid #d9dfe7;
+}
+.faqItem {
+  border-bottom: 1px solid #d9dfe7;
+}
+.faqItem summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  list-style: none;
+  padding: 23px 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+.faqItem summary:focus-visible {
+  outline: 2px solid #2459e0;
+  outline-offset: 5px;
+  border-radius: 2px;
+}
+.faqItem summary:hover {
+  color: #2459e0;
+}
+.faqIcon {
+  position: relative;
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.faqIcon::before,
+.faqIcon::after {
+  position: absolute;
+  content: "";
+  background: currentColor;
+  width: 12px;
+  height: 1px;
+  left: 1px;
+  top: 6px;
+}
+.faqIcon::after {
+  transform: rotate(90deg);
+  transition: transform 0.18s ease;
+}
+.faqItem[open] .faqIcon::after {
+  transform: rotate(0);
+}
+.faqItem > p {
+  color: #59667b;
+  line-height: 1.8;
+  font-size: 15px;
+  margin: -2px 32px 25px 0;
+}
+.workHero {
+  padding-top: 80px;
+  padding-bottom: 66px;
+  color: #142138;
+}
+.workHero h1 {
+  font-size: clamp(39px, 5.6vw, 78px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+.workIntroduction {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 100px;
+  max-width: 950px;
+}
+.workIntroduction p {
+  font-size: 18px;
+  color: #59667b;
+  line-height: 1.7;
+  margin: 0;
+}
+.workIntroduction p:last-child {
+  font-size: 14px;
+  color: #778194;
+  align-self: center;
+}
+.workCta {
+  color: #142138;
+  border-top: 1px solid #d9dfe7;
+  padding-top: 64px;
+  padding-bottom: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.workCta h2 {
+  font-size: clamp(30px, 3vw, 44px);
+}
+.workCta p {
+  color: #59667b;
+  margin: 18px 0 0;
+  font-size: 16px;
+}
+@media (min-width: 1100px) {
+  .gardenHero {
+    min-height: 245px;
+  }
+  .interiorArtwork {
+    margin-top: 5px;
+  }
+}
+@media (max-width: 900px) {
+  .projectStage {
+    padding: 25px 16px;
+  }
+  .gardenHeadline {
+    font-size: 35px;
+  }
+  .gardenEyebrow {
+    font-size: 6px;
+    margin-bottom: 13px;
+  }
+  .gardenDescription {
+    font-size: 7px;
+  }
+  .gardenButton {
+    padding: 8px;
+    gap: 7px;
+    font-size: 5px;
+  }
+  .conceptNavLinks {
+    display: none;
+  }
+  .interiorHeading > p {
+    font-size: 25px;
+  }
+  .interiorHeading > span {
+    font-size: 5px;
+  }
+  .projectHeading {
+    flex-wrap: wrap;
+  }
+  .fullExamples .project {
+    gap: 32px;
+    grid-template-columns: 1.3fr 1fr;
+  }
+  .fullExamples .projectStage {
+    padding: 32px 20px;
+  }
+  .faqLayout {
+    gap: 40px;
+  }
+  .workIntroduction {
+    gap: 50px;
+  }
+}
+@media (max-width: 640px) {
+  .examplesIntro {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 32px;
+  }
+  .examplesIntro > div:last-child {
+    justify-self: start;
+    max-width: 100%;
+  }
+  .examplesIntro > div:last-child > p {
+    font-size: 16px;
+    max-width: 350px;
+  }
+  .projectCollection {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .projectStage {
+    padding: 28px 20px;
+  }
+  .gardenHeadline {
+    font-size: clamp(36px, 11vw, 60px);
+  }
+  .gardenLogo {
+    font-size: 20px;
+  }
+  .gardenHero {
+    padding-top: 12px;
+  }
+  .gardenEyebrow {
+    font-size: 7px;
+    margin-bottom: 18px;
+  }
+  .gardenDescription {
+    font-size: 8px;
+  }
+  .gardenButton {
+    padding: 9px 12px;
+    font-size: 6px;
+    gap: 14px;
+  }
+  .conceptNavLinks {
+    display: inline;
+  }
+  .interiorHeading > p {
+    font-size: clamp(26px, 8vw, 42px);
+  }
+  .interiorHeading > span {
+    font-size: 6px;
+  }
+  .projectHeading h3 {
+    font-size: 22px;
+  }
+  .projectInfo {
+    padding-top: 18px;
+  }
+  .projectDescription {
+    margin-top: 12px;
+  }
+  .conceptDisclosure {
+    margin-top: 30px;
+  }
+  .fullExamples .project {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .fullExamples .projectCollection {
+    gap: 60px;
+  }
+  .fullExamples .projectStage {
+    padding: 28px 20px;
+  }
+  .fullExamples .projectHeading {
+    display: flex;
+  }
+  .fullExamples .projectHeading h3 {
+    font-size: 26px;
+    margin: 0;
+  }
+  .fullExamples .projectSector {
+    margin-top: 9px;
+  }
+  .fullExamples .projectDescription {
+    font-size: 18px;
+  }
+  .projectIntent {
+    margin-top: 16px;
+  }
+  .faqLayout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .faqIntro h2 {
+    margin-bottom: 22px;
+  }
+  .faqItem summary {
+    font-size: 15px;
+    padding: 20px 0;
+    gap: 18px;
+  }
+  .faqItem > p {
+    font-size: 14px;
+    margin-right: 12px;
+  }
+  .workHero {
+    padding-top: 52px;
+    padding-bottom: 40px;
+  }
+  .workIntroduction {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-top: 25px;
+  }
+  .workIntroduction p {
+    font-size: 16px;
+  }
+  .workCta {
+    padding-top: 45px;
+    padding-bottom: 60px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .workCta p {
+    line-height: 1.7;
+  }
+}
+@media (max-width: 360px) {
+  .projectStage,
+  .fullExamples .projectStage {
+    padding: 22px 12px;
+  }
+  .conceptNavLinks {
+    display: none;
+  }
+  .gardenEyebrow {
+    font-size: 6px;
+  }
+  .gardenHeadline {
+    font-size: 34px;
+  }
+  .interiorHeading > p {
+    font-size: 24px;
+  }
+  .interiorHeading > span {
+    font-size: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .browser,
+  .textLink span,
+  .faqIcon::after {
+    transition: none;
+  }
+  .projectStage:hover .browser,
+  .textLink:hover span {
+    transform: none;
+  }
+}

@@ -6,53 +6,70 @@ import { BookingForm } from "@/components/BookingForm";
 import { CONTACT_EMAIL } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Book a Preview Call — Novus Co.",
-  description: "Book a free 10-minute preview call with Novus Co.",
+  title: "Request a Website Consultation",
+  description:
+    "Tell Novus about your business and request a free 10-minute website consultation. We’ll arrange a time with you by email.",
+  alternates: { canonical: "/book" },
 };
 
 const whatToExpect = [
-  { icon: "phone", text: "A relaxed 10-minute call — no pressure, no sales script." },
-  { icon: "target", text: "We learn about your business and what's not working online." },
-  { icon: "layers", text: "You'll get a clear next step, whether that's a preview or just advice." },
+  {
+    icon: "phone",
+    text: "A short conversation about your business, your customers, and your website.",
+  },
+  {
+    icon: "target",
+    text: "A chance to talk through what you need and ask your questions.",
+  },
+  {
+    icon: "layers",
+    text: "A clear next step, whether you need a new website or a redesign.",
+  },
 ];
 
 export default function BookPage() {
   return (
     <>
       <PageHero
-        kicker="Book a Call"
-        title="Book a 10-minute preview call."
-        subtitle="Tell us about your business below — we'll confirm a time that works by email or phone."
+        kicker="Start a conversation"
+        title="A better website starts here."
+        subtitle="Tell us a little about your business. We’ll email you to arrange a free 10-minute call."
       />
-
-      <section className="px-6 pb-28 sm:px-10 sm:pb-36">
-        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.85fr_1.15fr]">
+      <section className="px-6 pb-24 sm:px-10 sm:pb-32">
+        <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <Reveal>
-            <div className="flex h-full flex-col gap-6">
-              <div className="glass rounded-2xl p-6">
-                <h2 className="mb-5 text-sm font-semibold uppercase tracking-wide text-silver-dim">
-                  What to expect
-                </h2>
-                <ul className="space-y-5">
-                  {whatToExpect.map((item) => (
-                    <li key={item.text} className="flex items-start gap-3.5">
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-accent-light/30 text-accent-light">
-                        <Icon name={item.icon} size={16} />
-                      </span>
-                      <span className="text-sm leading-relaxed text-silver">{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="glass rounded-2xl p-6 text-sm text-silver">
-                Prefer email instead?{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`} className="text-accent-light hover:underline">
+            <div className="py-3">
+              <h2 className="mb-7 text-2xl font-medium tracking-tight">
+                Let’s see what’s possible.
+              </h2>
+              <ul className="space-y-6">
+                {whatToExpect.map((item) => (
+                  <li key={item.text} className="flex items-start gap-4">
+                    <span
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/8 text-accent"
+                      aria-hidden="true"
+                    >
+                      <Icon name={item.icon} size={18} />
+                    </span>
+                    <span className="pt-1 text-base leading-relaxed text-silver">
+                      {item.text}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-10 border-t border-hairline pt-7">
+                <p className="mb-2 text-base text-silver">
+                  Prefer to write to us directly?
+                </p>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="break-all text-base font-medium text-accent underline underline-offset-4"
+                >
                   {CONTACT_EMAIL}
                 </a>
               </div>
             </div>
           </Reveal>
-
           <Reveal delay={0.1}>
             <BookingForm />
           </Reveal>

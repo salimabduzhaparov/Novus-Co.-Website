@@ -1,38 +1,189 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
-import { ServiceCard } from "@/components/ui/ServiceCard";
-import { Reveal } from "@/components/ui/Reveal";
-import { CtaBox } from "@/components/ui/CtaBox";
-import { services } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Services — Novus Co.",
+  title: "Website Design Services for Local Businesses",
   description:
-    "Websites, SEO setup, lead systems, and booking tools built for home-service businesses.",
+    "Explore Novus website design, redesign, landing pages, SEO foundations, enquiry forms, and booking integrations for local service businesses.",
+  alternates: { canonical: "/services" },
 };
+
+const offerings = [
+  {
+    id: "business-websites",
+    title: "Business websites",
+    description:
+      "A considered home for your business online. We organize your services, work, and contact details into a website that helps people get to know you.",
+    scope: [
+      "Page structure and content",
+      "Visual design",
+      "Responsive development",
+    ],
+    fit: "For businesses establishing an online presence or moving beyond a basic site.",
+  },
+  {
+    id: "website-redesigns",
+    title: "Website redesigns",
+    description:
+      "A fresh direction for a website you have outgrown. We review the existing content and customer journey, then shape the design around what your business needs now.",
+    scope: [
+      "Existing-site review",
+      "Content refinement",
+      "Design and usability improvements",
+    ],
+    fit: "For a dated, difficult-to-use website that no longer represents your work.",
+  },
+  {
+    id: "landing-pages",
+    title: "Landing pages",
+    description:
+      "One focused page for a specific service, offer, or campaign. A clear message, relevant information, and a straightforward next step for the visitor.",
+    scope: [
+      "Focused page design",
+      "Offer and message structure",
+      "Contact or enquiry action",
+    ],
+    fit: "For introducing a service, testing an idea, or giving a campaign its own destination.",
+  },
+  {
+    id: "seo-foundations",
+    title: "SEO foundations",
+    description:
+      "The technical and content basics that help search engines understand your website. We consider page structure, descriptive metadata, internal links, and your service information.",
+    scope: [
+      "Titles and descriptions",
+      "Indexing and sitemap setup",
+      "Service-page structure",
+    ],
+    fit: "For building search visibility on a sound foundation. Ongoing SEO is a separate scope; rankings are not guaranteed.",
+  },
+  {
+    id: "enquiry-systems",
+    title: "Enquiry systems",
+    description:
+      "Make it easier to ask for a quote and easier for you to receive the right information. We shape forms and contact routes around how your business handles new enquiries.",
+    scope: [
+      "Enquiry and quote forms",
+      "Contact routing",
+      "Agreed tracking integrations",
+    ],
+    fit: "For businesses that need a clearer path from a website visit to a useful enquiry.",
+  },
+  {
+    id: "booking-integrations",
+    title: "Booking integrations",
+    description:
+      "Connect your website with a suitable scheduling tool so customers can take the next step online. The booking flow depends on your services, availability, and chosen platform.",
+    scope: [
+      "Scheduling-tool integration",
+      "Mobile booking experience",
+      "Confirmation-flow checks",
+    ],
+    fit: "For appointment-based businesses. Platform subscriptions and capabilities are discussed during scoping.",
+  },
+];
 
 export default function ServicesPage() {
   return (
     <>
       <PageHero
-        kicker="Services"
-        title="Built for home-service businesses."
-        subtitle="Every service is built around one outcome — a business that looks more professional, earns trust faster, and turns visitors into booked jobs."
+        kicker="Our services"
+        title="The right website for the way you work."
+        subtitle="From a focused landing page to a complete business website, we bring design, content, and the essential connections together."
       />
-
-      <section className="px-6 pb-28 sm:px-10 sm:pb-36">
-        <div className="mx-auto max-w-5xl">
-          <div className="grid gap-6 sm:grid-cols-2">
-            {services.map((s, i) => (
-              <Reveal key={s.slug} delay={(i % 2) * 0.08}>
-                <ServiceCard service={s} index={i} />
-              </Reveal>
-            ))}
+      <section
+        className="studio-container pb-20 sm:pb-28"
+        aria-label="Website services"
+      >
+        {offerings.map((offering) => (
+          <article
+            key={offering.id}
+            id={offering.id}
+            className="grid scroll-mt-28 gap-7 border-t border-ink/15 py-10 sm:py-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20"
+          >
+            <div>
+              <h2 className="text-3xl font-medium tracking-[-0.035em] sm:text-4xl">
+                {offering.title}
+              </h2>
+              <p className="mt-5 max-w-md text-base leading-relaxed text-silver">
+                {offering.fit}
+              </p>
+            </div>
+            <div>
+              <p className="page-copy max-w-2xl">{offering.description}</p>
+              <ul
+                className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink"
+                aria-label={`Possible scope for ${offering.title.toLowerCase()}`}
+              >
+                {offering.scope.map((item) => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <span
+                      className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                      aria-hidden="true"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </section>
+      <section
+        className="bg-white py-20 sm:py-28"
+        aria-labelledby="scope-heading"
+      >
+        <div className="studio-container grid gap-10 lg:grid-cols-2 lg:gap-20">
+          <div>
+            <h2
+              id="scope-heading"
+              className="max-w-lg text-balance text-3xl leading-tight font-medium tracking-[-0.03em] sm:text-5xl"
+            >
+              Agree the details before the build.
+            </h2>
+            <Link href="/process" className="text-link mt-7 inline-flex">
+              See how the process works
+            </Link>
           </div>
-
-          <div className="mt-20">
-            <CtaBox />
+          <div className="page-copy space-y-5">
+            <p>
+              The right scope depends on your content, the number of pages, and
+              the tools your business uses. We discuss those needs before
+              recommending an approach.
+            </p>
+            <p>
+              Your proposal should make the deliverables, price, review stages,
+              and estimated schedule clear. Hosting, ongoing support, ownership,
+              and any third-party costs are part of that conversation too.
+            </p>
+            <p>
+              Have a website already? Bring the link. Starting fresh? Tell us
+              about the business and we can work through what you need.
+            </p>
           </div>
+        </div>
+      </section>
+      <section
+        className="studio-container section-space"
+        aria-labelledby="services-next-step"
+      >
+        <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
+          <div>
+            <h2
+              id="services-next-step"
+              className="max-w-2xl text-balance text-3xl font-medium tracking-[-0.03em] sm:text-5xl"
+            >
+              A good place to start is a conversation.
+            </h2>
+            <p className="page-copy mt-5 max-w-xl">
+              Tell us what is working, what is missing, and what you would like
+              to improve.
+            </p>
+          </div>
+          <Link href="/book" className="button-primary shrink-0">
+            Discuss your website
+          </Link>
         </div>
       </section>
     </>

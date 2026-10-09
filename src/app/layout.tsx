@@ -1,43 +1,72 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist } from "next/font/google";
 import "./globals.css";
-import { OrbitField } from "@/components/ui/OrbitField";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
-
-const geistSans = Geist({
+const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Novus Co. — Websites for Home-Service Businesses",
+  metadataBase: new URL("https://www.novuswebsites.com"),
+  title: {
+    default: "Web Design for Local Businesses | Novus Co.",
+    template: "%s | Novus Co.",
+  },
   description:
-    "Novus Co. builds clean, modern, lead-focused websites for home-service businesses that want to look more professional, earn trust faster, and compete online.",
+    "Thoughtful websites for local service businesses. Novus brings together clear design, useful content and a straightforward way for customers to get in touch.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Novus Co.",
+    images: [
+      {
+        url: "/social-card.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Novus Co. — Thoughtful websites for local businesses",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/social-card.jpg"],
+  },
+  icons: { icon: "/brand/icon.png", apple: "/brand/icon.png" },
 };
-
+export const viewport: Viewport = { themeColor: "#f3f5f9" };
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://www.novuswebsites.com/#organization",
+  name: "Novus Co.",
+  url: "https://www.novuswebsites.com",
+  logo: "https://www.novuswebsites.com/brand/novus-logo.webp",
+  email: "salim.novusco@gmail.com",
+  description: "Website design and development for local service businesses.",
+};
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-void text-ink">
-        <OrbitField />
-        <div className="relative z-10 flex min-h-full flex-col">
-          <Nav />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
+    <html lang="en" className={`${geist.variable} antialiased`}>
+      <body>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <Nav />
+        <main id="main-content" tabIndex={-1}>
+          {children}
+        </main>
+        <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
+        />
       </body>
     </html>
   );

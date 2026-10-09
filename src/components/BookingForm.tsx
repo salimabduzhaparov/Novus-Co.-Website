@@ -1,136 +1,238 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Icon } from "./ui/Icon";
 import { bookServiceOptions } from "@/lib/content";
+
+type FieldErrors = Record<string, string>;
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export function BookingForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const formRef = useRef<HTMLFormElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+  const successRef = useRef<HTMLHeadingElement>(null);
 
-  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setSending(true);
+  useEffect(() => {
+    if (sent) successRef.current?.focus();
+    else if (Object.keys(fieldErrors).length) {
+      formRef.current
+        ?.querySelector<HTMLElement>('[aria-invalid="true"]')
+        ?.focus();
+    } else if (error) errorRef.current?.focus();
+  }, [sent, fieldErrors, error]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (sending) return;
+
+    const data = Object.fromEntries(
+      Array.from(
+        new FormData(event.currentTarget).entries(),
+        ([key, value]) => [key, String(value).trim()],
+      ),
+    );
+    const errors: FieldErrors = {};
+    if (!bookServiceOptions.some((option) => option === data.service))
+      errors.service = "Choose a service, or select ‘Not sure yet’.";
+    if (!data.name) errors.name = "Enter your name.";
+    if (!data.business) errors.business = "Enter your business name.";
+    if (!emailPattern.test(data.email))
+      errors.email = "Enter a valid email address.";
+    setFieldErrors(errors);
     setError(null);
+    if (Object.keys(errors).length) return;
 
-    const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
-
+    setSending(true);
     try {
-      const res = await fetch("/api/book", {
+      const response = await fetch("/api/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-
-      if (!res.ok) {
-        const body = await res.json().catch(() => null);
-        throw new Error(body?.error || "Something went wrong. Please try again.");
+      if (!response.ok) {
+        const body = await response.json().catch(() => null);
+        if (body?.fieldErrors) setFieldErrors(body.fieldErrors);
+        throw new Error(
+          body?.error || "We couldn’t send your request. Please try again.",
+        );
       }
-
       setSent(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+      setError(
+        err instanceof Error
+          ? err.message
+          : "We couldn’t send your request. Please try again.",
+      );
     } finally {
       setSending(false);
     }
   }
 
   return (
-    <div className="glass relative overflow-hidden rounded-2xl p-8 sm:p-10">
-      <AnimatePresence mode="wait">
-        {sent ? (
-          <motion.div
-            key="success"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col items-center gap-4 py-14 text-center"
+    <div className="form-panel rounded-3xl p-6 sm:p-10">
+      {sent ? (
+        <div className="flex flex-col items-start gap-4 py-12" role="status">
+          <span
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10 text-accent"
+            aria-hidden="true"
           >
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-accent-light/50 text-accent-light">
-              <Icon name="check" size={26} />
-            </div>
-            <h3 className="text-xl font-semibold">Request received.</h3>
-            <p className="max-w-sm text-sm text-silver">
-              Thanks — we&apos;ll follow up by email to confirm your 10-minute
-              preview call.
-            </p>
-          </motion.div>
-        ) : (
-          <motion.form
-            key="form"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onSubmit={handleSubmit}
-            className="space-y-5"
+            <Icon name="check" size={24} />
+          </span>
+          <h2
+            ref={successRef}
+            tabIndex={-1}
+            className="text-2xl font-semibold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
-            <div>
-              <label className="mb-2 block text-xs uppercase tracking-wide text-silver-dim">
-                Service interest
-              </label>
-              <select
-                name="service"
-                defaultValue=""
-                required
-                className="w-full rounded-xl border border-white/12 bg-white/[0.03] px-4 py-3 text-sm text-ink focus:border-accent-light/60 focus:outline-none"
-              >
-                <option value="" disabled className="bg-elevated">
-                  Select a service
+            Your request is in.
+          </h2>
+          <p className="max-w-md text-base leading-relaxed text-silver">
+            Thanks for telling us about your business. We’ll reply by email to
+            arrange your 10-minute call. Your time will be confirmed in that
+            reply.
+          </p>
+        </div>
+      ) : (
+        <form
+          ref={formRef}
+          onSubmit={handleSubmit}
+          noValidate
+          aria-busy={sending}
+          className="space-y-6"
+        >
+          <p className="text-sm leading-relaxed text-silver">
+            All fields are required unless marked optional.
+          </p>
+          <div>
+            <label htmlFor="booking-service" className="field-label mb-2 block">
+              What can we help with?
+            </label>
+            <select
+              id="booking-service"
+              name="service"
+              defaultValue=""
+              required
+              aria-invalid={Boolean(fieldErrors.service)}
+              aria-describedby={
+                fieldErrors.service ? "booking-service-error" : undefined
+              }
+              className="form-input w-full rounded-xl px-4 py-3 text-base"
+            >
+              <option value="" disabled>
+                Select a service
+              </option>
+              {bookServiceOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
                 </option>
-                {bookServiceOptions.map((opt) => (
-                  <option key={opt} value={opt} className="bg-elevated">
-                    {opt}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Full name" name="name" placeholder="Your name" required />
-              <Field label="Business name" name="business" placeholder="Your business" required />
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Email" name="email" type="email" placeholder="you@business.com" required />
-              <Field label="Phone" name="phone" type="tel" placeholder="(000) 000-0000" required />
-            </div>
-
-            <div className="grid gap-5 sm:grid-cols-2">
-              <Field label="Preferred date" name="date" type="date" />
-              <Field label="Preferred time" name="time" type="time" />
-            </div>
-
-            <div>
-              <label className="mb-2 block text-xs uppercase tracking-wide text-silver-dim">
-                What do you need?
-              </label>
-              <textarea
-                name="message"
-                rows={4}
-                placeholder="A short note on your business and what you're looking for."
-                className="w-full rounded-xl border border-white/12 bg-white/[0.03] px-4 py-3 text-sm text-ink placeholder:text-silver-dim focus:border-accent-light/60 focus:outline-none"
-              />
-            </div>
-
-            {error && (
-              <p className="text-sm text-red-400" role="alert">
-                {error}
+              ))}
+            </select>
+            {fieldErrors.service && (
+              <p
+                id="booking-service-error"
+                className="mt-2 text-sm text-red-700"
+              >
+                {fieldErrors.service}
               </p>
             )}
-            <motion.button
-              type="submit"
-              disabled={sending}
-              whileHover={{ scale: sending ? 1 : 1.02 }}
-              whileTap={{ scale: sending ? 1 : 0.98 }}
-              className="w-full rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white shadow-[0_0_40px_rgba(47,109,246,0.4)] transition-shadow hover:shadow-[0_0_56px_rgba(47,109,246,0.6)] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Field
+              label="Your name"
+              name="name"
+              autoComplete="name"
+              maxLength={120}
+              required
+              error={fieldErrors.name}
+            />
+            <Field
+              label="Business name"
+              name="business"
+              autoComplete="organization"
+              maxLength={160}
+              required
+              error={fieldErrors.business}
+            />
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <Field
+              label="Email address"
+              name="email"
+              type="email"
+              autoComplete="email"
+              maxLength={254}
+              required
+              error={fieldErrors.email}
+            />
+            <Field
+              label="Phone (optional)"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              maxLength={80}
+              error={fieldErrors.phone}
+            />
+          </div>
+          <div>
+            <label htmlFor="booking-message" className="field-label mb-2 block">
+              Anything else? (optional)
+            </label>
+            <p
+              id="booking-message-hint"
+              className="mb-3 text-sm leading-relaxed text-silver"
             >
-              {sending ? "Sending…" : "Request my preview call"}
-            </motion.button>
-          </motion.form>
-        )}
-      </AnimatePresence>
+              Share your current website, what you need, or a good time to talk.
+              Include your time zone if you suggest a time.
+            </p>
+            <textarea
+              id="booking-message"
+              name="message"
+              rows={4}
+              maxLength={5000}
+              aria-invalid={Boolean(fieldErrors.message)}
+              aria-describedby={`booking-message-hint${fieldErrors.message ? " booking-message-error" : ""}`}
+              className="form-input w-full resize-y rounded-xl px-4 py-3 text-base"
+            />
+            {fieldErrors.message && (
+              <p
+                id="booking-message-error"
+                className="mt-2 text-sm text-red-700"
+              >
+                {fieldErrors.message}
+              </p>
+            )}
+          </div>
+          <p className="sr-only" role="alert">
+            {Object.keys(fieldErrors).length
+              ? "Please check the highlighted fields."
+              : ""}
+          </p>
+          {error && (
+            <p
+              ref={errorRef}
+              tabIndex={-1}
+              className="rounded-xl border border-red-200 bg-red-50 p-4 text-base text-red-800 focus:outline-2 focus:outline-offset-2 focus:outline-red-700"
+              role="alert"
+            >
+              {error}
+            </p>
+          )}
+          <button
+            type="submit"
+            disabled={sending}
+            className="button-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+          >
+            {sending ? "Sending your request…" : "Request a 10-minute call"}
+            <span aria-hidden="true">↗</span>
+          </button>
+          <p className="text-sm leading-relaxed text-silver">
+            No payment or commitment. We’ll arrange the time with you by email.
+          </p>
+        </form>
+      )}
     </div>
   );
 }
@@ -139,25 +241,41 @@ function Field({
   label,
   name,
   type = "text",
-  placeholder,
+  autoComplete,
+  maxLength,
   required,
+  error,
 }: {
   label: string;
   name: string;
   type?: string;
-  placeholder?: string;
+  autoComplete: string;
+  maxLength: number;
   required?: boolean;
+  error?: string;
 }) {
+  const id = `booking-${name}`;
   return (
     <div>
-      <label className="mb-2 block text-xs uppercase tracking-wide text-silver-dim">{label}</label>
+      <label htmlFor={id} className="field-label mb-2 block">
+        {label}
+      </label>
       <input
+        id={id}
         type={type}
         name={name}
-        placeholder={placeholder}
+        autoComplete={autoComplete}
+        maxLength={maxLength}
         required={required}
-        className="w-full rounded-xl border border-white/12 bg-white/[0.03] px-4 py-3 text-sm text-ink placeholder:text-silver-dim focus:border-accent-light/60 focus:outline-none [color-scheme:dark]"
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className="form-input w-full rounded-xl px-4 py-3 text-base"
       />
+      {error && (
+        <p id={`${id}-error`} className="mt-2 text-sm text-red-700">
+          {error}
+        </p>
+      )}
     </div>
   );
 }
