@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
-import { PageHero } from "@/components/ui/PageHero";
-import { PrimaryButton } from "@/components/ui/Button";
-import { Reveal } from "@/components/ui/Reveal";
 import { Icon } from "@/components/ui/Icon";
 import { BookingForm } from "@/components/BookingForm";
 import { CONTACT_EMAIL } from "@/lib/content";
+import styles from "./book-page.module.css";
 
 export const metadata: Metadata = {
   title: "Request a Free Website Preview",
@@ -30,60 +28,40 @@ const whatToExpect = [
 
 export default function BookPage() {
   return (
-    <>
-      <PageHero
-        kicker="Request a free preview"
-        title="See what your website could be."
-        subtitle="Tell us about your business. We’ll email you to arrange a free 10-minute preview call and discuss a website direction."
+    <div className={styles.page}>
+      <header className={styles.intro}>
+        <h1 id="preview-title">See what your website could be.</h1>
+        <p>
+          Tell us about your business. We’ll email you to arrange a free
+          10-minute preview call.
+        </p>
+      </header>
+
+      <section
+        id="preview-request"
+        className={styles.request}
+        aria-labelledby="preview-title"
       >
-        <div className="mt-7">
-          <PrimaryButton href="#preview-request">
-            Start my free preview
-          </PrimaryButton>
-        </div>
-      </PageHero>
-      <section className="px-6 pb-24 sm:px-10 sm:pb-32">
-        <div className="mx-auto grid max-w-6xl items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <Reveal>
-            <div className="py-3">
-              <h2 className="mb-7 text-2xl font-medium tracking-tight">
-                Let’s see what’s possible.
-              </h2>
-              <ul className="space-y-6">
-                {whatToExpect.map((item) => (
-                  <li key={item.text} className="flex items-start gap-4">
-                    <span
-                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/8 text-accent"
-                      aria-hidden="true"
-                    >
-                      <Icon name={item.icon} size={18} />
-                    </span>
-                    <span className="pt-1 text-base leading-relaxed text-silver">
-                      {item.text}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-10 border-t border-hairline pt-7">
-                <p className="mb-2 text-base text-silver">
-                  Prefer to write to us directly?
-                </p>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="break-all text-base font-medium text-accent underline underline-offset-4"
-                >
-                  {CONTACT_EMAIL}
-                </a>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div id="preview-request" className="scroll-mt-28">
-              <BookingForm />
-            </div>
-          </Reveal>
+        <BookingForm />
+      </section>
+
+      <section className={styles.expectations} aria-labelledby="what-to-expect">
+        <h2 id="what-to-expect">What happens next</h2>
+        <ul>
+          {whatToExpect.map((item) => (
+            <li key={item.text}>
+              <span className={styles.expectationIcon} aria-hidden="true">
+                <Icon name={item.icon} size={20} />
+              </span>
+              <p>{item.text}</p>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.directContact}>
+          <p>Prefer to write to us directly?</p>
+          <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>
       </section>
-    </>
+    </div>
   );
 }

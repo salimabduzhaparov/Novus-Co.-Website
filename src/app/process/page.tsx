@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { FinalCTA } from "@/components/FinalCTA";
-import { PrimaryButton } from "@/components/ui/Button";
 import { novusProcessSteps } from "@/lib/process";
 import styles from "./process-page.module.css";
 
@@ -93,12 +92,9 @@ export default function ProcessPage() {
             You should know what happens next, what we need from you, and what
             each stage delivers. Here is how we build your website together.
           </p>
-          <div className={styles.heroActions}>
-            <PrimaryButton tone="light">Request a free preview</PrimaryButton>
-            <a href="#process-stages" className={styles.stageLink}>
-              Explore the six stages <span aria-hidden="true">↓</span>
-            </a>
-          </div>
+          <a href="#process-stages" className={styles.stageLink}>
+            Explore the six stages <span aria-hidden="true">↓</span>
+          </a>
         </div>
       </section>
 

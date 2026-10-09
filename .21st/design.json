@@ -148,8 +148,8 @@
       "Clearly label the illustrative SEO visibility example and avoid claiming measured ranking outcomes",
       "Keep a vertical expanded Process page and slower homepage timeline",
       "Keep continuous hero video playback independent of scroll-driven HTML chapters",
-      "Use the shared prominent free-preview CTA across pages without changing form semantics",
-      "Use a centered, text-only closing preview invitation on the main pages",
+      "Use the shared preview CTA in navigation and relevant page endings; keep About and the About/Services/Process introductions focused on their subject",
+      "Use centered text-only closing invitations on Home, Services and Process; use page-specific copy and omit the About closing invitation",
       "Keep the SEO example modest in size and automatically replay after it leaves and re-enters view"
     ],
     "avoid": [
@@ -199,6 +199,11 @@
       "date": "2026-10-10",
       "decision": "Preserve smooth 0.7-second keyed positional ranking swaps with 1.9-second stage delays. Keep projection active when crossing playback thresholds and reserve description geometry; full-exit reset remains offscreen.",
       "source": "Owner reported non-smooth ranking swaps; browser motion samples verified correction at desktop and phone width"
+    },
+    {
+      "date": "2026-10-10",
+      "decision": "Center the Book form in a 760px light-blue panel beneath the original heading, remove its redundant intro button, and put expectations below. Remove introductory preview buttons from About, Services and Process and the About closing invitation. Restore exact historical homepage line: You take pride in your work. Your website should show it. Keep Process default ending; give Services its service-specific question. Preserve form fields, validation and submission behavior.",
+      "source": "Latest direct owner feedback"
     }
   ],
   "evidence": [

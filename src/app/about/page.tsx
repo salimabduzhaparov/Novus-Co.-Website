@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
-import { FinalCTA } from "@/components/FinalCTA";
-import { PrimaryButton, TextLink } from "@/components/ui/Button";
+import { TextLink } from "@/components/ui/Button";
 export const metadata: Metadata = {
   title: "About Our Local Business Website Studio",
   description:
@@ -16,11 +15,7 @@ export default function AboutPage() {
         kicker="Why Novus"
         title="Good at your trade. Seen for your work."
         subtitle="Local service businesses put care into what they do. Novus exists to bring that same care to how they appear online."
-      >
-        <div className="mt-7">
-          <PrimaryButton>Request a free preview</PrimaryButton>
-        </div>
-      </PageHero>
+      />
       <section
         className="studio-container pb-20"
         aria-label="Our mission and vision"
@@ -109,7 +104,6 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
-      <FinalCTA />
     </>
   );
 }

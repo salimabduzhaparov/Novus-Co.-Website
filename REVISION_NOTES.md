@@ -1,3 +1,16 @@
+# Page-specific invitations and centered request form — 10 October 2026
+
+This revision supersedes the earlier shared invitation placement where noted below.
+
+- Removed introductory preview buttons from About, Services and Process. About now focuses on the business without a closing preview section; navigation and footer links remain available.
+- Restored the exact historical homepage closing text: “You take pride in your work. Your website should show it.” (from commit `a45f1a08668e2b45b189a4db589ba6ef47ee380e`).
+- Process retains “Put your business first.” at the bottom. Services closes with “See a service that could make your business shine?” and the existing free-preview button.
+- Preserved the request-page heading “See what your website could be.”, removed its redundant start button, and centered the form in a light-blue, navy-accented panel capped at 760px. Expectations and direct email now follow the form.
+- Form fields, validation, focus handling, success/error states and submission logic are unchanged. Inputs remain 16px on phones; no real form message was submitted.
+- Desktop, 390px and 320px form checks confirmed centering, visible contrast and no horizontal overflow. Production build, TypeScript, ESLint, whitespace, route/SEO/media and page-specific CTA checks passed. Live publication is verified separately after push.
+
+---
+
 # Smooth ranking swaps and phone preview — 10 October 2026
 
 - Restored 0.7-second positional swaps while keeping the shorter 1.9-second stage delays. The SEO panel remains 780px, with automatic replay on returning and no Replay button.

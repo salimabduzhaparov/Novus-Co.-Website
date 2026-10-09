@@ -36,17 +36,11 @@
   display: inline-flex;
   align-items: center;
   gap: 25px;
+  margin-top: 36px;
   padding-block: 10px;
   border-bottom: 1px solid #7ea6d9;
   font-weight: 550;
   font-size: 16px;
-}
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 24px 32px;
-  margin-top: 36px;
 }
 .stageLink:focus-visible {
   outline-color: #a9ccff;

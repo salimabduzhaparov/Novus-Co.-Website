@@ -145,7 +145,7 @@ export default function Home() {
         </div>
       </section>
       <StudioFAQ />
-      <FinalCTA />
+      <FinalCTA title="You take pride in your work. Your website should show it." />
     </>
   );
 }

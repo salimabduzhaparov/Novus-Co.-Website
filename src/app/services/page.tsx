@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { FinalCTA } from "@/components/FinalCTA";
 import Link from "next/link";
 import { Icon } from "@/components/ui/Icon";
-import { PrimaryButton } from "@/components/ui/Button";
 import styles from "./services-page.module.css";
 
 export const metadata: Metadata = {
@@ -117,9 +116,6 @@ export default function ServicesPage() {
               to reach you. We design the pages and connect the tools that make
               those next steps easier.
             </p>
-            <PrimaryButton className={styles.primaryLink}>
-              Request a free preview
-            </PrimaryButton>
           </div>
         </div>
       </section>
@@ -203,7 +199,10 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
-      <FinalCTA />
+      <FinalCTA
+        title="See a service that could make your business shine?"
+        description="Get a free preview shaped around what your business needs."
+      />
     </div>
   );
 }
