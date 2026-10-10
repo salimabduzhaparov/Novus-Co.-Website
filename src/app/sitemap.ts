@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/book",
     "/contact",
     "/privacy",
+    "/outreach-automation",
     "/reviews",
     "/statistics",
   ].map((path) => ({ url: `https://www.novuswebsites.com${path}` }));

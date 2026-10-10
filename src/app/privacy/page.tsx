@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { outreachPrivacy } from "@/lib/outreach-privacy";
 import { PageHero } from "@/components/ui/PageHero";
 import { CONTACT_EMAIL } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Privacy",
-  description: "How Novus handles information submitted through this website.",
+  description: "How Novus handles website enquiries and Google account data used by its private outreach automation.",
   alternates: { canonical: "/privacy" },
 };
 export default function Privacy() {
@@ -12,7 +14,7 @@ export default function Privacy() {
       <PageHero
         kicker="Your information"
         title="Privacy, in plain language."
-        subtitle="How information submitted through this website is used."
+        subtitle="How website enquiries and our private automation handle information."
       />
       <section className="studio-container pb-24">
         <div className="max-w-3xl space-y-9 page-copy">
@@ -53,6 +55,21 @@ export default function Privacy() {
                 {CONTACT_EMAIL}
               </a>
               .
+            </p>
+          </div>
+          <div id="outreach-automation" className="space-y-5 scroll-mt-24">
+            <h2 className="text-2xl font-medium text-ink mb-3">
+              Novus Outreach Automation and Google account data
+            </h2>
+            <p>Updated 10 October 2026.</p>
+            {outreachPrivacy.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            <p>
+              <a className="underline underline-offset-4" href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>
+              {" · "}
+              <a className="underline underline-offset-4" href="https://myaccount.google.com/connections">Manage Google account connections</a>
+            </p>
+            <p>
+              <Link className="underline underline-offset-4" href="/outreach-automation">About Novus Outreach Automation</Link>
             </p>
           </div>
         </div>
