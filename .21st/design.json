@@ -204,6 +204,11 @@
       "date": "2026-10-10",
       "decision": "Center the Book form in a 760px light-blue panel beneath the original heading, remove its redundant intro button, and put expectations below. Remove introductory preview buttons from About, Services and Process and the About closing invitation. Restore exact historical homepage line: You take pride in your work. Your website should show it. Keep Process default ending; give Services its service-specific question. Preserve form fields, validation and submission behavior.",
       "source": "Latest direct owner feedback"
+    },
+    {
+      "date": "2026-10-11",
+      "decision": "Remove the hero story manual pause button, progress rail and scene count indicators. Preserve automatic video safeguards and the separate SEO controls. Order all four mobile story steps as text then illustration; keep desktop sticky composition. Supersedes the earlier hero manual-pause requirement.",
+      "source": "Direct owner instruction"
     }
   ],
   "evidence": [

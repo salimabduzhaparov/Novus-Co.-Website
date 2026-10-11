@@ -6,8 +6,6 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { PrimaryButton } from "./ui/Button";
 import styles from "./scroll-story.module.css";
 
-const clamp = (n: number) => Math.max(0, Math.min(1, n));
-
 /** Native video playback stays independent of scroll. Only the HTML chapters
  * change with scroll, using the section-progress concept researched on 21st.dev.
  * No frame fetching, canvas drawing or compressed-video seeking on scroll. */
@@ -15,7 +13,6 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
   const root = useRef<HTMLElement>(null);
   const film = useRef<HTMLVideoElement>(null);
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const section = root.current;
@@ -29,11 +26,6 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
       raf = 0;
       const rect = section.getBoundingClientRect();
       if (rect.bottom < 0 || rect.top > innerHeight) return;
-      const navHeight = innerWidth <= 760 ? 76 : 88;
-      const progress = clamp(
-        (navHeight - rect.top) /
-          Math.max(1, rect.height - (innerHeight - navHeight)),
-      );
       let stage = 0;
       chapters.forEach((chapter, i) => {
         if (chapter.getBoundingClientRect().top <= innerHeight * 0.56)
@@ -43,7 +35,6 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
         lastStage = stage;
         setActive(stage);
       }
-      section.style.setProperty("--story-progress", String(progress));
     };
     const schedule = () => {
       if (!raf) raf = requestAnimationFrame(update);
@@ -71,7 +62,7 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
     ).connection;
     let visible = false;
     const syncPlayback = () => {
-      const allowed = !paused && !reduced.matches && !connection?.saveData;
+      const allowed = !reduced.matches && !connection?.saveData;
       if (!allowed || !visible || document.hidden) {
         video.pause();
         return;
@@ -95,28 +86,19 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
       document.removeEventListener("visibilitychange", syncPlayback);
       video.pause();
     };
-  }, [paused]);
+  }, []);
 
   return (
     <section
       ref={root}
       className={styles.story}
       data-scene={active}
-      data-paused={paused}
       aria-label="From a local search to a clear next step"
     >
       <div className={styles.filmControls}>
         <span>
           <i /> A customer’s next move
         </span>
-        <button
-          type="button"
-          onClick={() => setPaused((value) => !value)}
-          aria-pressed={paused}
-          aria-label={paused ? "Resume story motion" : "Pause story motion"}
-        >
-          {paused ? "▷ Motion off" : "Ⅱ Pause motion"}
-        </button>
       </div>
       <div className={styles.sticky}>
         <div className={styles.film} aria-hidden="true">
@@ -149,12 +131,7 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
         <div className={styles.shade} />
         <div className={styles.screenWrap} aria-hidden="true">
           <SearchScreen active={active} />
-          <p className={styles.sceneCaption}>
-            Illustrative search journey <span>0{Math.max(1, active)} / 04</span>
-          </p>
-        </div>
-        <div className={styles.progressRail}>
-          <span />
+          <p className={styles.sceneCaption}>Illustrative search journey</p>
         </div>
       </div>
 
@@ -197,7 +174,6 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
         </article>
 
         <article id="the-search" data-story-chapter className={styles.chapter}>
-          <MobileScreen active={1} />
           <div className={styles.copy}>
             <span className={styles.label}>01 / The search</span>
             <h2>
@@ -216,10 +192,10 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
               <span>A small search. A real decision.</span>
             </div>
           </div>
+          <MobileScreen active={1} />
         </article>
 
         <article data-story-chapter className={styles.chapter}>
-          <MobileScreen active={2} />
           <div className={styles.copy}>
             <span className={styles.label}>02 / The missing information</span>
             <h2>
@@ -238,21 +214,21 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
               <span>Make it reflect the quality of your business.</span>
             </div>
           </div>
+          <MobileScreen active={2} />
         </article>
 
         <article
           data-story-chapter
           className={`${styles.chapter} ${styles.evidenceChapter}`}
         >
-          <MobileScreen active={3} />
           <div className={styles.copy}>{evidence}</div>
+          <MobileScreen active={3} />
         </article>
 
         <article
           data-story-chapter
           className={`${styles.chapter} ${styles.approach}`}
         >
-          <MobileScreen active={4} />
           <div className={styles.copy}>
             <span className={styles.label}>04 / The Novus approach</span>
             <h2>
@@ -274,6 +250,7 @@ export function ScrollStory({ evidence }: { evidence: ReactNode }) {
               How we make it happen <span aria-hidden="true">↓</span>
             </a>
           </div>
+          <MobileScreen active={4} />
         </article>
       </div>
     </section>
@@ -284,9 +261,7 @@ function MobileScreen({ active }: { active: number }) {
   return (
     <div className={styles.mobileScreen} aria-hidden="true">
       <SearchScreen active={active} />
-      <p className={styles.sceneCaption}>
-        Illustrative search journey <span>0{active} / 04</span>
-      </p>
+      <p className={styles.sceneCaption}>Illustrative search journey</p>
     </div>
   );
 }

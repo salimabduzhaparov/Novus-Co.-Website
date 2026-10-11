@@ -1,3 +1,13 @@
+# Cleaner hero and text-first mobile story — 11 October 2026
+
+- Removed the hero story's top-right pause button, bottom progress rail and scene-count indicators. The separate SEO animation control is unchanged.
+- Removed the unused manual-pause state and per-scroll progress calculation. Native looping video still respects reduced-motion/data-saving preferences and pauses when the section is offscreen or the tab is hidden.
+- Moved each of the four mobile illustrations after its text block in document order, preserving the existing 34px spacing and desktop sticky illustration layout.
+- Retained the newer published outreach/privacy pages while applying this focused update.
+- Production build, TypeScript, lint and whitespace checks passed. Browser checks verified all four text-first steps and 34px separation at 390px/320px, no horizontal overflow, desktop layout, removed controls and continued native video playback. Core route, metadata and media checks passed locally; publication is verified separately against the exact commit and live site.
+
+---
+
 # Page-specific invitations and centered request form — 10 October 2026
 
 This revision supersedes the earlier shared invitation placement where noted below.
