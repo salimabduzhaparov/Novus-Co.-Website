@@ -1,3 +1,12 @@
+# Circular Novus favicon — 12 October 2026
+
+- Replaced the starter Vercel triangle at `/favicon.ico` with the owner's original circular N/orbit logo, without the lower wordmark.
+- Converted the same navigation crop of `public/brand/novus-profile.png` (x=280, y=140, 440px square, circular boundary) to matching 256px PNGs at `/icon.png` and `/brand/icon.png`; the ICO contains 16/32/48/64/128/256px variants.
+- Declared the explicit PNG type and size in metadata. Existing icon URLs remain stable; all declared favicon and Apple icon paths now represent the same mark.
+- Google Search refresh depends on Google's recrawl and processing. A successful deployment does not confirm that the cached search-result icon has changed.
+
+---
+
 # Cleaner hero and text-first mobile story — 11 October 2026
 
 - Removed the hero story's top-right pause button, bottom progress rail and scene-count indicators. The separate SEO animation control is unchanged.

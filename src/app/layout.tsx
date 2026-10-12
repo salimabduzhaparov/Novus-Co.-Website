@@ -35,7 +35,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["/social-card.jpg"],
   },
-  icons: { icon: "/brand/icon.png", apple: "/brand/icon.png" },
+  icons: {
+    icon: { url: "/brand/icon.png", type: "image/png", sizes: "256x256" },
+    apple: "/brand/icon.png",
+  },
 };
 export const viewport: Viewport = { themeColor: "#f3f5f9" };
 const organization = {
