@@ -1,3 +1,11 @@
+# Contact email update — 16 October 2026
+
+- Updated the shared public contact address and both enquiry-form recipients to `contact@novuswebsites.com`.
+- Organization structured data and the outreach privacy paragraph now use the shared contact setting as well.
+- The existing Resend sender remains unchanged; this update does not verify mailbox provisioning or end-to-end email delivery.
+
+---
+
 # Circular Novus favicon — 12 October 2026
 
 - Replaced the starter Vercel triangle at `/favicon.ico` with the owner's original circular N/orbit logo, without the lower wordmark.

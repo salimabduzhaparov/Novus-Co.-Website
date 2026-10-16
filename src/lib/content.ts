@@ -1,4 +1,4 @@
-export const CONTACT_EMAIL = "salim.novusco@gmail.com";
+export const CONTACT_EMAIL = "contact@novuswebsites.com";
 
 export const bookServiceOptions = [
   "Landing Page",

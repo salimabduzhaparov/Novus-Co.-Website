@@ -4,6 +4,7 @@ import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { RouteScrollReset } from "@/components/RouteScrollReset";
+import { CONTACT_EMAIL } from "@/lib/content";
 const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -48,7 +49,7 @@ const organization = {
   name: "Novus Co.",
   url: "https://www.novuswebsites.com",
   logo: "https://www.novuswebsites.com/brand/novus-logo.webp",
-  email: "salim.novusco@gmail.com",
+  email: CONTACT_EMAIL,
   description: "Website design and development for local service businesses.",
 };
 export default function RootLayout({
