@@ -1,4 +1,5 @@
 "use client";
+import { ButtonContent } from "./ui/Button";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Icon } from "./ui/Icon";
@@ -172,8 +173,9 @@ export function ContactForm() {
             disabled={sending}
             className="button-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {sending ? "Sending your message…" : "Send message"}
-            <span aria-hidden="true">↗</span>
+            <ButtonContent>
+              {sending ? "Sending your message…" : "Send message"}
+            </ButtonContent>
           </button>
         </form>
       )}

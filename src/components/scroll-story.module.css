@@ -162,11 +162,6 @@
   gap: 22px;
   margin-top: 30px;
 }
-.actions :global(.button-primary) {
-  color: #10243c;
-  background: #b5d6ff;
-  border-color: #b5d6ff;
-}
 .actions > a:last-child {
   font-size: 14px;
   color: #e1ecfc;

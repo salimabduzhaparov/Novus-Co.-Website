@@ -1,4 +1,5 @@
 "use client";
+import { ButtonContent } from "./ui/Button";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Icon } from "./ui/Icon";
@@ -225,8 +226,9 @@ export function BookingForm() {
             disabled={sending}
             className="button-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
-            {sending ? "Sending your request…" : "Request my free preview"}
-            <span aria-hidden="true">↗</span>
+            <ButtonContent>
+              {sending ? "Sending your request…" : "Request my free preview"}
+            </ButtonContent>
           </button>
           <p className="text-sm leading-relaxed text-silver">
             No payment or commitment. We’ll arrange the time with you by email.

@@ -1,11 +1,20 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
-/**
- * Original Novus treatment informed by the 21st.dev Motion Button and
- * Interactive Hover Button: a stable label with a restrained arrow tile.
- * No third-party component source or extra animation package is required.
- */
+/** Shared content for navigation links and real form submit buttons. */
+export function ButtonContent({ children }: { children: ReactNode }) {
+  return (
+    <>
+      <span className="button-label">{children}</span>
+      <span className="button-arrow" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none">
+          <path d="M4 10h12m-5-5 5 5-5 5" />
+        </svg>
+      </span>
+    </>
+  );
+}
+
 export function PrimaryButton({
   children,
   href = "/book",
@@ -26,12 +35,7 @@ export function PrimaryButton({
       data-tone={tone}
       data-size={size}
     >
-      <span className="button-label">{children}</span>
-      <span className="button-arrow" aria-hidden="true">
-        <svg viewBox="0 0 20 20" fill="none">
-          <path d="M5 15 15 5M5 5h10v10" />
-        </svg>
-      </span>
+      <ButtonContent>{children}</ButtonContent>
     </Link>
   );
 }

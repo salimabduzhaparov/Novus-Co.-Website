@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PrimaryButton } from "@/components/ui/Button";
 export default function NotFound() {
   return (
     <section className="studio-container section-space">
@@ -7,9 +7,7 @@ export default function NotFound() {
       <p className="page-copy mt-6 mb-8">
         This page may have moved, or the link may be incorrect.
       </p>
-      <Link href="/" className="button-primary">
-        Back to Novus <span aria-hidden="true">↗</span>
-      </Link>
+      <PrimaryButton href="/">Back to Novus</PrimaryButton>
     </section>
   );
 }

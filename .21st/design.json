@@ -209,6 +209,11 @@
       "date": "2026-10-11",
       "decision": "Remove the hero story manual pause button, progress rail and scene count indicators. Preserve automatic video safeguards and the separate SEO controls. Order all four mobile story steps as text then illustration; keep desktop sticky composition. Supersedes the earlier hero manual-pause requirement.",
       "source": "Direct owner instruction"
+    },
+    {
+      "date": "2026-10-19",
+      "decision": "Use a layered royal-blue CTA finish inspired by radiumcoders Shiny Button on 21st.dev: rounded rectangle, inset face, directional arrow, hover-only sheen and tactile press. Apply consistently to navigation, preview links and form actions. Preserve the restored Geist typography and page layouts. Respect reduced motion and touch input.",
+      "source": "Owner requested selecting and implementing the best 21st.dev button option. Reference: https://21st.dev/@radiumcoders/components/shiny-button (MIT). Also reviewed Magic UI Interactive Hover Button; selected the layered finish because it remains distinct without hover."
     }
   ],
   "evidence": [

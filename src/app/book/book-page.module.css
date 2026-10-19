@@ -176,8 +176,8 @@
   }
 
   .request :global(.button-primary) {
-    gap: 14px;
-    padding-left: 18px;
+    gap: 10px;
+    padding-inline: 14px;
     font-size: 14px;
   }
 

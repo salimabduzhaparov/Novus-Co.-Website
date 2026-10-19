@@ -108,6 +108,8 @@ button:disabled {
   line-height: 1.7;
   color: var(--silver);
 }
+/* Layered finish informed by radiumcoders/Shiny Button on 21st.dev.
+   Native CSS keeps links, forms and touch interactions consistent. */
 .button-primary,
 .button-secondary {
   display: inline-flex;
@@ -115,131 +117,135 @@ button:disabled {
   isolation: isolate;
   align-items: center;
   justify-content: center;
-  gap: 22px;
+  gap: 16px;
   min-height: 58px;
-  padding: 10px 11px 10px 23px;
-  border-radius: 999px;
+  padding: 16px 23px;
+  border-radius: 16px;
   font-size: 15px;
   line-height: 1.4;
   font-weight: 650;
   text-decoration: none;
   transition:
-    background 220ms cubic-bezier(0.2, 0, 0, 1),
-    border-color 220ms cubic-bezier(0.2, 0, 0, 1),
-    box-shadow 220ms cubic-bezier(0.2, 0, 0, 1),
-    color 220ms ease,
-    transform 180ms ease;
+    box-shadow 220ms ease,
+    transform 180ms ease,
+    color 220ms ease;
 }
 .button-primary {
-  --button-arrow-bg: #c0ddff;
-  --button-arrow-ink: #142b49;
-  background: #17365f;
+  --button-face-top: #2164e8;
+  --button-face-bottom: #1646b2;
+  overflow: hidden;
   color: #fff;
-  border: 1px solid #315784;
+  border: 1px solid #568bea;
+  background: linear-gradient(180deg, #8bb7ff 0%, #3975da 45%, #103885 100%);
   box-shadow:
-    0 4px 12px #0b25431c,
-    inset 0 1px 0 #ffffff1c;
+    0 4px 0 #102f70,
+    0 8px 18px #123b8126;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
-.button-primary:is(:hover, :focus-visible):not(:disabled) {
-  background: #214b80;
-  border-color: #679dd8;
+.button-primary::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 12px;
+  background: linear-gradient(
+    180deg,
+    var(--button-face-top),
+    var(--button-face-bottom)
+  );
   box-shadow:
-    0 0 0 4px #78acdf22,
-    0 8px 25px #183e6329,
-    inset 0 1px 0 #ffffff29;
+    inset 0 1px 0 #ffffff38,
+    inset 0 -1px 0 #06276855;
+  pointer-events: none;
+}
+.button-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    #ffffff14 45%,
+    transparent 70%
+  );
+  transform: translateX(-110%);
+  pointer-events: none;
 }
 .button-primary[data-tone="light"] {
-  --button-arrow-bg: #16365b;
-  --button-arrow-ink: #d4e9ff;
-  background: #c2dfff;
-  border-color: #d5e9ff;
-  color: #102b4b;
+  border-color: #80aefe;
   box-shadow:
-    0 0 0 1px #9ccaff26,
-    0 10px 30px #00000024,
-    inset 0 1px 0 #fff;
-}
-.button-primary[data-tone="light"]:is(:hover, :focus-visible) {
-  background: #e0efff;
-  border-color: #fff;
-  box-shadow:
-    0 0 0 5px #b0d5ff1a,
-    0 14px 32px #00000024,
-    inset 0 1px 0 #fff;
+    0 4px 0 #0a2864,
+    0 10px 28px #00000033,
+    0 0 0 1px #c0dcff26;
 }
 .button-primary[data-size="large"] {
-  min-height: 76px;
-  padding: 10px 11px 10px 28px;
-  gap: 28px;
+  min-height: 72px;
+  padding: 20px 30px;
+  gap: 22px;
   font-size: 18px;
+  border-radius: 19px;
+}
+.button-primary[data-size="large"]::before {
+  border-radius: 15px;
 }
 .button-label {
   position: relative;
   min-width: 0;
   z-index: 1;
 }
-.button-primary > .button-arrow,
-.button-primary > span[aria-hidden="true"],
-a.button-primary:not(:has(> [aria-hidden="true"]))::after {
-  display: inline-grid;
-  flex: 0 0 36px;
-  width: 36px;
-  height: 36px;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--button-arrow-bg, #c0ddff);
-  color: var(--button-arrow-ink, #142b49);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1;
-  transition:
-    background 220ms ease,
-    color 220ms ease,
-    transform 220ms cubic-bezier(0.2, 0, 0, 1);
-}
-a.button-primary:not(:has(> [aria-hidden="true"]))::after {
-  content: "";
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23142b49' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 15 15 5M5 5h10v10'/%3E%3C/svg%3E");
-  background-size: 19px 19px;
-  background-position: center;
-  background-repeat: no-repeat;
+.button-primary > .button-arrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  transition: transform 240ms cubic-bezier(0.2, 0, 0, 1);
 }
 .button-arrow svg {
-  width: 19px;
-  height: 19px;
+  width: 20px;
+  height: 20px;
   stroke: currentColor;
-  stroke-width: 1.7;
+  stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: transform 220ms cubic-bezier(0.2, 0, 0, 1);
 }
-.button-primary[data-size="large"] > .button-arrow {
-  width: 52px;
-  height: 52px;
-  flex-basis: 52px;
-}
+.button-primary[data-size="large"] > .button-arrow,
 .button-primary[data-size="large"] .button-arrow svg {
   width: 23px;
   height: 23px;
+  flex-basis: 23px;
 }
-.button-primary:is(:hover, :focus-visible) .button-arrow svg {
-  transform: translate(2px, -2px);
-}
-.button-primary:is(:hover, :focus-visible)
-  > span[aria-hidden="true"]:not(.button-arrow),
-a.button-primary:not(:has(> [aria-hidden="true"])):is(
-    :hover,
-    :focus-visible
-  )::after {
-  transform: rotate(7deg);
+@media (hover: hover) and (pointer: fine) {
+  .button-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 0 #102f70,
+      0 12px 24px #1457c23b;
+  }
+  .button-primary:hover:not(:disabled)::after {
+    transform: translateX(110%);
+    transition: transform 600ms ease;
+  }
+  .button-primary:hover:not(:disabled) > .button-arrow {
+    transform: translateX(4px);
+  }
 }
 .button-primary:focus-visible,
 .button-secondary:focus-visible {
-  outline: 3px solid #75aff1;
+  outline: 3px solid #78b5ff;
   outline-offset: 5px;
+}
+.button-primary:focus-visible:not(:disabled) > .button-arrow {
+  transform: translateX(4px);
 }
 .button-primary:disabled {
   box-shadow: none;
+  cursor: not-allowed;
 }
 .button-secondary {
   padding: 16px 24px;
@@ -346,15 +352,9 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 }
 .nav-actions .button-primary {
   min-height: 48px;
-  padding: 7px 8px 7px 18px;
-  gap: 19px;
+  padding: 12px 18px;
+  gap: 12px;
   font-size: 14px;
-}
-.nav-actions .button-primary > span[aria-hidden="true"] {
-  width: 31px;
-  height: 31px;
-  flex-basis: 31px;
-  font-size: 18px;
 }
 .menu-toggle {
   display: none;
@@ -562,15 +562,15 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   .closing-cta .button-primary[data-size="large"] {
     width: 100%;
     min-height: 68px;
-    padding: 10px 10px 10px 22px;
+    padding: 18px 22px;
     gap: 16px;
     justify-content: space-between;
     font-size: 16px;
   }
   .closing-cta .button-primary[data-size="large"] > .button-arrow {
-    width: 44px;
-    height: 44px;
-    flex-basis: 44px;
+    width: 23px;
+    height: 23px;
+    flex-basis: 23px;
   }
   .closing-cta-description {
     font-size: 17px;
@@ -721,14 +721,10 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   }
   .nav-actions .button-primary {
     min-height: 44px;
-    font-size: 12px;
-    padding: 6px 7px 6px 15px;
-    gap: 12px;
-  }
-  .nav-actions .button-primary > span[aria-hidden="true"] {
-    width: 29px;
-    height: 29px;
-    flex-basis: 29px;
+    font-size: 13px;
+    padding: 11px 15px;
+    gap: 10px;
+    border-radius: 14px;
   }
   .menu-toggle {
     display: flex;
@@ -1098,9 +1094,23 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .page-mini-nav a:hover {
   background: #e1eafb;
 }
-.button-primary:active:not(:disabled),
+.button-primary:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow:
+    0 1px 0 #102f70,
+    0 3px 8px #123b8126;
+}
 .button-secondary:active:not(:disabled) {
   transform: scale(0.985);
+}
+@media (prefers-reduced-motion: reduce) {
+  .button-primary::after {
+    display: none;
+  }
+  .button-primary,
+  .button-primary > .button-arrow {
+    transform: none !important;
+  }
 }
 @media (max-width: 900px) {
   .solution-grid {

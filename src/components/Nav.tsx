@@ -1,4 +1,5 @@
 "use client";
+import { ButtonContent } from "./ui/Button";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -56,7 +57,7 @@ export function Nav() {
             className="button-primary"
             onClick={() => setOpen(false)}
           >
-            Free preview<span aria-hidden="true">↗</span>
+            <ButtonContent>Free preview</ButtonContent>
           </Link>
           <button
             ref={toggle}
