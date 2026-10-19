@@ -214,6 +214,11 @@
       "date": "2026-10-19",
       "decision": "Use a layered royal-blue CTA finish inspired by radiumcoders Shiny Button on 21st.dev: rounded rectangle, inset face, directional arrow, hover-only sheen and tactile press. Apply consistently to navigation, preview links and form actions. Preserve the restored Geist typography and page layouts. Respect reduced motion and touch input.",
       "source": "Owner requested selecting and implementing the best 21st.dev button option. Reference: https://21st.dev/@radiumcoders/components/shiny-button (MIT). Also reviewed Magic UI Interactive Hover Button; selected the layered finish because it remains distinct without hover."
+    },
+    {
+      "date": "2026-10-19",
+      "decision": "Owner requested more glow: replace the glossy face with dark navy, a visible electric-blue halo, and a slowly orbiting cyan-blue border. Keep the shared CTA markup, dimensions and interactions. Disable border motion for reduced-motion users.",
+      "source": "Owner follow-up; visual direction: https://21st.dev/@Shatlyk1011/components/hover-border-gradient. Original CSS implementation; no additional dependencies."
     }
   ],
   "evidence": [
