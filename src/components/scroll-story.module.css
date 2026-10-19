@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 650;
   letter-spacing: 0.065em;
   text-transform: uppercase;
@@ -135,13 +135,13 @@
   font-size: clamp(44px, 4.65vw, 69px);
   font-weight: 550;
   line-height: 1.07;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
 }
 .copy h2 {
   font-size: clamp(34px, 3.85vw, 56px);
   font-weight: 550;
   line-height: 1.12;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .copy em {
@@ -149,7 +149,7 @@
   color: #a6caff;
 }
 .copy > p {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.75;
   color: #c0cee0;
   max-width: 475px;
@@ -168,7 +168,7 @@
   border-color: #b5d6ff;
 }
 .actions > a:last-child {
-  font-size: 14px;
+  font-size: 18px;
   color: #e1ecfc;
   display: flex;
   gap: 14px;
@@ -176,7 +176,7 @@
 }
 .copy > small {
   display: block;
-  font-size: 12px;
+  font-size: 15px;
   color: #b0c2d9;
   line-height: 1.7;
   max-width: 355px;
@@ -186,7 +186,7 @@
   display: flex;
   gap: 13px;
   align-items: center;
-  font-size: 12px;
+  font-size: 15px;
   color: #d1dff0;
   margin-top: 30px;
   width: fit-content;
@@ -203,12 +203,12 @@
   border-left: 2px solid #99c5ff;
   margin-top: 32px;
   padding: 4px 0 4px 20px;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.7;
   color: #fff;
 }
 .chapterNote span {
-  font-size: 14px;
+  font-size: 18px;
   color: #aabed8;
 }
 .benefits {
@@ -217,7 +217,7 @@
   margin: 28px 0;
   display: grid;
   gap: 12px;
-  font-size: 15px;
+  font-size: 19px;
   color: #dce9fa;
 }
 .benefits li:before {
@@ -232,7 +232,7 @@
   color: #d6e8ff;
   border-bottom: 1px solid #8cb0df80;
   padding-bottom: 10px;
-  font-size: 15px;
+  font-size: 19px;
 }
 .screenWrap {
   position: absolute;
@@ -297,7 +297,7 @@
   transform: none;
 }
 .searchBrand {
-  font-size: 15px;
+  font-size: 19px;
   display: flex;
   gap: 9px;
   align-items: center;
@@ -319,10 +319,10 @@
   box-shadow: 0 3px 10px #162d4910;
   margin-top: 19px;
   padding: 12px 16px;
-  font-size: 14px;
+  font-size: 18px;
 }
 .searchBar > span {
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1;
 }
 .searchBar strong {
@@ -375,11 +375,11 @@
   min-width: 0;
 }
 .result strong {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 650;
 }
 .result p {
-  font-size: 11px;
+  font-size: 14px;
   color: #5b6e85;
   margin-top: 4px;
 }
@@ -412,12 +412,12 @@
   font-weight: 600;
 }
 .searchHint {
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 18px;
   color: #637791;
 }
 .back {
-  font-size: 11px;
+  font-size: 14px;
   color: #4e6b8c;
   margin-bottom: 16px;
 }
@@ -449,7 +449,7 @@
   margin-top: 17px;
 }
 .listingPanel > p {
-  font-size: 11px;
+  font-size: 14px;
   color: #6b7f96;
   margin-top: 4px;
 }
@@ -485,10 +485,10 @@
   place-items: center;
 }
 .noWebsite strong {
-  font-size: 13px;
+  font-size: 16px;
 }
 .noWebsite p {
-  font-size: 11px;
+  font-size: 14px;
   color: #77879a;
   margin-top: 4px;
 }
@@ -513,7 +513,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 15px;
+  font-size: 19px;
   padding-bottom: 15px;
   border-bottom: 1px solid #b7d8ff33;
 }
@@ -540,7 +540,7 @@
 .websitePanel h3 {
   font-size: 28px;
   line-height: 1.14;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   margin-top: 9px;
   font-weight: 550;
 }
@@ -594,7 +594,7 @@
   color: #a8ccff;
 }
 .websiteBlocks strong {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 550;
 }
 .websiteBlocks p {
@@ -614,7 +614,7 @@
   color: #1b3655;
 }
 .websiteWork strong {
-  font-size: 11px;
+  font-size: 14px;
 }
 .websiteWork p {
   font-size: 9px;
@@ -646,7 +646,7 @@
   margin-top: 15px;
 }
 .websiteContact strong {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 550;
 }
 .websiteContact > div > span {
@@ -745,7 +745,7 @@
     font-size: clamp(40px, 4.4vw, 60px);
   }
   .copy > p {
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 20px;
   }
   .label {
@@ -777,10 +777,10 @@
     font-size: 37px;
   }
   .copy > p {
-    font-size: 16px;
+    font-size: 20px;
   }
   .label {
-    font-size: 12px;
+    font-size: 15px;
   }
   .screenWrap {
     right: 3%;
@@ -883,12 +883,12 @@
     max-width: 450px;
   }
   .copy > p {
-    font-size: 15px;
+    font-size: 19px;
     line-height: 1.7;
     margin-top: 20px;
   }
   .label {
-    font-size: 11px;
+    font-size: 14px;
     margin-bottom: 20px;
     letter-spacing: 0.05em;
   }
@@ -900,14 +900,14 @@
     gap: 18px;
   }
   .actions > a:last-child {
-    font-size: 12px;
+    font-size: 15px;
   }
   .copy > small {
-    font-size: 11px;
+    font-size: 14px;
     max-width: 300px;
   }
   .scrollCue {
-    font-size: 11px;
+    font-size: 14px;
     margin-top: 26px;
   }
   .screenWrap {
@@ -943,13 +943,13 @@
     gap: 9px;
   }
   .result strong {
-    font-size: 13px;
+    font-size: 16px;
   }
   .result p {
     font-size: 10px;
   }
   .searchBar {
-    font-size: 12px;
+    font-size: 15px;
     padding: 12px;
   }
   .searchHint {
@@ -974,7 +974,7 @@
     width: 20px;
   }
   .mockNav {
-    font-size: 13px;
+    font-size: 16px;
   }
   .mockNav > span {
     font-size: 7px;
@@ -1000,11 +1000,11 @@
     padding: 10px;
   }
   .chapterNote {
-    font-size: 16px;
+    font-size: 20px;
     margin-top: 25px;
   }
   .chapterNote span {
-    font-size: 13px;
+    font-size: 16px;
   }
   .evidenceChapter {
     min-height: auto;
@@ -1013,10 +1013,10 @@
     padding: 0;
   }
   .benefits {
-    font-size: 14px;
+    font-size: 18px;
   }
   .approachLink {
-    font-size: 14px;
+    font-size: 18px;
   }
   .quoteCursor {
     left: 80%;
@@ -1044,7 +1044,7 @@
   }
   .searchBar {
     gap: 7px;
-    font-size: 11px;
+    font-size: 14px;
   }
   .businessIcon {
     width: 25px;

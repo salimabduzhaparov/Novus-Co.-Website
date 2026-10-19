@@ -30,7 +30,8 @@
   --color-silver-dim: var(--silver-dim);
   --color-hairline: var(--hairline);
   --color-hairline-strong: var(--hairline-strong);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-cormorant), Georgia, serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
   --font-mono: ui-monospace, monospace;
 }
 html {
@@ -42,8 +43,9 @@ body {
   margin: 0;
   background: var(--bg-void);
   color: var(--ink);
-  font-family: var(--font-sans), Arial, sans-serif;
-  font-size: 16px;
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
 }
 button,
@@ -83,7 +85,7 @@ button:disabled {
 }
 .eyebrow {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.4;
   font-weight: 600;
   letter-spacing: 0.045em;
@@ -100,11 +102,11 @@ button:disabled {
   font-size: clamp(34px, 4.1vw, 58px);
   font-weight: 500;
   line-height: 1.12;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .page-copy {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.7;
   color: var(--silver);
 }
@@ -119,7 +121,7 @@ button:disabled {
   min-height: 58px;
   padding: 10px 11px 10px 23px;
   border-radius: 999px;
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.4;
   font-weight: 650;
   text-decoration: none;
@@ -171,7 +173,7 @@ button:disabled {
   min-height: 76px;
   padding: 10px 11px 10px 28px;
   gap: 28px;
-  font-size: 18px;
+  font-size: 22px;
 }
 .button-label {
   position: relative;
@@ -189,7 +191,7 @@ a.button-primary:not(:has(> [aria-hidden="true"]))::after {
   border-radius: 50%;
   background: var(--button-arrow-bg, #c0ddff);
   color: var(--button-arrow-ink, #142b49);
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 500;
   line-height: 1;
   transition:
@@ -265,7 +267,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   gap: 20px;
   min-height: 44px;
   font-weight: 550;
-  font-size: 15px;
+  font-size: 19px;
   text-underline-offset: 6px;
 }
 .text-link:hover {
@@ -324,7 +326,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   display: flex;
   align-items: center;
   gap: 30px;
-  font-size: 14px;
+  font-size: 18px;
 }
 .desktop-nav a {
   padding-block: 14px;
@@ -348,13 +350,13 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   min-height: 48px;
   padding: 7px 8px 7px 18px;
   gap: 19px;
-  font-size: 14px;
+  font-size: 18px;
 }
 .nav-actions .button-primary > span[aria-hidden="true"] {
   width: 31px;
   height: 31px;
   flex-basis: 31px;
-  font-size: 18px;
+  font-size: 22px;
 }
 .menu-toggle {
   display: none;
@@ -390,7 +392,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .hero-copy h1 {
   font-size: clamp(50px, 5.65vw, 82px);
   font-weight: 500;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.025em;
   line-height: 1.04;
   max-width: 720px;
 }
@@ -400,7 +402,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 }
 .hero-copy p {
   margin-top: 27px;
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.65;
   color: var(--silver);
   max-width: 435px;
@@ -446,7 +448,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   align-items: center;
   gap: 8px;
   white-space: nowrap;
-  font-size: 12px;
+  font-size: 15px;
   color: var(--silver);
   min-height: 44px;
 }
@@ -461,7 +463,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   gap: 30px;
   padding-block: 26px;
   border-top: 1px solid var(--hairline);
-  font-size: 13px;
+  font-size: 16px;
   color: var(--silver);
 }
 .hero-foot span:last-child {
@@ -483,16 +485,16 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .service-row h3 {
   font-size: 24px;
   font-weight: 500;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
 }
 .service-row p {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.65;
   color: var(--silver);
   max-width: 460px;
 }
 .service-number {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--silver);
   padding-top: 6px;
 }
@@ -519,8 +521,8 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   margin-block: 30px 22px;
 }
 .closing-cta {
-  background: #0b1c31;
-  color: #fff;
+  background: #fff;
+  color: var(--ink);
   padding-block: 100px;
   text-align: center;
 }
@@ -530,19 +532,19 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   align-items: center;
 }
 .closing-cta h2 {
-  max-width: 850px;
+  max-width: 1100px;
   margin: 0;
   font-size: clamp(40px, 5.6vw, 76px);
-  font-weight: 650;
+  font-weight: 500;
   line-height: 1.08;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
   text-wrap: balance;
 }
 .closing-cta-description {
   max-width: 560px;
   margin-top: 24px;
-  color: #c0cfe2;
-  font-size: 19px;
+  color: var(--silver);
+  font-size: 23px;
   line-height: 1.65;
 }
 .closing-cta-actions {
@@ -554,9 +556,16 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   margin-top: 34px;
 }
 .closing-cta-reassurance {
-  color: #a9bdd5;
-  font-size: 13px;
+  color: var(--silver);
+  font-size: 16px;
   line-height: 1.6;
+}
+.closing-sentence {
+  display: block;
+}
+.closing-sentence em {
+  color: var(--accent-blue);
+  font-style: normal;
 }
 @media (max-width: 500px) {
   .closing-cta .button-primary[data-size="large"] {
@@ -565,7 +574,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
     padding: 10px 10px 10px 22px;
     gap: 16px;
     justify-content: space-between;
-    font-size: 16px;
+    font-size: 20px;
   }
   .closing-cta .button-primary[data-size="large"] > .button-arrow {
     width: 44px;
@@ -573,7 +582,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
     flex-basis: 44px;
   }
   .closing-cta-description {
-    font-size: 17px;
+    font-size: 21px;
   }
 }
 .page-hero {
@@ -583,13 +592,13 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   font-size: clamp(42px, 6vw, 78px);
   line-height: 1.07;
   font-weight: 500;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.025em;
   max-width: 1050px;
   margin-top: 24px;
   text-wrap: balance;
 }
 .page-hero p {
-  font-size: 20px;
+  font-size: 24px;
   line-height: 1.65;
   max-width: 760px;
   margin-top: 25px;
@@ -601,7 +610,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   box-shadow: 0 20px 65px #14213805;
 }
 .field-label {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 500;
 }
 .form-input {
@@ -628,7 +637,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 }
 .footer-top p {
   max-width: 280px;
-  font-size: 15px;
+  font-size: 19px;
   line-height: 1.65;
   color: var(--silver);
   margin-top: 22px;
@@ -638,10 +647,10 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   flex-direction: column;
   align-items: flex-start;
   gap: 13px;
-  font-size: 15px;
+  font-size: 19px;
 }
 .footer-links h2 {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--silver);
   margin-bottom: 10px;
 }
@@ -660,7 +669,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   margin-top: 65px;
   padding-top: 25px;
   border-top: 1px solid var(--hairline);
-  font-size: 12px;
+  font-size: 15px;
   color: var(--silver);
 }
 .glass {
@@ -721,7 +730,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   }
   .nav-actions .button-primary {
     min-height: 44px;
-    font-size: 12px;
+    font-size: 15px;
     padding: 6px 7px 6px 15px;
     gap: 12px;
   }
@@ -742,7 +751,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   .mobile-nav a {
     display: block;
     padding: 13px 0;
-    font-size: 18px;
+    font-size: 22px;
   }
   .hero-layout {
     grid-template-columns: 1fr;
@@ -753,14 +762,14 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   .hero-copy h1 {
     font-size: clamp(45px, 10vw, 65px);
     max-width: 550px;
-    letter-spacing: -0.055em;
+    letter-spacing: -0.025em;
   }
   .hero-copy .eyebrow {
     margin-bottom: 24px;
-    font-size: 12px;
+    font-size: 15px;
   }
   .hero-copy p {
-    font-size: 17px;
+    font-size: 21px;
     max-width: 490px;
     margin-top: 23px;
   }
@@ -777,7 +786,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   }
   .hero-foot {
     padding-block: 22px;
-    font-size: 12px;
+    font-size: 15px;
   }
   .hero-foot span:last-child {
     display: none;
@@ -807,13 +816,13 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
     grid-row: 1;
   }
   .about-band p {
-    font-size: 17px;
+    font-size: 21px;
   }
   .page-hero {
     padding-block: 52px 48px;
   }
   .page-hero p {
-    font-size: 18px;
+    font-size: 22px;
   }
   .closing-cta {
     padding-block: 75px;
@@ -822,7 +831,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
     gap: 24px;
   }
   .footer-top {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 42px 22px;
   }
   .footer-brand {
@@ -832,7 +841,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
     max-width: 340px;
   }
   .footer-links {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -881,18 +890,18 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   color: #2459e0;
 }
 .solution-card-top > span {
-  font-size: 12px;
+  font-size: 15px;
   color: #7e8da3;
 }
 .solution-card h3 {
   font-size: 25px;
   line-height: 1.22;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   margin: 35px 0 18px;
   font-weight: 550;
 }
 .solution-card p {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.7;
   color: #536078;
 }
@@ -902,12 +911,12 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   align-items: center;
   padding-top: 30px;
   margin-top: auto;
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 500;
   color: #2459e0;
 }
 .solution-link > span {
-  font-size: 20px;
+  font-size: 24px;
 }
 .why-novus {
   background: #142640;
@@ -924,7 +933,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .why-novus h2 {
   font-size: clamp(35px, 4vw, 56px);
   line-height: 1.13;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
   margin-top: 30px;
 }
 .why-novus h2 em {
@@ -932,7 +941,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   color: #a7c9fa;
 }
 .why-novus p {
-  font-size: 17px;
+  font-size: 21px;
   line-height: 1.75;
   color: #b6c8df;
   margin-top: 25px;
@@ -949,17 +958,17 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   border-top: 1px solid #ffffff24;
 }
 .why-principles article > span {
-  font-size: 11px;
+  font-size: 14px;
   color: #83aae0;
   padding-top: 7px;
 }
 .why-principles h3 {
   font-size: 24px;
   line-height: 1.25;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.025em;
 }
 .why-principles p {
-  font-size: 15px;
+  font-size: 19px;
   margin-top: 12px;
 }
 .page-hero {
@@ -968,7 +977,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .page-hero .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  font-size: 11px;
+  font-size: 14px;
   color: #2459e0;
 }
 .page-hero::after {
@@ -998,12 +1007,12 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 }
 .service-detail h2 {
   font-size: 29px;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   line-height: 1.2;
   margin-top: 25px;
 }
 .service-detail p {
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.7;
   color: #536078;
   margin-top: 18px;
@@ -1014,7 +1023,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   padding-top: 23px;
   margin-top: 25px;
   border-top: 1px solid #e1e7ef;
-  font-size: 14px;
+  font-size: 18px;
 }
 .service-detail li {
   display: flex;
@@ -1026,7 +1035,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   color: #2459e0;
 }
 .service-detail .service-fit {
-  font-size: 13px;
+  font-size: 16px;
   padding-top: 20px;
   margin-top: 20px;
   border-top: 1px solid #e1e7ef;
@@ -1035,7 +1044,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   display: flex;
   justify-content: space-between;
   color: #2459e0;
-  font-size: 12px;
+  font-size: 15px;
   align-items: center;
 }
 .mission-grid {
@@ -1056,11 +1065,11 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .mission-card h2 {
   font-size: 30px;
   line-height: 1.2;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
   margin-top: 30px;
 }
 .mission-card p {
-  font-size: 17px;
+  font-size: 21px;
   line-height: 1.7;
   margin-top: 25px;
   color: #bfd0e7;
@@ -1073,11 +1082,11 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 .about-story h2 {
   font-size: clamp(30px, 4vw, 46px);
   line-height: 1.15;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
   margin-bottom: 30px;
 }
 .about-story p {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 1.8;
   color: #536078;
   margin-top: 20px;
@@ -1089,7 +1098,7 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
   margin-bottom: 35px;
 }
 .page-mini-nav a {
-  font-size: 12px;
+  font-size: 15px;
   border: 1px solid #ced9e8;
   border-radius: 100px;
   padding: 11px 16px;
@@ -1155,14 +1164,14 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
     gap: 8px;
   }
   .page-mini-nav a {
-    font-size: 11px;
+    font-size: 14px;
     padding: 10px 12px;
   }
 }
 
 /* Clear section wayfinding and a high-contrast services surface. */
 .eyebrow {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: 0.055em;
   text-transform: uppercase;
@@ -1212,18 +1221,18 @@ a.button-primary:not(:has(> [aria-hidden="true"])):is(
 }
 .why-novus .eyebrow {
   color: #b1d0ff;
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 700;
 }
 .page-hero .eyebrow {
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 700;
 }
 @media (max-width: 760px) {
   .eyebrow,
   .why-novus .eyebrow,
   .page-hero .eyebrow {
-    font-size: 13px;
+    font-size: 16px;
   }
   .section-intro > .eyebrow::before {
     margin-top: 8px;
