@@ -103,15 +103,11 @@
     },
     "typography": {
       "--font-sans": {
-        "value": "var(--font-cormorant), Georgia, serif",
+        "value": "var(--font-geist-sans)",
         "source": "src/app/globals.css"
       },
       "--font-mono": {
         "value": "ui-monospace, monospace",
-        "source": "src/app/globals.css"
-      },
-      "--font-serif": {
-        "value": "var(--font-cormorant), Georgia, serif",
         "source": "src/app/globals.css"
       }
     },
@@ -212,11 +208,6 @@
     {
       "date": "2026-10-11",
       "decision": "Remove the hero story manual pause button, progress rail and scene count indicators. Preserve automatic video safeguards and the separate SEO controls. Order all four mobile story steps as text then illustration; keep desktop sticky composition. Supersedes the earlier hero manual-pause requirement.",
-      "source": "Direct owner instruction"
-    },
-    {
-      "date": "2026-10-19",
-      "decision": "Owner selected Cormorant Garamond, option four in the editorial font comparison, for the entire site. Apply it to navigation, headings, body copy, forms and footer with readable serif sizing. Closing invitations use white backgrounds and navy text; the homepage has two sentence blocks with show it accented in blue and the preview button. Additional design recommendations require owner approval.",
       "source": "Direct owner instruction"
     }
   ],

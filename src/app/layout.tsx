@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { RouteScrollReset } from "@/components/RouteScrollReset";
 import { CONTACT_EMAIL } from "@/lib/content";
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const geist = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -61,7 +61,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} antialiased`}
+      className={`${geist.variable} antialiased`}
     >
       <body>
         <RouteScrollReset />
