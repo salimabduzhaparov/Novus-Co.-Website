@@ -25,16 +25,21 @@ export const metadata: Metadata = {
     siteName: "Novus Co.",
     images: [
       {
-        url: "/social-card.jpg",
+        url: "/social-card-novus-20261023.png",
         width: 1200,
         height: 630,
-        alt: "Novus Co. — Thoughtful websites for local businesses",
+        alt: "Websites by Novus — Your work is good. Show it.",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/social-card.jpg"],
+    images: [
+      {
+        url: "/social-card-novus-20261023.png",
+        alt: "Websites by Novus — Your work is good. Show it.",
+      },
+    ],
   },
   icons: {
     icon: { url: "/brand/icon.png", type: "image/png", sizes: "256x256" },
