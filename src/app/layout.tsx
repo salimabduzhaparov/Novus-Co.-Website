@@ -19,16 +19,18 @@ export const metadata: Metadata = {
   description:
     "Websites for local service businesses, built around clear services, customer confidence and easier enquiries. Request a free website preview from Novus.",
   alternates: { canonical: "/" },
+  // Keep shared links tied to the brand logo, independent of site artwork updates.
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Novus Co.",
     images: [
       {
-        url: "/social-card-novus-20261023.png",
-        width: 1200,
-        height: 630,
-        alt: "Websites by Novus — Your work is good. Show it.",
+        url: "/brand/novus-logo.png",
+        width: 1500,
+        height: 540,
+        type: "image/png",
+        alt: "Novus Co. logo",
       },
     ],
   },
@@ -36,8 +38,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [
       {
-        url: "/social-card-novus-20261023.png",
-        alt: "Websites by Novus — Your work is good. Show it.",
+        url: "/brand/novus-logo.png",
+        alt: "Novus Co. logo",
       },
     ],
   },
